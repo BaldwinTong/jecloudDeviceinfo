@@ -32,11 +32,27 @@ jecloud-cli
 npm install -g cnpm -registry=https://registry.npm.taobao.org
 ```
 ### 安装依赖包
-请使用提供的命令进行安装，由于项目使用了私有仓库的包，需要先安装私包，再安装其他依赖。
-```bash
-# 安装所有依赖
-npm run install
-```
+- 开发，调试阶段
+  ```js
+  1. 开发阶段，先下载项目：`jecloud-libs`，
+  2. 进入`packages/ui`，执行`npm link`
+  3. 进入`packages/utils`，执行`npm link`
+  4. 执行完毕，会将 `@jecloud/ui`,`@jecloud/utils` 安装到全局依赖，便于进行本地开发调试
+  5. 打开插件项目
+  6. 执行 `npm link @jecloud/ui` ，关联本地依赖 `@jecloud/ui`
+  7. 执行 `npm link @jecloud/utils` ，关联本地依赖 `@jecloud/utils`
+  8. 执行 `cnpm i` 安装其他依赖
+
+  `jecloud-libs` 未发布私有仓库时，先按照上述步骤开发，发包后，可以正常开发了
+  ```
+
+- 正常开发
+
+  请使用提供的命令进行安装，由于项目使用了私有仓库的包，需要先安装私包，再安装其他依赖。
+  ```bash
+  # 安装所有依赖
+  npm run setup
+  ```
 
 ### 启动服务
 ```bash

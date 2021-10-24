@@ -1,6 +1,14 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import micro from 'micro';
+import App from './App.vue';
+import routes from './router';
 
-createApp(App).use(store).use(router).mount("#app");
+// 初始微应用
+micro
+  .init({
+    app: App,
+    routes,
+  })
+  .then(function (vue) {
+    // vue 实例，可以进行相关业务操作
+    console.log(vue);
+  });
