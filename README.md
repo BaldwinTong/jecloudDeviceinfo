@@ -92,3 +92,19 @@ cnpm i -D @jecloud/ui @jecloud/utils --registry=http://39.106.75.216:4873/
 # 再安装其他依赖
 cnpm i
 ```
+
+## 同步本地的远程分支
+开发过程当中，很多远程分支已被删除，但是本地没有同步，可以通过一下操作进行同步
+```bash
+# 查看本地分支和追踪情况
+git remote show origin 
+
+# 查看可被清理的分支
+git remote prune origin --dry-run
+
+# 清理缓存分支
+git remote prune origin
+
+# 查看分支
+git branch -a
+```
