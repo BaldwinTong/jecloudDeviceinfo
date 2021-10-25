@@ -16,10 +16,13 @@ jecloud-cli
 │  CHANGELOG.md         # Git 提交记录
 │  package-lock.json    
 │  package.json         
-│  README.md           
+│  README.md 
 ├─.vscode               # vscode 项目配置目录，不建议私自修改
 │      extensions.json  # vscode 推荐插件
 │      settings.json    # vscode 常用配置
+├─build                 # 项目构建目录
+│     └─webapck         # webpack配置
+├─micro                 # 微应用入口，系统文件，如果问题，可以反馈，不允许私自修改
 ├─public                # 静态资源
 └─src                   # 源码文件
 
