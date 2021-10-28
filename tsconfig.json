@@ -16,11 +16,6 @@
     "types": [
       "webpack-env"
     ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "lib": [
       "esnext",
       "dom",
@@ -29,12 +24,7 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "typings/**/*.d.ts"
+    "build/typescript/index.ts"
   ],
   "exclude": []
 }
