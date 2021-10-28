@@ -1,5 +1,5 @@
 import micro from 'micro';
-import App from './App.vue';
+import App from './app.vue';
 import routes from './router';
 
 // 初始微应用
