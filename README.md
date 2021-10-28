@@ -21,6 +21,8 @@ jecloud-cli
 │      extensions.json  # vscode 推荐插件
 │      settings.json    # vscode 常用配置
 ├─build                 # 项目构建目录
+│     ├─hooks-git       # git 钩子函数
+│     ├─typescript      # 方便项目进行ts调试，增加了ts支持
 │     └─webapck         # webpack配置
 ├─micro                 # 微应用入口，系统文件，如果问题，可以反馈，不允许私自修改
 ├─public                # 静态资源
@@ -28,38 +30,56 @@ jecloud-cli
 
 ```
 
+## 开发环境
+### node
+`v 14.17.5`
 
-## 项目安装
-### cnpm：安装淘宝镜像
+### npm 
+`v 6.14.14`
+
+### [Yalc](https://github.com/wclr/yalc)
+`Yalc` 是一个可以在本地模拟 npm package 发布环境的工具。
+`yalc` 主要本地化了一个 `npm` 的存储库，通过 `yalc publish` 可以把构建的产物发布到本地。通过 `yalc add <pkg>` 可以达到 `npm install <pkg>` 或 `yarn add <pkg>` 的效果。
+
+
+```bash
+# 全局安装，本项目采用yalc进行本地调试
+npm i -g yalc
 ```
-npm install -g cnpm -registry=https://registry.npm.taobao.org
+
+### 开发模式
+### 本地调试开发
+1. 全局安装 `yalc`，进行本地调试开发
+
+2. 下载项目 `jecloud-libs`，在 `jecloud-libs` 根目录执行命令 `npm run yalc:publish`，模拟npm发布本地调试包
+3. 下载 `业务项目`，如 `jecloud-core-table`
+4. 在 `业务项目` 根目录，执行命令 `npm run setup` 安装依赖，进行本地开发调试
+5. 当 `jecloud-libs` 代码有变动，在 `jecloud-libs` 根目录执行命令 `npm run yalc:push` 同步代码
+
+### 私服依赖开发
+1. 下载 `业务项目`，如 `jecloud-core-table`
+
+2. 执行命令 `npm run setup:regist` 安装依赖，进行本地开发
+
+
+
+
+## 项目命令
+
+### 安装依赖
+由于使用了私有包，请使用命令安装，不要使用` npm i` 进行安装依赖
+```bash
+# 快捷安装命令，可以自行调整
+npm run setup
+# 安装本地调试依赖，请先确保全局已经安装`yalc`
+npm run setup:yalc
+# 安装私服包，请先确保全局已经安装`yalc`
+npm run setup:regist
 ```
-### 安装依赖包
-- 开发，调试阶段
-  ```js
-  1. 开发阶段，先下载项目：`jecloud-libs`，
-  2. 进入`packages/ui`，执行`npm link`
-  3. 进入`packages/utils`，执行`npm link`
-  4. 执行完毕，会将 `@jecloud/ui`,`@jecloud/utils` 安装到全局依赖，便于进行本地开发调试
-  5. 打开插件项目
-  6. 执行 `npm link @jecloud/ui` ，关联本地依赖 `@jecloud/ui`
-  7. 执行 `npm link @jecloud/utils` ，关联本地依赖 `@jecloud/utils`
-  8. 执行 `cnpm i` 安装其他依赖
-
-  `jecloud-libs` 未发布私有仓库时，先按照上述步骤开发，发包后，可以正常开发了
-  ```
-
-- 正常开发
-
-  请使用提供的命令进行安装，由于项目使用了私有仓库的包，需要先安装私包，再安装其他依赖。
-  ```bash
-  # 安装所有依赖
-  npm run setup
-  ```
 
 ### 启动服务
 ```bash
-npm run serve
+npm run dev
 ```
 
 ### 代码构建
@@ -94,20 +114,4 @@ cnpm i -D @jecloud/ui @jecloud/utils --registry=http://39.106.75.216:4873/
 
 # 再安装其他依赖
 cnpm i
-```
-
-## 同步本地的远程分支
-开发过程当中，很多远程分支已被删除，但是本地没有同步，可以通过一下操作进行同步
-```bash
-# 查看本地分支和追踪情况
-git remote show origin 
-
-# 查看可被清理的分支
-git remote prune origin --dry-run
-
-# 清理缓存分支
-git remote prune origin
-
-# 查看分支
-git branch -a
 ```

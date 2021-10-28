@@ -8,11 +8,15 @@
     "email": "linzc@china-hbp.com"
   },
   "scripts": {
+    "dev": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "setup": "npm run i:jecloud && cnpm i",
-    "setup:jecloud": "cnpm i -S @jecloud/ui @jecloud/uitls --regist",
+    "setup": "npm run setup:yalc",
+    "setup:yalc": "npm run yalc:remove && npm run yalc:jecloud && npm i",
+    "yalc:jecloud": "yalc add @jecloud/utils @jecloud/ui",
+    "yalc:remove": "yalc remove --all",
+    "setup:regist": "npm i -S @jecloud/ui @jecloud/utils --regist=http://39.106.75.216:4873/ && npm i",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean": "rimraf node_modules"
@@ -28,6 +32,8 @@
     }
   },
   "dependencies": {
+    "@jecloud/ui": "file:.yalc/@jecloud/ui",
+    "@jecloud/utils": "file:.yalc/@jecloud/utils",
     "ant-design-vue": "^3.0.0-alpha.3",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
