@@ -13,6 +13,7 @@
     "typescriptreact"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.eol": "\n",
   "search.exclude": {
     "**/node_modules": true,
     "**/*.log": true,

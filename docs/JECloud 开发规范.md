@@ -35,5 +35,32 @@
 - To Do：待办列表
 - v1.0.0: 平台版本号。平台每次增加版本，都会增加对应的版本标记； 每个issue都必须包含版本号标记，用于记录版本的改动
 
+## 脚手架项目更新规范
 
+1、项目中关联脚手架项目(jecloud-cli)仓库地址：
+```bash
+ # 添加远程仓库
+ git remote add cli http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli.git
 
+ # 查看是否添加成功
+ git remote -v
+```
+
+2、切换本地脚手架项目分支 cli，更新仓库代码
+```bash
+# 切换 cli 分支
+git checkout cli
+
+# 更新cli远程仓库的develop分支代码
+git pull cli develop
+```
+
+3、合并到本地代码
+
+```bash
+# 切换到本地代码
+git checkout develop
+
+# 合并代码，解决冲突
+git merge cli
+```
