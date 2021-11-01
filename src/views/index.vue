@@ -1,7 +1,12 @@
 <template>
   <div class="home">
-    <a-typography-title>欢迎：{{ name }}，请开始你的表演！</a-typography-title>
-    <je-alert message="登录成功！" type="success" show-icon style="width: 600px"></je-alert>
+    <a-typography-title>{{ $t('index.welcome', [name]) }}</a-typography-title>
+    <je-alert
+      :message="$t('index.success')"
+      type="success"
+      show-icon
+      style="width: 600px"
+    ></je-alert>
   </div>
 </template>
 

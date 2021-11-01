@@ -19,6 +19,8 @@ module.exports = function (config) {
 
   // 设置别名
   config.resolve.alias.set('micro', path.resolve('../../micro'));
+  // 设置i18n警告
+  config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
   // 环境配置
   return NODE_ENV == 'development' ? dev(config) : prod(config);

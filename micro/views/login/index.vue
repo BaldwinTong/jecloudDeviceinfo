@@ -9,6 +9,14 @@
         <a-form-item has-feedback label="密码" name="j_password">
           <a-input-password v-model:value="model.j_password" placeholder="请输入密码" />
         </a-form-item>
+        <a-form-item has-feedback label="语言" name="j_locale">
+          <a-select ref="select" v-model:value="model.j_locale">
+            <a-select-option v-for="(item, index) in locales" :key="index" :value="item.code">{{
+              item.text
+            }}</a-select-option>
+          </a-select>
+        </a-form-item>
+
         <a-form-item :wrapper-col="{ span: 24 }" style="text-align: center">
           <a-button type="primary" @click="login">登录</a-button>
           <a-button style="margin-left: 10px" @click="form.resetFields()">重置</a-button>
@@ -19,7 +27,7 @@
 </template>
 <script>
   import { defineComponent, ref } from 'vue';
-  import { Form, Button, Input, Row, Col } from 'ant-design-vue';
+  import { Form, Button, Input, Row, Col, Select } from 'ant-design-vue';
   import { useModel } from './model';
   import { useLogin } from './hook';
   export default defineComponent({
@@ -31,19 +39,23 @@
       AInputPassword: Input.Password,
       ARow: Row,
       ACol: Col,
+      ASelect: Select,
+      ASelectOption: Select.Option,
     },
     setup() {
       const form = ref();
+      const locale = ref();
 
       // 表单数据，校验规则
       const { model, rules } = useModel();
       // 登录函数
-      const { login } = useLogin(form, model);
-
+      const { login, getLocale, locales } = useLogin(form, model);
+      model.j_locale = getLocale();
       return {
+        rules,
         model,
         form,
-        rules,
+        locales,
         login,
         layout: {
           labelCol: {

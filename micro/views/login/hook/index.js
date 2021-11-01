@@ -2,6 +2,7 @@ import { toRaw } from 'vue';
 import { useRouter } from 'vue-router';
 import { doLogin } from 'micro/api';
 import { message } from 'ant-design-vue';
+import { SUPPORT_LOCALES, getLocale, changeLocale } from '@/locales';
 
 /**
  *登录操作
@@ -21,6 +22,8 @@ export function useLogin(form, model) {
       // 提交登录
       doLogin(vals)
         .then((authorization) => {
+          // 更改语言
+          changeLocale(vals.j_locale);
           // 登录成功
           message.success('登录成功！');
           JE.cookie.set('authorization', authorization, 7);
@@ -36,5 +39,6 @@ export function useLogin(form, model) {
         });
     });
   }
-  return { login };
+
+  return { login, locales: SUPPORT_LOCALES, getLocale };
 }
