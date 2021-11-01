@@ -4,6 +4,7 @@ import microRoutes from './router';
 import { registRouterEach } from './router/hook';
 import { initAxios } from './api/axiois';
 import { initJE } from './helper/utils';
+import { setupIi8n } from '../src/locales';
 
 // vue实例
 export let vueInstance = null;
@@ -28,10 +29,13 @@ function init(config) {
     routes: routes.concat(microRoutes),
   });
   registRouterEach(router);
-  const vue = createApp(app).use(router).mount('#app');
-  vueInstance = vue;
-  routerInstance = router;
-  return Promise.resolve(vue);
+  const vue = createApp(app);
+  return setupIi8n(vue).then(() => {
+    vue.use(router).mount('#app');
+    vueInstance = vue;
+    routerInstance = router;
+    return vue;
+  });
 }
 
 export default { init };
