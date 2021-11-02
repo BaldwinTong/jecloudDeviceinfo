@@ -4,10 +4,19 @@
       <a-form ref="form" class="login-form" :model="model" v-bind="layout" :rules="rules">
         <div class="login-title">系统登录</div>
         <a-form-item has-feedback label="用户" name="j_username">
-          <a-input v-model:value="model.j_username" autocomplete="off" placeholder="请输入用户名" />
+          <a-input
+            v-model:value="model.j_username"
+            autocomplete="off"
+            placeholder="请输入用户名"
+            @pressEnter="login"
+          />
         </a-form-item>
         <a-form-item has-feedback label="密码" name="j_password">
-          <a-input-password v-model:value="model.j_password" placeholder="请输入密码" />
+          <a-input-password
+            v-model:value="model.j_password"
+            placeholder="请输入密码"
+            @pressEnter="login"
+          />
         </a-form-item>
         <a-form-item has-feedback label="语言" name="j_locale">
           <a-select ref="select" v-model:value="model.j_locale">

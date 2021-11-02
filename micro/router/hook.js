@@ -16,9 +16,13 @@ export function registRouterEach(router) {
     }
     if (to.name === 'Home') {
       // 初始化系统数据
-      initSystemInfo().then(() => {
-        next();
-      });
+      initSystemInfo()
+        .then(() => {
+          next();
+        })
+        .catch(() => {
+          next({ name: 'Login' });
+        });
       return;
     }
     next();
