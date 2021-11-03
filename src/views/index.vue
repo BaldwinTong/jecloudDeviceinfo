@@ -1,12 +1,13 @@
 <template>
   <div class="home">
     <a-typography-title>{{ $t('index.welcome', [name]) }}</a-typography-title>
-    <je-alert
-      :message="$t('index.success')"
-      type="success"
-      show-icon
-      style="width: 600px"
-    ></je-alert>
+    <je-alert :message="$t('index.success')" type="success" show-icon style="width: 600px">
+      <template #description>
+        {{ $t('index.choice') }}
+        <router-link to="icons">{{ $t('index.icons') }}</router-link> |
+        <router-link to="login">{{ $t('index.logout') }}</router-link>
+      </template></je-alert
+    >
   </div>
 </template>
 
