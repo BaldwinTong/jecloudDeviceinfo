@@ -1,6 +1,8 @@
 import micro from 'micro';
 import App from './app.vue';
 import routes from './router';
+// 字体图标
+import './assets/fonts/css/all.css';
 
 // 初始微应用
 micro
