@@ -7,7 +7,12 @@ const routes = [
   {
     path: '/icons',
     name: 'Icons',
-    component: () => import(/* webpackChunkName: "login" */ '../views/icons/index.vue'),
+    component: () => import(/* webpackChunkName: "icons" */ '../views/icons/index.vue'),
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import(/* webpackChunkName: "demo" */ '../views/demo/index.vue'),
   },
 ];
 

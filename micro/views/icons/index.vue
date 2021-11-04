@@ -14,6 +14,10 @@
             <i class="fal fa-search" />
           </template>
         </a-input>
+        <a-button type="link" @click="visible = true">
+          <template #icon><i class="fal fa-question-circle"></i></template>
+          使用帮助
+        </a-button>
       </a-col>
     </a-row>
   </a-affix>
@@ -25,13 +29,21 @@
       <div class="cls">{{ formatIcon(icon) }}</div>
     </a-col>
   </a-row>
+  <a-modal v-model:visible="visible" title="使用帮助" @ok="visible = false">
+    <p>1. 系统统一使用<span class="red">“细体图标”</span>，有特殊说明，可以使用其他</p>
+    <p
+      >2. 图标统一使用<span class="red">{{ getHtmlStr('i') }}</span
+      >标签，编写规范：<span class="red">{{ getHtmlStr() }}</span>
+    </p>
+    <p>3. 点击图标，可以直接复制图标样式，复制内容：<span class="red">fal fa-abacus</span></p>
+  </a-modal>
   <a-back-top />
 </template>
 <script>
   import { defineComponent, ref, computed } from 'vue';
   import { debounce, copy } from '@jecloud/utils';
   import names from '@/assets/fonts/names';
-  import { message, Row, Col, Affix, Menu, BackTop, Input } from 'ant-design-vue';
+  import { message, Row, Col, Affix, Menu, BackTop, Input, Button, Modal } from 'ant-design-vue';
   export default defineComponent({
     components: {
       AInput: Input,
@@ -41,11 +53,13 @@
       AMenu: Menu,
       AMenuItem: Menu.Item,
       ABackTop: BackTop,
+      AButton: Button,
+      AModal: Modal,
     },
     setup() {
       // 字体标签
       const tabs = [
-        { code: 'light', text: '细体图标（默认）', cls: 'fal', name: 'solid' },
+        { code: 'light', text: '细体图标', cls: 'fal', name: 'solid' },
         { code: 'solid', text: '实心图标', cls: 'fas', name: 'solid' },
         { code: 'brands', text: '品牌图标', cls: 'fab', name: 'brands' },
       ];
@@ -90,7 +104,19 @@
         copy(e.target.getAttribute('class'));
         message.success('复制成功！');
       };
+
+      // 帮助说明
+      const visible = ref(false);
+      const getHtmlStr = function (type) {
+        if (type == 'i') {
+          return '<i>';
+        } else {
+          return '<i class="fal fa-abacus"></i>';
+        }
+      };
       return {
+        getHtmlStr,
+        visible,
         selectedKeys,
         tabs,
         icons,
@@ -107,6 +133,9 @@
     box-shadow: 2px 2px 10px #ddd;
     .menu {
       background-color: #f0f2f5;
+    }
+    :deep(.ant-btn > i + span, .ant-btn > span + i, ) {
+      margin-left: 8px;
     }
   }
   .icons {
@@ -128,5 +157,8 @@
     &:hover .cls {
       visibility: visible;
     }
+  }
+  .red {
+    color: red;
   }
 </style>
