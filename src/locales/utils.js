@@ -8,10 +8,17 @@ import { set } from '@jecloud/utils';
  */
 export function buildLocales(files) {
   const locales = {};
-  files.keys().forEach((key) => {
+
+  console.log(files);
+  Object.keys(files).forEach((key) => {
     // 将文件路径改为属性路径：./lang/en_US/index.js => lang.en_US.index
     const keyPath = key.replace('./', '').replace('.js', '').replaceAll('/', '.');
-    set(locales, keyPath, files(key).default);
+    set(locales, keyPath, files[key].default);
   });
+  // files.keys().forEach((key) => {
+  //   // 将文件路径改为属性路径：./lang/en_US/index.js => lang.en_US.index
+  //   const keyPath = key.replace('./', '').replace('.js', '').replaceAll('/', '.');
+  //   set(locales, keyPath, files(key).default);
+  // });
   return locales;
 }
