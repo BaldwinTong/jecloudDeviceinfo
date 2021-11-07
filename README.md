@@ -55,6 +55,7 @@ npm i -g yalc
 3. 下载 `业务项目`，如 `jecloud-core-table`
 4. 在 `业务项目` 根目录，执行命令 `npm run setup` 安装依赖，进行本地开发调试
 5. 当 `jecloud-libs` 代码有变动，在 `jecloud-libs` 根目录执行命令 `npm run yalc:push` 同步代码
+6. 同步完代码，`业务项目` 执行 `npm run clean:vite`,清理`vite`缓存
 
 ### 私服依赖开发
 1. 下载 `业务项目`，如 `jecloud-core-table`

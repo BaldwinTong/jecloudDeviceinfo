@@ -9,7 +9,7 @@ import { routerInstance } from '../index';
  * @export
  */
 export function initJE() {
-  window.JE = utils;
+  window.JE = Object.assign({}, utils);
 }
 
 /**

@@ -8,12 +8,13 @@
     "email": "linzc@china-hbp.com"
   },
   "scripts": {
-    "dev": "npm run serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "npm run dev:vite",
+    "build": "npm run build:vuecli",
+    "dev:vuecli": "vue-cli-service serve",
+    "build:vuecli": "vue-cli-service build",
     "dev:vite": "vite",
     "build:vite": "vite build",
-    "serve:vite": "vite preview",
+    "preview:vite": "vite preview",
     "lint": "vue-cli-service lint",
     "setup": "npm run setup:yalc",
     "setup:yalc": "npm run yalc:remove && npm run yalc:jecloud && npm i",
@@ -22,7 +23,8 @@
     "setup:regist": "npm i -S @jecloud/ui @jecloud/utils --regist=http://39.106.75.216:4873/ && npm i",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "clean": "rimraf node_modules"
+    "clean": "rimraf node_modules",
+    "clean:vite":"rimraf node_modules/.vite"
   },
   "husky": {
     "hooks": {
@@ -48,6 +50,7 @@
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@vitejs/plugin-vue": "^1.9.3",
+    "@vitejs/plugin-vue-jsx": "^1.2.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
