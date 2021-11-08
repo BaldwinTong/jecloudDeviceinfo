@@ -54,6 +54,6 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
-    optimizeDeps: { include: ['ant-design-vue'] },
+    optimizeDeps: { include: ['ant-design-vue/es/locale/zh_CN', 'ant-design-vue/es/locale/en_US'] },
   };
 });

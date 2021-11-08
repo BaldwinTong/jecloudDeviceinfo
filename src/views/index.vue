@@ -1,5 +1,5 @@
 <template>
-  <div class="demo"> 系统首页 | <router-link to="demo" target="_blank">Demo</router-link> </div>
+  <div class="demo"> 系统首页 | <router-link to="demo">Demo</router-link> </div>
 </template>
 
 <script>
