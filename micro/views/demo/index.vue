@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <a-typography-title>{{ $t('welcome', [name]) }}</a-typography-title>
-    <je-alert :message="$t('success')" type="success" show-icon style="width: 600px">
-      <template #description>
-        {{ $t('choice') }}
-        <router-link to="icons">{{ $t('icons') }}</router-link> |
-        <router-link to="login">{{ $t('logout') }}</router-link>
-      </template></je-alert
-    >
+    <a-typography-title>{{ $t('demo.welcome', [name]) }}</a-typography-title>
+    <je-alert
+      :message="$t('demo.success')"
+      type="success"
+      show-icon
+      style="width: 600px"
+    ></je-alert>
   </div>
 </template>
 
@@ -16,7 +15,7 @@
   import { Alert } from '@jecloud/ui';
   import { Typography } from 'ant-design-vue';
   export default {
-    name: 'Home',
+    name: 'Demo',
     components: {
       JeAlert: Alert,
       ATypographyTitle: Typography.Title,

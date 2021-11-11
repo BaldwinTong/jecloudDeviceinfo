@@ -1,0 +1,53 @@
+@import 'vxe-table/styles/variable.scss';
+
+$vxe-primary-color: <%= primaryColor %>;
+
+$vxe-font-color: fade-in(#ffffff, .85);
+/*input/radio/checkbox*/
+$vxe-input-border-color: #303030;
+$vxe-input-disabled-color: #303030;
+$vxe-input-disabled-background-color: #f3f3f3;
+$vxe-input-placeholder-color: #C0C4CC;
+
+
+/*table*/
+
+$vxe-table-font-color: $vxe-font-color;
+$vxe-table-header-font-color: $vxe-font-color;
+$vxe-table-footer-font-color: $vxe-font-color;
+$vxe-table-border-color: #303030;
+$vxe-table-border-width: 1px;
+$vxe-table-resizable-line-color: #D9DDDF;
+$vxe-table-resizable-drag-line-color: $vxe-primary-color;
+$vxe-table-header-background-color: #1d1d1d;
+$vxe-table-body-background-color: #151515;
+$vxe-table-footer-background-color: #151515;
+$vxe-table-tree-node-line-color:#909399;
+$vxe-table-tree-node-line-style: dotted;
+
+
+
+$component-background: #141414;// 基础背景
+$vxe-table-row-hover-bg: #262626; // 悬浮背景
+$vxe-table-row-striped-bg:#000000; // 斑马纹背景
+
+$vxe-table-row-checked-bg: <%= primaryColor1 %>;// 选中背景
+$vxe-table-row-checked-hover-bg: darken($vxe-table-row-checked-bg, 2%);// 选中悬浮背景
+$vxe-table-row-striped-background-color: $vxe-table-row-striped-bg;
+
+// 选中
+$vxe-table-row-radio-checked-background-color: $vxe-table-row-checked-bg;
+$vxe-table-row-checkbox-checked-background-color: $vxe-table-row-checked-bg;
+// 悬浮
+$vxe-table-row-hover-background-color: $vxe-table-row-hover-bg;
+$vxe-table-row-hover-striped-background-color: $vxe-table-row-hover-bg;
+$vxe-table-row-hover-radio-checked-background-color: $vxe-table-row-checked-hover-bg;
+$vxe-table-row-hover-checkbox-checked-background-color: $vxe-table-row-checked-hover-bg;
+
+
+
+/*checkbox*/
+$vxe-checkbox-border-width: 2px;
+$vxe-checkbox-icon-background-color: transparent;
+$vxe-checkbox-checked-icon-border-color: #ffffff;
+$vxe-checkbox-indeterminate-icon-background-color: #ffffff;

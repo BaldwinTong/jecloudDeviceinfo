@@ -1,16 +1,11 @@
-<template>
-  <div class="demo"> 系统首页 | <router-link to="demo">Demo</router-link> </div>
-</template>
+<template> <Demo /> </template>
 
 <script>
+  import Demo from 'micro/views/demo/index.vue';
   export default {
-    name: 'Demo',
+    name: 'Home',
+    components: {
+      Demo,
+    },
   };
 </script>
-<style scoped>
-  .demo {
-    padding: 10px;
-    font-size: 20px;
-    text-align: center;
-  }
-</style>

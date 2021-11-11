@@ -41,6 +41,7 @@ export async function changeLocale(locale) {
   localStorage.setItem(GlobalSettingsEnum.GLOBAL_SETTINGS_LOCALE, locale);
   // 设置页面
   document.querySelector('html')?.setAttribute('lang', locale);
+  return i18n;
 }
 
 /**

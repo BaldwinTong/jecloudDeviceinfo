@@ -2,23 +2,24 @@
   <a-row align="middle" justify="center">
     <a-col :span="8">
       <a-form ref="form" class="login-form" :model="model" v-bind="layout" :rules="rules">
-        <div class="login-title">系统登录</div>
-        <a-form-item has-feedback label="用户" name="j_username">
+        <div class="login-title">{{ $t('login.title') }}</div>
+        <a-form-item has-feedback :label="$t('login.username')" name="j_username">
           <a-input
             v-model:value="model.j_username"
             autocomplete="off"
-            placeholder="请输入用户名"
+            :placeholder="$t('login.usernamePlaceholder')"
             @pressEnter="login"
           />
         </a-form-item>
-        <a-form-item has-feedback label="密码" name="j_password">
+        <a-form-item has-feedback :label="$t('login.password')" name="j_password">
           <a-input-password
             v-model:value="model.j_password"
-            placeholder="请输入密码"
+            autocomplete="off"
+            :placeholder="$t('login.passwordPlaceholder')"
             @pressEnter="login"
           />
         </a-form-item>
-        <a-form-item has-feedback label="语言" name="j_locale">
+        <a-form-item has-feedback :label="$t('login.language')" name="j_locale">
           <a-select ref="select" v-model:value="model.j_locale">
             <a-select-option v-for="(item, index) in locales" :key="index" :value="item.code">{{
               item.text
@@ -27,8 +28,10 @@
         </a-form-item>
 
         <a-form-item :wrapper-col="{ span: 24 }" style="text-align: center">
-          <a-button type="primary" @click="login">登录</a-button>
-          <a-button style="margin-left: 10px" @click="form.resetFields()">重置</a-button>
+          <a-button type="primary" @click="login">{{ $t('login.loginText') }}</a-button>
+          <a-button style="margin-left: 10px" @click="form.resetFields()">{{
+            $t('login.resetText')
+          }}</a-button>
         </a-form-item>
       </a-form>
     </a-col>
@@ -82,9 +85,9 @@
   .login-form {
     margin-top: 30%;
     padding: 10px;
-    border: 1px solid #ddd;
-    box-shadow: 2px 2px 5px #ddd;
-    background: #f9f9f9;
+    border: 1px solid @border-color-split;
+    box-shadow: 2px 2px 5px @border-color-split;
+    background: @component-background;
     .login-title {
       text-align: center;
       padding: 20px;
