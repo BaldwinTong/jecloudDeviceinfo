@@ -1,6 +1,5 @@
 import { ref, watch } from 'vue';
-import { toggleTheme } from '../../build/theme/utils';
-import { themes } from '../../build/theme/config';
+import { toggleTheme, themes } from '../../build/theme';
 
 /**
  * 主题操作
@@ -14,9 +13,7 @@ export function useTheme() {
   // 修改主题
   const changeTheme = function (_theme: any) {
     theme.value = _theme;
-    toggleTheme({
-      scopeName: `theme-${_theme.code}-${dark.value ? 'dark' : 'default'}`,
-    });
+    toggleTheme(_theme, dark.value);
   };
   watch(
     () => dark.value,

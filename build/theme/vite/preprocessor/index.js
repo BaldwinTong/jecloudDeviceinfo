@@ -1,5 +1,5 @@
 import themePreprocessorPlugin from '@zougt/vite-plugin-theme-preprocessor';
-import { baseOptions, lessVars } from '../config';
+import { baseOptions, lessVars } from './config';
 import path from 'path';
 function pathResolve(dir) {
   return path.resolve(process.cwd(), '.', dir);

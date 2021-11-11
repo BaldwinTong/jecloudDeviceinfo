@@ -1,5 +1,4 @@
-import plugins from '../../theme/vite/plugins';
-
+import plugins from '../../theme/vite';
 /**
  * 主题插件
  */

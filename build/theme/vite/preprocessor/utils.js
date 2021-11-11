@@ -21,7 +21,10 @@ export function addClassNameToHtmlTag({ scopeName, multipleScopeVars }) {
   }
 }
 
-export function toggleTheme(opts) {
+export function toggleTheme(theme, dark) {
+  const opts = {
+    scopeName: `theme-${theme.code}-${dark ? 'dark' : 'default'}`,
+  };
   const options = {
     // multipleScopeVars: [],
     scopeName: 'theme-default',

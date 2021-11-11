@@ -1,6 +1,6 @@
 // 主题
-import themes from './themes.json';
-export { themes };
+
+import themes from '../../themes.json';
 // 样式权重处理
 const includeStyles = {
   less: {
