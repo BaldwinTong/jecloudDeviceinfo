@@ -1,5 +1,5 @@
 <template>
-  <a-affix>
+  <a-affix :target="getScrollWrap">
     <a-row type="flex" align="middle" class="header">
       <a-col>
         <!-- 菜单 -->
@@ -44,6 +44,7 @@
   import { debounce, copy } from '@jecloud/utils';
   import names from '@/assets/fonts/names';
   import { message, Row, Col, Affix, Menu, BackTop, Input, Button, Modal } from 'ant-design-vue';
+  import { useLayout } from '@/hooks/useLayout';
   export default defineComponent({
     components: {
       AInput: Input,
@@ -114,7 +115,11 @@
           return '<i class="fal fa-abacus"></i>';
         }
       };
+
+      // 容器滚动条，锁定顶部
+      const { getScrollWrap } = useLayout();
       return {
+        getScrollWrap,
         getHtmlStr,
         visible,
         selectedKeys,
@@ -129,11 +134,8 @@
 </script>
 <style lang="less" scoped>
   .header {
-    background-color: #f0f2f5;
-    box-shadow: 2px 2px 10px #ddd;
-    .menu {
-      background-color: #f0f2f5;
-    }
+    background-color: @component-background;
+    box-shadow: 2px 2px 10px @border-color-split;
     :deep(.ant-btn > i + span, .ant-btn > span + i, ) {
       margin-left: 8px;
     }

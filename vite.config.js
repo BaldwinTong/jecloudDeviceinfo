@@ -1,44 +1,27 @@
 import { defineConfig, loadEnv } from 'vite';
-import { resolve } from 'path';
-import vue from '@vitejs/plugin-vue';
-import styleImport from 'vite-plugin-style-import';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-function pathResolve(dir) {
-  return resolve(process.cwd(), '.', dir);
-}
+import { usePlugins, pathResolve } from './build/vite/plugins';
+import { generateModifyVars } from './build/theme/debug';
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 加载系统配置
   const config = loadEnv(mode, process.cwd(), 'VUE_APP_');
   const { VUE_APP_SERVE_PORT, VUE_APP_SERVE_PROXY, VUE_APP_SERVE_PROXY_PREFIX } = config;
   return {
-    plugins: [
-      vue(),
-      vueJsx(),
-      styleImport({
-        libs: [
-          // TODO: 未作@jecloud/ui的按需加载，后续支持
-          {
-            libraryName: 'ant-design-vue',
-            esModule: true,
-            resolveStyle: (name) => {
-              return `ant-design-vue/es/${name}/style/css`;
-            },
-          },
-          {
-            libraryName: 'vxe-table',
-            esModule: true,
-            resolveStyle: (name) => {
-              return `vxe-table/es/${name}/style.css`;
-            },
-          },
-        ],
-      }),
-    ],
+    plugins: usePlugins(config, false),
     resolve: {
       alias: {
         '@': pathResolve('src'),
         micro: pathResolve('micro'),
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          // modifyVars: generateModifyVars(), // TODO:主题调试放开
+          javascriptEnabled: true,
+        },
       },
     },
     envPrefix: 'VUE_APP_',
@@ -54,6 +37,13 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
-    optimizeDeps: { include: ['ant-design-vue/es/locale/zh_CN', 'ant-design-vue/es/locale/en_US'] },
+    optimizeDeps: {
+      include: [
+        'ant-design-vue/es/locale/zh_CN',
+        'ant-design-vue/es/locale/en_US',
+        '@ant-design/icons-vue',
+      ],
+      exclude: ['@zougt/vite-plugin-theme-preprocessor/dist/browser-utils'],
+    },
   };
 });

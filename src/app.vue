@@ -1,16 +1,21 @@
 <template>
   <a-config-provider :locale="locale">
-    <router-view />
+    <Layout class="app-layout" />
   </a-config-provider>
 </template>
 <script>
-  import { defineComponent, ref, watch } from 'vue';
+  import { defineComponent, ref, watch, provide } from 'vue';
   import { useI18n } from 'vue-i18n';
   import { ConfigProvider } from 'ant-design-vue';
   import { getAntdLocale } from '@/locales';
+  import Layout from 'micro/views/layout/index.vue';
   export default defineComponent({
-    components: { AConfigProvider: ConfigProvider },
+    components: {
+      AConfigProvider: ConfigProvider, // ant系统配置
+      Layout, // 布局组件
+    },
     setup(props) {
+      // 国际化处理
       let locale = ref();
       locale.value = getAntdLocale();
       const i18n = useI18n();
@@ -24,3 +29,12 @@
     },
   });
 </script>
+
+<style>
+  html,
+  body,
+  #app,
+  .app-layout {
+    height: 100%;
+  }
+</style>

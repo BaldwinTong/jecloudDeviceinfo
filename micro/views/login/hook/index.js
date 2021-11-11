@@ -23,9 +23,10 @@ export function useLogin(form, model) {
       doLogin(vals)
         .then((authorization) => {
           // 更改语言
-          changeLocale(vals.j_locale);
+          changeLocale(vals.j_locale).then((i18n) => {
+            message.success(i18n.t('login.loginSuccess'));
+          });
           // 登录成功
-          message.success('登录成功！');
           JE.cookie.set('authorization', authorization, 7);
           router.push('/'); //跳转首页
         })
