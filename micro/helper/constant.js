@@ -7,4 +7,4 @@ const CLI_ENVS = window['__CLI_ENVS__'] || {}; // 项目运行时变量
 export { CLI_ENVS };
 
 // axios 前缀，用于调试使用
-export const JE_AXIOS_BASEURL = CLI_ENVS.APP_SERVE_PROXY_PREFIX;
+export const JE_AXIOS_BASEURL = CLI_ENVS.VUE_APP_SERVE_PROXY_PREFIX;
