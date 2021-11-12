@@ -10,6 +10,7 @@ export function generateModifyVars(dark) {
   const modifyVars = getThemeVariables({ dark });
   return {
     ...modifyVars,
-    'vxe-primary-color': '#3265f5', // 主题色
+    'primary-color': '#3265f5', // 主题色
+    'vxe-primary-color': '#3265f5',
   };
 }

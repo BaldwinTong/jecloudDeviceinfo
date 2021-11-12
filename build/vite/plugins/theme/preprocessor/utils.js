@@ -1,15 +1,8 @@
-import {
-  basePath,
-  assetsDir,
-  buildCommand,
-  browerPreprocessorOptions,
-} from '@zougt/vite-plugin-theme-preprocessor/dist/toBrowerEnvs';
+import { lessVars } from './config';
 
 export function addClassNameToHtmlTag({ scopeName, multipleScopeVars }) {
   const $multipleScopeVars =
-    Array.isArray(multipleScopeVars) && multipleScopeVars.length
-      ? multipleScopeVars
-      : browerPreprocessorOptions.multipleScopeVars;
+    Array.isArray(multipleScopeVars) && multipleScopeVars.length ? multipleScopeVars : lessVars;
 
   let currentHtmlClassNames = (document.documentElement.className || '').split(/\s+/g);
   if (!currentHtmlClassNames.includes(scopeName)) {
@@ -21,7 +14,10 @@ export function addClassNameToHtmlTag({ scopeName, multipleScopeVars }) {
   }
 }
 
-export function toggleTheme(opts) {
+export function toggleTheme(theme, dark) {
+  const opts = {
+    scopeName: `theme-${theme.code}-${dark ? 'dark' : 'default'}`,
+  };
   const options = {
     // multipleScopeVars: [],
     scopeName: 'theme-default',
@@ -32,7 +28,36 @@ export function toggleTheme(opts) {
     ...opts,
   };
 
-  if (buildCommand !== 'build' || !browerPreprocessorOptions.extract) {
+  addClassNameToHtmlTag(options);
+}
+
+export default {
+  toggleTheme,
+  addClassNameToHtmlTag,
+};
+/* 
+import {
+  basePath,
+  assetsDir,
+  buildCommand,
+  browerPreprocessorOptions,
+} from '@zougt/vite-plugin-theme-preprocessor/dist/toBrowerEnvs';
+
+export function toggleTheme(theme, dark) {
+  const opts = {
+    scopeName: `theme-${theme.code}-${dark ? 'dark' : 'default'}`,
+  };
+  const options = {
+    // multipleScopeVars: [],
+    scopeName: 'theme-default',
+    customLinkHref: (href) => href,
+    // themeLinkTagId: "theme-link-tag",
+    // "head" || "body"
+    // themeLinkTagInjectTo: "head",
+    ...opts,
+  };
+
+   if (buildCommand !== 'build' || !browerPreprocessorOptions.extract) {
     addClassNameToHtmlTag(options);
     return;
   }
@@ -69,8 +94,4 @@ export function toggleTheme(opts) {
     ].append(styleLink);
   }
 }
-
-export default {
-  toggleTheme,
-  addClassNameToHtmlTag,
-};
+ */

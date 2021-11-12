@@ -30,9 +30,8 @@
   });
 </script>
 
-<style>
-  html,
-  body,
+<style lang="less">
+  @import './assets/styles/base.less';
   #app,
   .app-layout {
     height: 100%;

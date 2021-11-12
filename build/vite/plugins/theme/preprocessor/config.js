@@ -1,6 +1,7 @@
 // 主题
-import themes from './themes.json';
-export { themes };
+
+import themes from '../../../../theme/themes.json';
+import { cloneDeep } from 'lodash';
 // 样式权重处理
 const includeStyles = {
   less: {
@@ -15,9 +16,11 @@ const includeStyles = {
     },
     '.ant-btn-link': {
       'border-color': 'transparent',
+      background: 'transparent',
     },
     '.ant-btn-link:hover, .ant-btn-link:focus, .ant-btn-link:active': {
       'border-color': 'transparent',
+      background: 'transparent',
     },
   },
 };
@@ -30,10 +33,12 @@ const multipleScopeVars = function () {
   const modes = ['default', 'dark'];
   themes.forEach((theme) => {
     modes.forEach((mode) => {
+      const styles = cloneDeep(includeStyles[fileSuffix]);
+      styles['.ant-btn-primary']['background'] = theme.color;
       vars.push({
         scopeName: `${filePreffix}-${theme.code}-${mode}`,
         path: `${themeDir}/${theme.code}-${mode}.${fileSuffix}`,
-        includeStyles: includeStyles[fileSuffix],
+        includeStyles: styles,
       });
     });
   });
@@ -45,7 +50,7 @@ export const baseOptions = {
   // 在生产模式是否抽取独立的主题css文件，extract为true以下属性有效
   extract: false,
   // 独立主题css文件的输出路径，默认取 viteConfig.build.assetsDir 相对于 (viteConfig.build.outDir)
-  outputDir: 'dist/themes',
+  // outputDir: 'dist/themes',
   // 会选取defaultScopeName对应的主题css文件在html添加link
   themeLinkTagId: 'theme-link-tag',
   // "head"||"head-prepend" || "body" ||"body-prepend"

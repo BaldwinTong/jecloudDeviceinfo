@@ -24,7 +24,7 @@ export function useLogin(form, model) {
         .then((authorization) => {
           // 更改语言
           changeLocale(vals.j_locale).then((i18n) => {
-            message.success(i18n.t('login.loginSuccess'));
+            message.success(i18n.global.t('login.loginSuccess'));
           });
           // 登录成功
           JE.cookie.set('authorization', authorization, 7);
