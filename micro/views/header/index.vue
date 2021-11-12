@@ -39,6 +39,8 @@
                 @click="changeTheme(t)"
               ></i>
               <div> 暗色主题：<a-switch v-model:checked="dark" /> </div>
+              <div> 灰色模式：<a-switch v-model:checked="gray" /> </div>
+              <div> 色弱模式：<a-switch v-model:checked="colorWeek" /> </div>
             </div>
           </template>
           <div class="action-icon">
@@ -94,7 +96,7 @@
         },
       );
       // 主题
-      const { dark, theme, changeTheme, themes } = useTheme();
+      const { dark, gray, colorWeek, theme, changeTheme, themes } = useTheme();
 
       // 退出
       const logout = function () {
@@ -111,6 +113,8 @@
         themes,
         theme,
         dark,
+        gray,
+        colorWeek,
         selectedKeys,
         menus,
         locale,
@@ -171,6 +175,9 @@
       font-size: 20px;
       margin: 8px;
       cursor: pointer;
+    }
+    & > div {
+      margin: 10px;
     }
   }
 </style>

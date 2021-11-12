@@ -6,7 +6,7 @@ import { inject } from 'vue';
  * @return {*}
  */
 export function useLayout() {
-  const scroller = inject('content-scroller') as any;
+  const scroller = inject('content-scroller');
   const getScroller = function () {
     return scroller;
   };
