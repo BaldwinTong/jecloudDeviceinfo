@@ -1,14 +1,13 @@
-import { defineConfig, loadEnv } from 'vite';
-import { usePlugins, pathResolve } from './build/vite/plugins';
-import { generateModifyVars } from './build/theme/vite/vben/generateModifyVars';
-const debugTheme = false;
+import { defineConfig } from 'vite';
+import { usePlugins, pathResolve, loadEnvs } from './build/vite/plugins.js';
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 加载系统配置
-  const config = loadEnv(mode, process.cwd(), 'VUE_APP_');
+  const config = loadEnvs(mode);
   const { VUE_APP_SERVE_PORT, VUE_APP_SERVE_PROXY, VUE_APP_SERVE_PROXY_PREFIX } = config;
+  const { plugins, lessModifyVars } = usePlugins(config);
   return {
-    plugins: usePlugins(config, debugTheme),
+    plugins: plugins,
     resolve: {
       alias: {
         '@': pathResolve('src'),
@@ -19,7 +18,7 @@ export default defineConfig(({ command, mode }) => {
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: generateModifyVars(), // TODO:主题调试放开
+          modifyVars: lessModifyVars,
           javascriptEnabled: true,
         },
       },
@@ -43,7 +42,10 @@ export default defineConfig(({ command, mode }) => {
         'ant-design-vue/es/locale/en_US',
         '@ant-design/icons-vue',
       ],
-      exclude: ['@zougt/vite-plugin-theme-preprocessor/dist/browser-utils'],
+      exclude: [
+        '@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js',
+        '@zougt/vite-plugin-theme-preprocessor/dist/toBrowerEnvs.js',
+      ],
     },
   };
 });

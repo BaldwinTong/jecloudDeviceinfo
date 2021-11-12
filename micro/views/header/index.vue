@@ -58,7 +58,7 @@
   import { changeLocale, getLocale, SUPPORT_LOCALES } from '@/locales';
   import { Layout, Row, Col, Button, Menu, Popover, Switch, Select } from 'ant-design-vue';
   import { menus as _menus } from 'micro/router/menus';
-  import { APP_HTML_TITLE, APP_HTML_ICON } from 'micro/helper/constant';
+  import { CLI_ENVS } from 'micro/helper/constant';
   import { useTheme } from '@/hooks/useTheme';
   export default defineComponent({
     name: 'Header',
@@ -116,8 +116,8 @@
         locale,
         locales,
         changeLocale,
-        APP_HTML_TITLE,
-        APP_HTML_ICON,
+        APP_HTML_TITLE: CLI_ENVS.VUE_APP_HTML_TITLE,
+        APP_HTML_ICON: CLI_ENVS.VUE_APP_HTML_ICON,
       };
     },
   });
@@ -158,7 +158,7 @@
           color: @white;
         }
         &:hover {
-          color: @white;
+          color: @white !important;
           background-color: @primary-color;
         }
       }
@@ -166,6 +166,7 @@
   }
   .theme {
     text-align: center;
+    width: 150px;
     .theme-color {
       font-size: 20px;
       margin: 8px;

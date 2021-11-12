@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
-import { toggleTheme, themes } from '../../build/theme';
-
+import { toggleTheme, getThemes } from '../../build/theme';
+const themes = getThemes();
 /**
  * 主题操作
  *
