@@ -1,7 +1,7 @@
-import { initAxios as _ } from '@jecloud/utils';
-import { JE_AXIOS_BASEURL } from '../helper/constant';
-import { logout } from '../helper/utils';
+import { initAxios } from '@jecloud/utils';
+import { useConstant } from './use-constant';
 
+const { VUE_APP_SERVE_PROXY_PREFIX } = useConstant();
 /**
  * 个性化配置
  *
@@ -11,7 +11,7 @@ const axiosConfig = {
   // 请求超时时间
   timeout: 30 * 1000,
   // 基础接口地址
-  baseURL: JE_AXIOS_BASEURL,
+  baseURL: VUE_APP_SERVE_PROXY_PREFIX || '',
   // 如果是form-data格式
   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
   // 配置项，下面的选项都可以在独立的接口请求中覆盖
@@ -22,16 +22,14 @@ const axiosConfig = {
     errorMessageMode: 'message',
   },
   // token无效时，处理
-  tokenInvalid() {
-    logout();
-  },
+  tokenInvalid() {},
 };
 
 /**
- *初始axios配置
+ * 注册axios配置
  *
  * @export
  */
-export function initAxios() {
-  _(axiosConfig);
+export function setupAxios() {
+  initAxios(axiosConfig);
 }

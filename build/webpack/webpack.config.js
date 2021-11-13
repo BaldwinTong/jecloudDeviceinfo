@@ -19,7 +19,7 @@ module.exports = function (config) {
   });
 
   // 设置别名
-  config.resolve.alias.set('micro', utils.resolve('micro'));
+  config.resolve.alias.set('@micro', utils.resolve('micro'));
   // 设置i18n警告
   config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 

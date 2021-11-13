@@ -56,8 +56,6 @@
     },
     setup() {
       const form = ref();
-      const locale = ref();
-
       // 表单数据，校验规则
       const { model, rules } = useModel();
       // 登录函数

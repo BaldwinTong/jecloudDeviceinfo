@@ -9,6 +9,6 @@ module.exports = function (config) {
   // 参考链接：https://issueexplorer.com/issue/vuejs/vue-next/4478
   config.resolve.alias
     .set('vue', utils.resolve('node_modules/vue'))
-    .set('micro', utils.resolve('micro'));
+    .set('@micro', utils.resolve('micro'));
   return config;
 };

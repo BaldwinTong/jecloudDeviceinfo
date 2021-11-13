@@ -1,4 +1,5 @@
-import { t } from '@/locales';
+import { t } from '@micro/hooks/use-i18n';
+import routes4bus from '@/router';
 const routes = [
   {
     path: '/login',
@@ -14,4 +15,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default [...routes4bus, ...routes];

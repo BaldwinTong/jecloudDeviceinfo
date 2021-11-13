@@ -1,10 +1,25 @@
 const antColors = require('@ant-design/colors');
-const themes = require('../themes.json');
+const variables = require('./variables');
+const path = require('path');
 const { generate } = antColors;
 
-// 主题色
-const primaryColor = themes[0].code;
-
+/**
+ * 获取主题
+ *
+ * @return {*}
+ */
+function getThemes() {
+  const themes = [];
+  Object.keys(variables).forEach((code) => {
+    const theme = variables[code];
+    themes.push({
+      code,
+      color: theme.primaryColor,
+      vars: theme,
+    });
+  });
+  return themes;
+}
 /**
  * 生成ant主题色
  *
@@ -21,7 +36,7 @@ function generateAntColors(color, theme = 'default') {
 
 // 生成主题色
 function getThemeColors(color) {
-  const tc = color || primaryColor;
+  const tc = color;
   const lightColors = generateAntColors(tc);
   const primary = lightColors[5];
   const modeColors = generateAntColors(primary, 'dark');
@@ -39,7 +54,7 @@ function getThemeColors(color) {
  * }
  * @return {*}
  */
-function generateColors({ color = primaryColor, mixLighten, mixDarken, tinycolor }) {
+function generateColors({ color, mixLighten, mixDarken, tinycolor }) {
   const arr = new Array(19).fill(0);
   const lightens = arr.map((_t, i) => {
     return mixLighten(color, i / 5);
@@ -82,9 +97,21 @@ function generateColors({ color = primaryColor, mixLighten, mixDarken, tinycolor
   ].filter((item) => !item.includes('-'));
 }
 
+/**
+ * 获得绝对路径
+ *
+ * @export
+ * @param {*} dir
+ * @return {*}
+ */
+function resolve(dir) {
+  return path.resolve(process.cwd(), '.', dir);
+}
+
 module.exports = {
   getThemeColors,
   generateColors,
   generateAntColors,
-  themes,
+  getThemes,
+  resolve,
 };

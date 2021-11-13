@@ -14,6 +14,9 @@
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.eol": "\n",
+  "files.associations": {
+    "*.json": "jsonc"
+  },
   "search.exclude": {
     "**/node_modules": true,
     "**/*.log": true,
@@ -27,11 +30,11 @@
     "**/.vscode": false,
     "**/package-lock.json": true,
   },
-  "i18n-ally.localesPaths": ["src/locales/lang"],
+  "i18n-ally.localesPaths": ["src/locales","micrl/locales/lang"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
   "i18n-ally.namespace": false,
-  "i18n-ally.pathMatcher": "{locale}/index.{ext}",
+  "i18n-ally.pathMatcher": "{locale}.{ext}",
   "i18n-ally.enabledParsers": ["js"],
   "i18n-ally.sourceLanguage": "en_US",
   "i18n-ally.displayLanguage": "zh_CN",

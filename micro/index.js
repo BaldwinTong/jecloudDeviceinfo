@@ -1,41 +1,37 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import microRoutes from './router';
-import { registRouterEach } from './router/hook';
-import { initAxios } from './api/axiois';
-import { initJE } from './helper/utils';
-import { setupIi8n } from '../src/locales';
+import { setupRouter } from './hooks/use-router';
+import { setupAxios } from './hooks/use-axios';
+import { setupJE } from './hooks/use-je';
+import { setupIi8n } from './hooks/use-i18n';
+import { setupStore } from './hooks/use-store';
+import '@micro/assets/styles/index.less';
 
-// vue实例
-export let vueInstance = null;
-// router实例
-export let routerInstance = null;
 /**
  *
  * 初始化微应用
  *
  * @export
- * @param {Object} config
+ * @param {Object} app 入口页面
  * @returns {Vue}
  */
-function init(config) {
-  // 初始化JE全局变量
-  initJE();
-  // 初始化ajax默认配置
-  initAxios();
-  const { app, routes = [] } = config;
-  const router = createRouter({
-    history: createWebHashHistory(),
-    routes: routes.concat(microRoutes),
-  });
-  registRouterEach(router);
+async function setup(app) {
+  // Init Vue
   const vue = createApp(app);
-  return setupIi8n(vue).then(() => {
-    vue.use(router).mount('#app');
-    vueInstance = vue;
-    routerInstance = router;
-    return vue;
-  });
+  // JE
+  setupJE(vue);
+  // Axios
+  setupAxios(vue);
+  // Router
+  setupRouter(vue);
+  // Store
+  setupStore(vue);
+  // I18n
+  await setupIi8n(vue);
+  // 渲染页面
+  vue.mount('#app');
+  return vue;
 }
 
-export default { init };
+export default {
+  setup,
+};
