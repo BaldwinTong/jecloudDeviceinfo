@@ -21,7 +21,6 @@ files.forEach((type) => {
     const data = fs.readFileSync(file).toString();
     themes.forEach((theme) => {
       // 生成样式
-      console.log(theme.vars);
       const content = ejs.render(data, theme.vars);
       // 生成文件
       const file = path.join(themeDir, `${theme.code}-${mode}.${type}`);
