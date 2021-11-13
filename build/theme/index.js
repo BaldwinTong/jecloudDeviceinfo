@@ -1,12 +1,44 @@
-import { toggleTheme } from '../vite/plugins/theme/preprocessor/utils';
-import themes from './themes.json';
-import { CLI_ENVS } from 'micro/helper/constant';
+const fs = require('fs');
+const ejs = require('ejs');
+const path = require('path');
+const utils = require('./utils.js');
+const resolve = utils.resolve;
+const themes = utils.getThemes();
 
-export function getThemes() {
-  let { VUE_APP_THEME_COUNT = themes.length } = CLI_ENVS;
-  if (VUE_APP_THEME_COUNT < 1 || VUE_APP_THEME_COUNT > themes.length) {
-    VUE_APP_THEME_COUNT = themes.length;
+const themeMode = ['default', 'dark'];
+const files = ['less'];
+// 主题目录
+const themeDir = resolve('micro/assets/themes');
+fs.mkdirSync(themeDir, { recursive: true });
+
+// 生成主题文件
+const ejsDir = 'build/theme/ejs';
+files.forEach((type) => {
+  // 主题风格
+  themeMode.forEach((mode) => {
+    // 读取模板数据
+    const file = resolve(`${ejsDir}/${type}/${mode}.ejs`);
+    const data = fs.readFileSync(file).toString();
+    themes.forEach((theme) => {
+      // 生成样式
+      console.log(theme.vars);
+      const content = ejs.render(data, theme.vars);
+      // 生成文件
+      const file = path.join(themeDir, `${theme.code}-${mode}.${type}`);
+      fs.writeFile(file, content, function (error) {
+        if (error) {
+          console.log(error);
+        }
+        console.log('主题生成成功：', file);
+      });
+    });
+  });
+});
+
+const file = path.join(themeDir, `theme.json`);
+fs.writeFile(file, JSON.stringify(themes), function (error) {
+  if (error) {
+    console.log(error);
   }
-  return themes.slice(0, VUE_APP_THEME_COUNT);
-}
-export { toggleTheme, themes };
+  console.log('theme.json生成成功：', file);
+});

@@ -1,7 +1,9 @@
 // 主题
-
-import themes from '../../../../theme/themes.json';
 import { cloneDeep } from 'lodash';
+const themeUtil = require('../../../theme/utils');
+
+const themes = themeUtil.getThemes();
+
 // 样式权重处理
 const includeStyles = {
   less: {
@@ -24,7 +26,7 @@ const includeStyles = {
     },
   },
 };
-const themeDir = 'src/assets/themes';
+const themeDir = 'micro/assets/themes';
 // 主题变量
 const multipleScopeVars = function () {
   const vars = [];

@@ -4,7 +4,7 @@
       <a-col class="logo"><i :class="[APP_HTML_ICON]"></i>{{ APP_HTML_TITLE }}</a-col>
       <a-col flex="auto" class="menu">
         <a-menu
-          v-model:selectedKeys="selectedKeys"
+          v-model:selectedKeys="globalStore.activeMenus"
           theme="dark"
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
@@ -19,7 +19,7 @@
         </a-menu>
       </a-col>
       <a-col class="action">
-        <a-select ref="select" v-model:value="locale" @change="changeLocale">
+        <a-select ref="select" v-model:value="globalStore.locale" @change="changeLocale">
           <a-select-option v-for="(item, index) in locales" :key="index" :value="item.code">
             {{ item.text }}
           </a-select-option>
@@ -36,7 +36,7 @@
                   theme.code === t.code ? 'fa-check-square' : 'fa-square',
                 ]"
                 :style="{ color: t.color }"
-                @click="changeTheme(t)"
+                @click="theme = t"
               ></i>
               <div> 暗色主题：<a-switch v-model:checked="dark" /> </div>
               <div> 灰色模式：<a-switch v-model:checked="gray" /> </div>
@@ -47,7 +47,7 @@
             <i class="fal fa-palette"></i>
           </div>
         </a-popover>
-        <div v-if="isLogin" class="action-icon logout-icon" @click="logout">
+        <div v-if="globalStore.login" class="action-icon logout-icon" @click="logout">
           <i class="fal fa-sign-out-alt"></i>
         </div>
       </a-col>
@@ -55,13 +55,14 @@
   </a-layout-header>
 </template>
 <script>
-  import { defineComponent, ref, watch, onMounted, computed } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
-  import { changeLocale, getLocale, SUPPORT_LOCALES } from '@/locales';
-  import { Layout, Row, Col, Button, Menu, Popover, Switch, Select } from 'ant-design-vue';
-  import { menus as _menus } from 'micro/router/menus';
-  import { CLI_ENVS } from 'micro/helper/constant';
-  import { useTheme } from '@/hooks/useTheme';
+  import { defineComponent } from 'vue';
+  import { Layout, Row, Col, Menu, Popover, Switch, Select } from 'ant-design-vue';
+  import { useConstant } from '@micro/hooks/use-constant';
+  import { useMenu } from '@micro/hooks/use-menu';
+  import { useTheme } from '@micro/hooks/use-theme';
+  import { logout } from '@micro/hooks/use-je';
+  import { useLocale } from '@micro/hooks/use-i18n';
+  import { useGlobalStore } from '../../store/global-store';
   export default defineComponent({
     name: 'Header',
     components: {
@@ -76,52 +77,30 @@
       ASelectOption: Select.Option,
     },
     setup() {
-      const menus = ref(_menus);
-      const router = useRouter();
-      const route = useRoute();
-      const locale = ref(getLocale());
-      const locales = SUPPORT_LOCALES;
-      const selectedKeys = ref([]);
-      const setSelectInfo = function (name) {
-        // 选择菜单
-        selectedKeys.value = [name];
-      };
-
-      setSelectInfo(route.name);
-      watch(
-        () => route.name,
-        (n, o) => {
-          setSelectInfo(n);
-          locale.value = getLocale();
-        },
-      );
+      // 系统变量
+      const { VUE_APP_HTML_TITLE, VUE_APP_HTML_ICON } = useConstant();
+      // 多语言
+      const { getLocales, changeLocale } = useLocale();
       // 主题
-      const { dark, gray, colorWeek, theme, changeTheme, themes } = useTheme();
+      const { dark, gray, colorWeek, theme, themes } = useTheme();
+      // 菜单数据
+      const { menus } = useMenu();
 
-      // 退出
-      const logout = function () {
-        JE.cookie.remove('authorization');
-        router.push({ name: 'Login' });
-      };
-      const isLogin = computed(() => {
-        return route.name !== 'Login';
-      });
+      const globalStore = useGlobalStore();
+
       return {
-        isLogin,
+        globalStore,
         logout,
-        changeTheme,
         themes,
         theme,
         dark,
         gray,
         colorWeek,
-        selectedKeys,
         menus,
-        locale,
-        locales,
+        locales: getLocales(),
         changeLocale,
-        APP_HTML_TITLE: CLI_ENVS.VUE_APP_HTML_TITLE,
-        APP_HTML_ICON: CLI_ENVS.VUE_APP_HTML_ICON,
+        APP_HTML_TITLE: VUE_APP_HTML_TITLE,
+        APP_HTML_ICON: VUE_APP_HTML_ICON,
       };
     },
   });

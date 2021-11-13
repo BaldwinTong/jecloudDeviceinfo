@@ -42,9 +42,9 @@
 <script>
   import { defineComponent, ref, computed } from 'vue';
   import { debounce, copy } from '@jecloud/utils';
-  import names from '@/assets/fonts/names';
+  import names from '@micro/assets/fonts/names';
   import { message, Row, Col, Affix, Menu, BackTop, Input, Button, Modal } from 'ant-design-vue';
-  import { useLayout } from '@/hooks/useLayout';
+  import { useLayout } from '@micro/hooks/use-layout';
   export default defineComponent({
     components: {
       AInput: Input,

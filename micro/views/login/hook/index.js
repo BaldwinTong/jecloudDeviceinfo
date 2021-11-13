@@ -1,8 +1,9 @@
 import { toRaw } from 'vue';
 import { useRouter } from 'vue-router';
-import { doLogin } from 'micro/api';
+import { doLogin } from '@micro/api';
 import { message } from 'ant-design-vue';
-import { SUPPORT_LOCALES, getLocale, changeLocale } from '@/locales';
+import { useLocale } from '@micro/hooks/use-i18n';
+import { useGlobalStore } from '@micro/store/global-store';
 
 /**
  *登录操作
@@ -13,6 +14,8 @@ import { SUPPORT_LOCALES, getLocale, changeLocale } from '@/locales';
  */
 export function useLogin(form, model) {
   const router = useRouter();
+  const { getLocales, getLocale, changeLocale } = useLocale();
+  const globalStore = useGlobalStore();
 
   // 登录系统
   function login() {
@@ -23,6 +26,7 @@ export function useLogin(form, model) {
       doLogin(vals)
         .then((authorization) => {
           // 更改语言
+          globalStore.locale = vals.j_locale;
           changeLocale(vals.j_locale).then((i18n) => {
             message.success(i18n.global.t('login.loginSuccess'));
           });
@@ -41,5 +45,5 @@ export function useLogin(form, model) {
     });
   }
 
-  return { login, locales: SUPPORT_LOCALES, getLocale };
+  return { login, locales: getLocales(), getLocale };
 }

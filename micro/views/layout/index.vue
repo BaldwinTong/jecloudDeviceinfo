@@ -12,11 +12,10 @@
   </a-layout>
 </template>
 <script>
-  import { defineComponent, ref, watch, provide } from 'vue';
-  import { ConfigProvider, Layout, BackTop } from 'ant-design-vue';
+  import { defineComponent, ref, provide } from 'vue';
+  import { Layout, BackTop } from 'ant-design-vue';
   import { Scroller } from '@jecloud/ui';
-  import { getAntdLocale } from '@/locales';
-  import Header from '../header/index.vue';
+  import Header from './header.vue';
   export default defineComponent({
     components: {
       ALayout: Layout,
