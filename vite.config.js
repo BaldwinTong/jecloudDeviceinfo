@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
-import { usePlugins, pathResolve, loadEnvs } from './build/vite/plugins.js';
+import { usePlugins, pathResolve, loadEnvs } from './build/vite/plugins';
+import { useProxy } from './build/vite/proxy';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 加载系统配置
   const config = loadEnvs(mode);
-  const { VUE_APP_SERVE_PORT, VUE_APP_SERVE_PROXY, VUE_APP_SERVE_PROXY_PREFIX } = config;
+  const { VUE_APP_SERVE_PORT } = config;
   // 加载插件
-  const { plugins, lessModifyVars } = usePlugins(config);
+  const { plugins, lessModifyVars } = usePlugins(config, command);
   return {
     plugins: plugins,
     resolve: {
@@ -29,14 +29,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: '0.0.0.0',
       port: VUE_APP_SERVE_PORT,
-      proxy: {
-        [VUE_APP_SERVE_PROXY_PREFIX]: {
-          // 代理地址
-          target: VUE_APP_SERVE_PROXY,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(VUE_APP_SERVE_PROXY_PREFIX, ''),
-        },
-      },
+      proxy: useProxy(config),
     },
     optimizeDeps: {
       include: [
