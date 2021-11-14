@@ -6,7 +6,7 @@ import html from 'vite-plugin-html';
  * @param {*} envs
  * @return {*}
  */
-export default function (envs) {
+export function configHtmlPlugin(envs, command) {
   return html({
     inject: {
       data: {

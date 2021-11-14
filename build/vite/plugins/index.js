@@ -2,9 +2,10 @@ import { loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { resolve } from 'path';
-import { useTheme } from './plugins/theme';
-import styleImportPlugin from './plugins/style-import';
-import htmlPlugin from './plugins/html';
+import { useTheme } from './theme';
+import { configStyleImportPlugin } from './style-import';
+import { configHtmlPlugin } from './html';
+import { configMockPlugin } from './mock';
 /**
  * vite 插件
  *
@@ -12,9 +13,16 @@ import htmlPlugin from './plugins/html';
  * @param {*} envs 变量
  * @return {*}
  */
-export function usePlugins(envs) {
-  const { themePlugins, lessModifyVars } = useTheme(envs);
-  const plugins = [vue(), vueJsx(), styleImportPlugin, htmlPlugin(envs), ...themePlugins];
+export function usePlugins(envs, command) {
+  const { themePlugins, lessModifyVars } = useTheme(envs, command);
+  const plugins = [
+    vue(),
+    vueJsx(),
+    configStyleImportPlugin(envs, command),
+    configHtmlPlugin(envs, command),
+    configMockPlugin(envs, command),
+    ...themePlugins,
+  ];
   return {
     plugins,
     lessModifyVars,

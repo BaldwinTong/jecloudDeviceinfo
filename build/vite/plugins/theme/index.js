@@ -1,5 +1,5 @@
 import themePreprocessorPlugin from '@zougt/vite-plugin-theme-preprocessor';
-import { pathResolve } from '../../plugins.js';
+import { pathResolve } from '../index';
 import { baseOptions, lessVars } from './config';
 import { generateModifyVars } from './debug';
 
