@@ -1,6 +1,7 @@
 import { ref, watch } from 'vue';
 import themes from '@micro/assets/themes/theme.json';
 import { useConstant } from '@micro/hooks/use-constant';
+import { toggleClass } from '@jecloud/utils';
 /**
  * 主题操作
  *
@@ -59,20 +60,6 @@ function getThemes() {
     count = themes.length;
   }
   return themes.slice(0, count);
-}
-/**
- * 切换样式
- *
- * @param {*} cls
- */
-function toggleClass(cls) {
-  const body = document.body;
-  const { hasClass, addClass, removeClass } = JE;
-  if (hasClass(body, cls)) {
-    removeClass(body, cls);
-  } else {
-    addClass(body, cls);
-  }
 }
 /**
  * 灰色模式

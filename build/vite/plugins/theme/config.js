@@ -7,22 +7,8 @@ const themes = themeUtil.getThemes();
 // 样式权重处理
 const includeStyles = {
   less: {
-    '.ant-btn-primary': {
-      color: '#ffffff',
-    },
-    '.ant-btn-primary:hover, .ant-btn-primary:focus': {
-      color: '#ffffff',
-    },
     '.ant-menu-horizontal': {
       'box-shadow': 'none',
-    },
-    '.ant-btn-link': {
-      'border-color': 'transparent',
-      background: 'transparent',
-    },
-    '.ant-btn-link:hover, .ant-btn-link:focus, .ant-btn-link:active': {
-      'border-color': 'transparent',
-      background: 'transparent',
     },
   },
 };
@@ -36,7 +22,6 @@ const multipleScopeVars = function () {
   themes.forEach((theme) => {
     modes.forEach((mode) => {
       const styles = cloneDeep(includeStyles[fileSuffix]);
-      styles['.ant-btn-primary']['background'] = theme.color;
       vars.push({
         scopeName: `${filePreffix}-${theme.code}-${mode}`,
         path: `${themeDir}/${theme.code}-${mode}.${fileSuffix}`,
