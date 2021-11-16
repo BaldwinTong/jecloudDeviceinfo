@@ -81,7 +81,6 @@
 </script>
 <style lang="less">
   .login-form {
-    margin-top: 30%;
     padding: 10px;
     border: 1px solid @border-color-split;
     box-shadow: 2px 2px 5px @border-color-split;
