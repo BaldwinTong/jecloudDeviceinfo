@@ -1,8 +1,8 @@
 const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
+const { resolve } = require('../utils.js');
 const utils = require('./utils.js');
-const resolve = utils.resolve;
 const themes = utils.getThemes();
 
 const themeMode = ['default', 'dark'];

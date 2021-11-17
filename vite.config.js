@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { usePlugins, pathResolve, loadEnvs } from './build/vite/plugins';
+import { usePlugins, resolve, loadEnvs } from './build/vite/plugins';
 import { useProxy } from './build/vite/proxy';
 
 export default defineConfig(({ command, mode }) => {
@@ -12,8 +12,8 @@ export default defineConfig(({ command, mode }) => {
     plugins: plugins,
     resolve: {
       alias: {
-        '@': pathResolve('src'),
-        '@micro': pathResolve('micro'),
+        '@': resolve('src'),
+        '@micro': resolve('micro'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
       },
     },

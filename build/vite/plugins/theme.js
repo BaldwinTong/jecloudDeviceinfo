@@ -1,7 +1,6 @@
 import themePreprocessorPlugin from '@zougt/vite-plugin-theme-preprocessor';
-import { pathResolve } from '../index';
-import { baseOptions, lessVars } from './config';
-import { generateModifyVars } from './debug';
+const themeConfig = require('../../theme/config');
+const { lessVars, debugVars } = themeConfig;
 
 /**
  * 获取主题插件
@@ -17,7 +16,7 @@ export function useTheme(envs) {
   let themePlugins = [];
   const themeDebug = VUE_APP_THEME_COUNT === -1;
   if (themeDebug) {
-    vars = generateModifyVars();
+    vars = debugVars;
   } else {
     themePlugins = getPlugins(VUE_APP_THEME_COUNT);
   }
@@ -28,13 +27,6 @@ export function useTheme(envs) {
   };
 }
 
-// 转义路径
-[...lessVars].forEach((item) => {
-  item.path = pathResolve(item.path);
-});
-if (baseOptions.outputDir) {
-  baseOptions.outputDir = pathResolve(baseOptions.outputDir);
-}
 // 主题个数
 const themeCount = lessVars.length / 2;
 
@@ -48,7 +40,6 @@ export function getPlugins(count = themeCount) {
     themePreprocessorPlugin({
       less: {
         multipleScopeVars: vars,
-        ...baseOptions,
       },
     }),
   ];
