@@ -1,8 +1,7 @@
 /**
  * webpack 开发环境配置文件
  */
-const path = require('path');
-const utils = require('../utils/build');
+const utils = require('../utils');
 
 module.exports = function (config) {
   // 由于使用了npm link，调用本地包，导致vue实例错误问题，所以声明vue为统一配置

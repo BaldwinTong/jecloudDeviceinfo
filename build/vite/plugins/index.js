@@ -1,11 +1,11 @@
 import { loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { resolve } from 'path';
 import { useTheme } from './theme';
 import { configStyleImportPlugin } from './style-import';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
+const utils = require('../../utils');
 /**
  * vite 插件
  *
@@ -37,15 +37,7 @@ export function usePlugins(envs, command) {
  * @return {*}
  */
 export function loadEnvs(mode) {
-  const envs = loadEnv(mode, process.cwd(), 'VUE_APP_');
-  for (let key in envs) {
-    let val = envs[key];
-    if (isNumeric(val)) {
-      envs[key] = Number(val);
-    } else if (['true', 'false'].includes(val)) {
-      envs[key] = val == 'true';
-    }
-  }
+  const envs = utils.resolveEnvs(loadEnv(mode, process.cwd(), 'VUE_APP_'));
   envs.NODE_ENV = mode;
   return envs;
 }
@@ -57,8 +49,8 @@ export function loadEnvs(mode) {
  * @param {*} dir
  * @return {*}
  */
-export function pathResolve(dir) {
-  return resolve(process.cwd(), '.', dir);
+export function resolve(dir) {
+  return utils.resolve(dir);
 }
 
 export function isNumeric(value) {

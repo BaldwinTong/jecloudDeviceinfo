@@ -1,6 +1,5 @@
 const antColors = require('@ant-design/colors');
 const variables = require('./variables');
-const path = require('path');
 const { generate } = antColors;
 
 /**
@@ -97,21 +96,9 @@ function generateColors({ color, mixLighten, mixDarken, tinycolor }) {
   ].filter((item) => !item.includes('-'));
 }
 
-/**
- * 获得绝对路径
- *
- * @export
- * @param {*} dir
- * @return {*}
- */
-function resolve(dir) {
-  return path.resolve(process.cwd(), '.', dir);
-}
-
 module.exports = {
   getThemeColors,
   generateColors,
   generateAntColors,
   getThemes,
-  resolve,
 };
