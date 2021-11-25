@@ -1,12 +1,13 @@
 import * as utils from '@jecloud/utils';
 import { useConstant } from './use-constant';
+const JE = Object.assign({}, utils);
 
 /**
  * 初始化JE工具类
  * 页面可以通过JE.调用utils里的所有工具函数
  */
 export function setupJE(vue) {
-  window.JE = Object.assign({ $vue: vue, logout }, utils);
+  mixinJE({ $vue: vue, logout });
 }
 
 /**
@@ -16,7 +17,7 @@ export function setupJE(vue) {
  * @return { $vue,$i18n,$router,...utils }
  */
 export function useJE() {
-  return window.JE || {};
+  return JE;
 }
 
 /**

@@ -11,9 +11,9 @@ const themes = themeUtil.getThemes();
 // 样式权重处理
 const includeStyles = {
   less: {
-    '.ant-menu-horizontal': {
-      'box-shadow': 'none',
-    },
+    // '.ant-menu-horizontal': {
+    //   'box-shadow': 'none',
+    // },
   },
 };
 const themeDir = 'micro/assets/themes';

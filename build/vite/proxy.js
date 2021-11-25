@@ -5,7 +5,7 @@
  * @param {*} envs
  * @return {*}
  */
-export function useProxy(envs) {
+export function configProxy(envs) {
   // 代理地址，代理地址前缀
   const { VUE_APP_SERVE_PROXY, VUE_APP_SERVE_PROXY_PREFIX } = envs;
 

@@ -4,22 +4,23 @@
       <a-col class="logo"><i :class="[APP_HTML_ICON]"></i>{{ APP_HTML_TITLE }}</a-col>
       <a-col flex="auto" class="menu">
         <a-menu
-          v-model:selectedKeys="globalStore.activeMenus"
+          v-model:selectedKeys="selectedKeys"
           theme="dark"
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
         >
-          <a-menu-item
-            v-for="menu in menus"
-            :key="menu.name"
-            @click="$router.push({ name: menu.name })"
-          >
+          <a-menu-item v-for="menu in menus" :key="menu.name" @click="openMenu(menu)">
             {{ $t(menu.text) }}
           </a-menu-item>
         </a-menu>
       </a-col>
       <a-col class="action">
-        <a-select ref="select" v-model:value="globalStore.locale" @change="changeLocale">
+        <a-select
+          ref="select"
+          v-model:value="globalStore.locale"
+          class="lang-select"
+          @change="changeLocale"
+        >
           <a-select-option v-for="(item, index) in locales" :key="index" :value="item.code">
             {{ item.text }}
           </a-select-option>
@@ -55,7 +56,7 @@
   </a-layout-header>
 </template>
 <script>
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref, watch } from 'vue';
   import { Layout, Row, Col, Menu, Popover, Switch, Select } from 'ant-design-vue';
   import { useConstant } from '@micro/hooks/use-constant';
   import { useMenu } from '@micro/hooks/use-menu';
@@ -63,6 +64,7 @@
   import { logout } from '@micro/hooks/use-je';
   import { useLocale } from '@micro/hooks/use-i18n';
   import { useGlobalStore } from '../../store/global-store';
+  import { useRouter } from 'vue-router';
   export default defineComponent({
     name: 'Header',
     components: {
@@ -77,6 +79,7 @@
       ASelectOption: Select.Option,
     },
     setup() {
+      const router = useRouter();
       // 系统变量
       const { VUE_APP_HTML_TITLE, VUE_APP_HTML_ICON } = useConstant();
       // 多语言
@@ -85,10 +88,25 @@
       const { dark, gray, colorWeek, theme, themes } = useTheme();
       // 菜单数据
       const { menus } = useMenu();
-
+      const openMenu = function (item) {
+        if (item.redirect) {
+          window.open(item.redirect);
+        } else {
+          router.push({ name: item.name });
+        }
+      };
       const globalStore = useGlobalStore();
+      const selectedKeys = ref([globalStore.route]);
+      watch(
+        () => globalStore.route,
+        (route) => {
+          selectedKeys.value = [route];
+        },
+      );
 
       return {
+        openMenu,
+        selectedKeys,
         globalStore,
         logout,
         themes,
@@ -124,7 +142,7 @@
     .action {
       display: flex;
       align-items: center;
-      .ant-select {
+      .lang-select {
         width: 100px;
         margin-right: 20px;
       }

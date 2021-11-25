@@ -1,21 +1,22 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, createMemoryHistory } from 'vue-router';
 import { cookie, isEmpty } from '@jecloud/utils';
-import routes from '@micro/router';
+import { getRoutes } from '@micro/router';
 import { initSystemInfo } from '../helper/utils';
 import { mixinJE } from './use-je';
 import { useGlobalStore } from '../store/global-store';
+
 /**
  * 注册路由
  *
  * @export
  * @return {*}
  */
-export function setupRouter(app) {
+export function setupRouter(app, store) {
   const router = createRouter({
-    history: createWebHashHistory(),
-    routes: routes.concat(routes),
+    history: store?.micro ? createMemoryHistory() : createWebHashHistory(),
+    routes: getRoutes(),
   });
-  registRouterEach(router);
+  registRouterEach(router, store);
   app.use(router);
   mixinJE({ $router: router });
 }
@@ -27,7 +28,7 @@ const whiteList = ['Login'];
  * @export
  * @param {Router} router
  */
-export function registRouterEach(router) {
+export function registRouterEach(router, store) {
   router.beforeEach((to, from, next) => {
     const globalStore = useGlobalStore();
     const authorization = cookie.get('authorization');
@@ -54,5 +55,11 @@ export function registRouterEach(router) {
       return;
     }
     next();
+  });
+  // 微应用路由与主应用保持一致
+  router.afterEach((to, from, failure) => {
+    if (!failure) {
+      store?.go(to.path);
+    }
   });
 }

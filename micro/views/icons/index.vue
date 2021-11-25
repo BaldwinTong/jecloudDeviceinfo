@@ -140,6 +140,8 @@
 <style lang="less" scoped>
   .content {
     padding: 0;
+    height: 100%;
+    overflow: auto;
   }
   .header {
     background-color: @component-background;

@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { usePlugins, resolve, loadEnvs } from './build/vite/plugins';
-import { useProxy } from './build/vite/proxy';
+import { configProxy } from './build/vite/proxy';
 
 export default defineConfig(({ command, mode }) => {
   // 加载系统配置
@@ -10,6 +10,7 @@ export default defineConfig(({ command, mode }) => {
   const { plugins, lessModifyVars } = usePlugins(config, command);
   return {
     plugins: plugins,
+    define: { __CLI_ENVS__: JSON.stringify(config) },
     resolve: {
       alias: {
         '@': resolve('src'),
@@ -29,7 +30,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: '0.0.0.0',
       port: VUE_APP_SERVE_PORT,
-      proxy: useProxy(config),
+      proxy: configProxy(config),
     },
     optimizeDeps: {
       include: [

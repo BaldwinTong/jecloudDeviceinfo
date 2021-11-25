@@ -1,16 +1,16 @@
 <template>
   <App>
-    <Layout />
+    <Icons />
   </App>
 </template>
 <script>
   import { defineComponent } from 'vue';
   import App from '@micro/app.vue';
-  import Layout from '@micro/views/layout/index.vue';
+  import Icons from '@micro/views/icons/index.vue';
   export default defineComponent({
     components: {
       App, // 系统配置
-      Layout, // 布局组件
+      Icons,
     },
   });
 </script>

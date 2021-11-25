@@ -13,6 +13,7 @@
 <script>
   import { computed } from 'vue';
   import { Alert } from '@jecloud/ui';
+  import { useJE } from '../../hooks/use-je';
   import { Typography } from 'ant-design-vue';
   export default {
     name: 'Demo',
@@ -21,8 +22,9 @@
       ATypographyTitle: Typography.Title,
     },
     setup(props) {
+      const { USER } = useJE();
       const name = computed(() => {
-        return JE.USER?.username;
+        return USER?.username;
       });
       return { name };
     },

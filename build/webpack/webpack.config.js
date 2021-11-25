@@ -1,38 +1,47 @@
 /**
  * webpack 配置文件统一入口
  */
+const webpack = require('webpack');
 const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
-const theme = require('./plugins/theme');
+const { name } = require('../../package.json');
 const envs = utils.resolveEnvs(process.env);
-module.exports = {
-  chainWebpack: function (config) {
-    const {
-      VUE_APP_HTML_TITLE, // 首页标题
-      NODE_ENV, // 环境参数
-    } = envs;
 
-    // 通用配置
-    config.entry('app').clear().add('./src/main.js');
-    config.plugin('html').tap((args) => {
-      Object.assign(args[0], {
-        title: VUE_APP_HTML_TITLE,
-        theme: theme.defaultTheme,
-        envs: JSON.stringify(envs),
-      });
-      return args;
-    });
+// 链式配置
+const chainWebpack = function (config) {
+  const {
+    NODE_ENV, // 环境参数
+  } = envs;
 
-    // 设置别名
-    config.resolve.alias.set('@micro', utils.resolve('micro'));
-    // 设置i18n警告
-    config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
+  // 设置别名
+  config.resolve.alias.set('@micro', utils.resolve('micro'));
+  // 设置i18n警告
+  config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
-    // 环境配置
-    return NODE_ENV == 'development' ? dev(config) : prod(config);
+  // 环境配置
+  return NODE_ENV == 'development' ? dev(config) : prod(config);
+};
+
+// 简单配置
+const configureWebpack = {
+  plugins: [
+    new webpack.DefinePlugin({
+      __CLI_ENVS__: JSON.stringify(envs),
+    }),
+  ],
+  // 微应用配置
+  output: {
+    library: `${name}-[name]`,
+    libraryTarget: 'umd', // 把微应用打包成 umd 库格式
+    jsonpFunction: `webpackJsonp_${name}`,
   },
-  config: {
-    ...theme.config(envs),
+};
+module.exports = {
+  config() {
+    return {
+      chainWebpack,
+      configureWebpack,
+    };
   },
 };

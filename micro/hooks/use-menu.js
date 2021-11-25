@@ -1,4 +1,4 @@
-import routes from '@micro/router'; // 默认路由
+import { getRoutes } from '@micro/router'; // 默认路由
 import { ref } from 'vue';
 
 /**
@@ -9,13 +9,14 @@ import { ref } from 'vue';
  */
 export function useMenu() {
   const menus = [];
-  routes.forEach((route) => {
-    const { path, name, text } = route;
+  getRoutes().forEach((route) => {
+    const { path, name, text, redirect } = route;
     name !== 'Login' &&
       menus.push({
         path,
         name,
         text,
+        redirect,
       });
   });
   return { menus: ref(menus) };

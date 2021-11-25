@@ -1,7 +1,7 @@
 <!-- 主页面布局 -->
 <template>
-  <a-layout>
-    <Header></Header>
+  <a-layout class="body-layout">
+    <Header v-if="showHeader"></Header>
     <!-- 路由 -->
     <router-view class="router-content" />
   </a-layout>
@@ -15,10 +15,19 @@
       ALayout: Layout,
       Header,
     },
+    props: {
+      showHeader: {
+        type: Boolean,
+        default: true,
+      },
+    },
     setup(props) {},
   });
 </script>
-<style lang="less">
+<style scoped>
+  .body-layout {
+    height: 100%;
+  }
   .router-content {
     height: 100%;
     padding: 10px;
