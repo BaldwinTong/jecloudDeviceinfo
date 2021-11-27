@@ -47,12 +47,8 @@ const lessVars = multipleScopeVars();
  * @return {*}
  */
 function generateModifyVars(dark) {
-  const modifyVars = getThemeVariables({ dark });
-  const primaryColor = '#3265f5'; // 主题色
   return {
-    ...modifyVars,
-    'primary-color': primaryColor,
-    'vxe-primary-color': primaryColor,
+    hack: `true; @import "${resolve('micro/assets/styles/theme-debug.less')}";`,
   };
 }
 
