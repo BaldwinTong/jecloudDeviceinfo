@@ -13,7 +13,7 @@ module.exports = {
 
     // 调试模式
     if (VUE_APP_THEME_COUNT === -1) {
-      less.globalVars = debugVars;
+      less.modifyVars = debugVars;
     } else {
       // 主题模式
       less.implementation = getLess({

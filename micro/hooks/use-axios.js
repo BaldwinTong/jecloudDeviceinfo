@@ -1,7 +1,7 @@
 import { initAxios } from '@jecloud/utils';
 import { useConstant } from './use-constant';
 
-const { VUE_APP_SERVE_PROXY_PREFIX } = useConstant();
+const { BASE_URL } = useConstant();
 /**
  * 个性化配置
  *
@@ -11,7 +11,7 @@ const axiosConfig = {
   // 请求超时时间
   timeout: 30 * 1000,
   // 基础接口地址
-  baseURL: VUE_APP_SERVE_PROXY_PREFIX || '',
+  baseURL: BASE_URL,
   // 如果是form-data格式
   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
   // 配置项，下面的选项都可以在独立的接口请求中覆盖

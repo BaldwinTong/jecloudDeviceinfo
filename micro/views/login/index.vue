@@ -79,7 +79,7 @@
     },
   });
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .login-form {
     padding: 10px;
     border: 1px solid @border-color-split;

@@ -2,6 +2,16 @@ import { ref, watch } from 'vue';
 import themes from '@micro/assets/themes/theme.json';
 import { useConstant } from '@micro/hooks/use-constant';
 import { toggleClass } from '@jecloud/utils';
+
+/**
+ * 设置主题
+ *
+ * @export
+ */
+export function setupTheme() {
+  const defaultTheme = getThemes()[0];
+  toggleTheme(defaultTheme);
+}
 /**
  * 主题操作
  *
@@ -38,13 +48,13 @@ export function useTheme() {
 // 切换主题
 export function toggleTheme(theme, dark) {
   const themeCls = `theme-${theme.code}-${dark ? 'dark' : 'default'}`;
-  let currentHtmlClassNames = (document.documentElement.className || '').split(/\s+/g);
+  let currentHtmlClassNames = (document.body.className || '').split(/\s+/g);
   if (!currentHtmlClassNames.includes(themeCls)) {
     currentHtmlClassNames = currentHtmlClassNames.filter(
       (classname) => !classname.startsWith('theme-'),
     );
     currentHtmlClassNames.push(themeCls);
-    document.documentElement.className = currentHtmlClassNames.join(' ');
+    document.body.className = currentHtmlClassNames.join(' ');
   }
 }
 

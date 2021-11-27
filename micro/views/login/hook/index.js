@@ -4,6 +4,7 @@ import { doLogin } from '@micro/api';
 import { message } from 'ant-design-vue';
 import { useLocale } from '@micro/hooks/use-i18n';
 import { useGlobalStore } from '@micro/store/global-store';
+import { cookie } from '@jecloud/utils';
 
 /**
  *登录操作
@@ -31,8 +32,8 @@ export function useLogin(form, model) {
             message.success(i18n.global.t('login.loginSuccess'));
           });
           // 登录成功
-          JE.cookie.set('authorization', authorization, 7);
-          router.push('/'); //跳转首页
+          cookie.set('authorization', authorization, 7);
+          router.push({ name: 'Home' }); //跳转首页
         })
         .catch((e) => {
           // 登录失败

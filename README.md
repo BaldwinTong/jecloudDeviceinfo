@@ -37,6 +37,28 @@ jecloud-cli
 ### npm 
 `v 6.14.14`
 
+### [pnpm](https://pnpm.io/zh/) 
+快速的，节省磁盘空间的包管理工具，本项目采用pnpm进行包管理。
+- 版本：`v 6.23.2` 
+- 常用命令
+```bash
+npm install -g pnpm    # 全局安装 pnpm
+
+pnpm add xxx	       # 保存到 dependencies
+pnpm add -D xxx	       # 保存到 devDependencies
+pnpm add -g xxx	       # 全局安装依赖包xxx
+
+pnpm remove xxx        # 删除依赖
+pnpm remove -g xxx     # 删除全局依赖
+
+# 其他更多命令，请参考官网：https://pnpm.io/zh/
+
+# 注意
+# 当控制台报错如下，请手动删除 node_modules/.ignored目录，再重新操作
+ EPERM: operation not permitted, rename 'E:\workspace\jecloud\jecloud-cli\node_modules\@jecloud\utils' -> 'E:\workspace\jecloud\jecloud-cli\node_modules\.ignored\@jecloud\utils'
+
+```
+
 ### [Yalc](https://github.com/wclr/yalc)
 `Yalc` 是一个可以在本地模拟 npm package 发布环境的工具。
 `yalc` 主要本地化了一个 `npm` 的存储库，通过 `yalc publish` 可以把构建的产物发布到本地。通过 `yalc add <pkg>` 可以达到 `npm install <pkg>` 或 `yarn add <pkg>` 的效果。
@@ -68,7 +90,7 @@ npm i -g yalc
 ## 项目命令
 
 ### 安装依赖
-由于使用了私有包，请使用命令安装，不要使用` npm i` 进行安装依赖
+由于使用了私有包，请使用命令安装，不要使用` pnpm i` 进行安装依赖
 ```bash
 # 快捷安装命令，可以自行调整
 npm run setup
@@ -110,9 +132,5 @@ http://39.106.75.216:4873/
 
 项目使用时，先安装私有仓库包，然后再进行其他包的安装
 ```bash
-# 先安装私有仓库包
-cnpm i -D @jecloud/ui @jecloud/utils --registry=http://39.106.75.216:4873/
-
-# 再安装其他依赖
-cnpm i
+npm run setup:regist
 ```

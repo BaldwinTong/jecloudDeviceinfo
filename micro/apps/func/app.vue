@@ -1,16 +1,16 @@
 <template>
   <App>
-    <Layout />
+    <Func v-bind="$attrs" />
   </App>
 </template>
 <script>
   import { defineComponent } from 'vue';
   import App from '@micro/app.vue';
-  import Layout from '@micro/views/layout/index.vue';
+  import Func from '@micro/views/func/index.vue';
   export default defineComponent({
     components: {
       App, // 系统配置
-      Layout, // 布局组件
+      Func,
     },
   });
 </script>
