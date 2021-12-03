@@ -23,14 +23,14 @@ export function createMock(url, response) {
 
 /**
  *  普通数据
- * @param {*} obj 结果数据
+ * @param {*} data 结果数据
  * @param {*} param 其他配置
  * @returns Object
  */
-export function resultInfo(obj, { message = 'ok', success = true, code = 1000 } = {}) {
+export function resultInfo(data, { message = 'ok', success = true, code = 200 } = {}) {
   return {
     code,
-    obj,
+    data,
     message,
     success,
   };
@@ -42,11 +42,13 @@ export function resultInfo(obj, { message = 'ok', success = true, code = 1000 } 
  * @param {*} param 其他配置
  * @returns Object
  */
-export function resultList(rows, { message = 'ok', success = true, code = 1000 } = {}) {
+export function resultList(rows, { message = 'ok', success = true, code = 200 } = {}) {
   return {
     code,
-    rows,
-    totalCount: rows.length * 2,
+    data: {
+      rows,
+      totalCount: rows.length * 2,
+    },
     message,
     success,
   };
