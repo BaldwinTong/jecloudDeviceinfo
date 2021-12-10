@@ -1,5 +1,5 @@
 <template>
-  <a-row align="middle" justify="center">
+  <a-row align="middle" justify="center" class="je-login-view">
     <a-col :span="8">
       <a-form ref="form" class="login-form" :model="model" v-bind="layout" :rules="rules">
         <div class="login-title">{{ $t('login.title') }}</div>
@@ -80,15 +80,18 @@
   });
 </script>
 <style lang="less" scoped>
-  .login-form {
-    padding: 10px;
-    border: 1px solid @border-color-split;
-    box-shadow: 2px 2px 5px @border-color-split;
-    background: @component-background;
-    .login-title {
-      text-align: center;
-      padding: 20px;
-      font-size: 30px;
+  .je-login-view {
+    height: 100%;
+    .login-form {
+      padding: 10px;
+      border: 1px solid @border-color-split;
+      box-shadow: 2px 2px 5px @border-color-split;
+      background: @component-background;
+      .login-title {
+        text-align: center;
+        padding: 20px;
+        font-size: 30px;
+      }
     }
   }
 </style>
