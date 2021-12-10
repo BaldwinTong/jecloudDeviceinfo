@@ -30,7 +30,7 @@
     "**/.vscode": false,
     "**/package-lock.json": true,
   },
-  "i18n-ally.localesPaths": ["src/locales","micrl/locales/lang"],
+  "i18n-ally.localesPaths": ["src/locales/lang","micro/locales/lang"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
   "i18n-ally.namespace": false,

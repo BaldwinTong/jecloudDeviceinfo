@@ -75,7 +75,7 @@ function getThemes() {
  * 灰色模式
  *
  */
-function toggleGrayModa() {
+export function toggleGrayModa() {
   const grayModeCls = 'gray-mode';
   toggleClass(grayModeCls);
 }
@@ -84,7 +84,7 @@ function toggleGrayModa() {
  * 色弱模式
  *
  */
-function toggleColorWeak() {
+export function toggleColorWeak() {
   const colorWeakCls = 'color-weak';
   toggleClass(colorWeakCls);
 }

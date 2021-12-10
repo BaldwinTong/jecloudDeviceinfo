@@ -40,7 +40,7 @@ export function useLogin(form, model) {
           message.error(e.message);
           // 验证码
           if (e.code == 'WARNCODE') {
-            model.code = e.obj;
+            model.code = e.data;
           }
         });
     });

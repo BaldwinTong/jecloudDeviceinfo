@@ -38,6 +38,7 @@ specifiers:
   lodash-es: ^4.17.21
   mockjs: ^1.1.0
   monaco-editor: 0.29.1
+  overlayscrollbars: ^1.13.1
   pinia: ^2.0.0-rc.10
   pinyin-pro: ^3.3.1
   prettier: ^2.2.1
@@ -67,6 +68,7 @@ dependencies:
   loadjs: registry.npmmirror.com/loadjs/4.2.0
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
   monaco-editor: registry.npmmirror.com/monaco-editor/0.29.1
+  overlayscrollbars: registry.npmmirror.com/overlayscrollbars/1.13.1
   pinia: registry.npmmirror.com/pinia/2.0.4_vue@3.2.23
   pinyin-pro: registry.npmmirror.com/pinyin-pro/3.3.1
   qs: registry.nlark.com/qs/6.10.1
@@ -12692,7 +12694,7 @@ packages:
     dev: true
 
   registry.npmmirror.com/loader-utils/2.0.2:
-    resolution: {integrity: sha1-1uO0+4GHByGuTghoqxHdY4NowSk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/loader-utils/download/loader-utils-2.0.2.tgz?cache=0&sync_timestamp=1636687909281&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Floader-utils%2Fdownload%2Floader-utils-2.0.2.tgz}
+    resolution: {integrity: sha1-1uO0+4GHByGuTghoqxHdY4NowSk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/loader-utils/download/loader-utils-2.0.2.tgz}
     name: loader-utils
     version: 2.0.2
     engines: {node: '>=8.9.0'}
@@ -12956,6 +12958,12 @@ packages:
     dependencies:
       is-wsl: registry.nlark.com/is-wsl/1.1.0
     dev: true
+
+  registry.npmmirror.com/overlayscrollbars/1.13.1:
+    resolution: {integrity: sha1-C4QKiHN/Q6lGudh4daL55CHQM4o=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/overlayscrollbars/download/overlayscrollbars-1.13.1.tgz}
+    name: overlayscrollbars
+    version: 1.13.1
+    dev: false
 
   registry.npmmirror.com/p-map/2.1.0:
     resolution: {integrity: sha1-MQko/u+cnsxltosXaTAYpmXOoXU=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/p-map/download/p-map-2.1.0.tgz}
