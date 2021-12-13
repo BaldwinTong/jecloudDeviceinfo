@@ -4,6 +4,7 @@ import { getRoutes } from '@micro/router';
 import { initSystemInfo } from '../helper/utils';
 import { mixinJE } from './use-je';
 import { useGlobalStore } from '../store/global-store';
+import * as routerInfo from '@/router';
 
 /**
  * 注册路由
@@ -16,7 +17,12 @@ export function setupRouter(app, store) {
     history: store?.micro ? createMemoryHistory() : createWebHashHistory(),
     routes: getRoutes(),
   });
-  registRouterEach(router, store);
+  // 自定义路由守卫
+  if (routerInfo.createRouterGuard) {
+    routerInfo.createRouterGuard?.(router);
+  } else {
+    createRouterGuard4Micro(router, store);
+  }
   app.use(router);
   mixinJE({ $router: router });
 }
@@ -28,7 +34,7 @@ const whiteList = ['Login'];
  * @export
  * @param {Router} router
  */
-export function registRouterEach(router, store) {
+export function createRouterGuard4Micro(router, store) {
   router.beforeEach((to, from, next) => {
     const globalStore = useGlobalStore();
     const authorization = cookie.get('authorization');

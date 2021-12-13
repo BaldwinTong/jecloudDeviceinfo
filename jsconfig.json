@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@micro/*":["micro/*"]
+    },
+    "target": "ES6",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*","micro/**/*"],
+  "exclude": ["node_modules"]
+}
