@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 import themes from '@micro/assets/themes/theme.json';
-import { useConstant } from '@micro/hooks/use-constant';
+import { CLI_ENVS } from '@micro/helper/constant';
 import { toggleClass } from '@jecloud/utils';
 
 /**
@@ -65,7 +65,7 @@ export function toggleTheme(theme, dark) {
  * @return {*}
  */
 function getThemes() {
-  let { VUE_APP_THEME_COUNT: count = themes.length } = useConstant();
+  let { VUE_APP_THEME_COUNT: count = themes.length } = CLI_ENVS;
   if (count < 1 || count > themes.length) {
     count = themes.length;
   }

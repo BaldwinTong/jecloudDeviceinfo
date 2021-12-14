@@ -58,10 +58,10 @@
 <script>
   import { defineComponent, ref, watch } from 'vue';
   import { Layout, Row, Col, Menu, Popover, Switch, Select } from 'ant-design-vue';
-  import { useConstant } from '@micro/hooks/use-constant';
+  import { CLI_ENVS } from '@micro/helper/constant';
   import { useMenu } from '@micro/hooks/use-menu';
   import { useTheme } from '@micro/hooks/use-theme';
-  import { logout } from '@micro/hooks/use-je';
+  import { logout } from '@micro/helper/je';
   import { useLocale } from '@micro/hooks/use-i18n';
   import { useGlobalStore } from '../../store/global-store';
   import { useRouter } from 'vue-router';
@@ -81,7 +81,7 @@
     setup() {
       const router = useRouter();
       // 系统变量
-      const { VUE_APP_HTML_TITLE, VUE_APP_HTML_ICON } = useConstant();
+      const { VUE_APP_HTML_TITLE, VUE_APP_HTML_ICON } = CLI_ENVS;
       // 多语言
       const { getLocales, changeLocale } = useLocale();
       // 主题

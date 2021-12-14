@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
-import { setupRouter } from './hooks/use-router';
-import { setupAxios } from './hooks/use-axios';
-import { setupJE } from './hooks/use-je';
+import { setupRouter } from './router';
+import { setupAxios } from './helper/http';
+import { setupJE, useJE } from './helper/je';
 import { setupIi8n } from './hooks/use-i18n';
-import { setupStore } from './hooks/use-store';
-import { useJE } from './hooks/use-je';
+import { setupStore } from './store';
 import { setupTheme } from './hooks/use-theme';
 import { useMicroStore, setupMicroStore } from './store/micro-store';
 import '@micro/assets/styles/index.less';

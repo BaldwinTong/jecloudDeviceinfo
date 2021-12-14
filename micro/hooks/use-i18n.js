@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n';
-import { GlobalSettingsEnum } from '../helper/global';
+import { GlobalSettingsEnum } from '../helper/constant';
 import { SUPPORT_LOCALES } from '@micro/locales';
-import { mixinJE } from './use-je';
+import { mixinJE } from '@micro/helper/je';
 
 /**
  * 实例对象

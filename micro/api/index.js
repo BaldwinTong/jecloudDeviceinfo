@@ -1,8 +1,6 @@
 import { ajax } from '@jecloud/utils';
 import { API_RBAC_LOGIN, API_RBAC_USER, API_SYSTEM_VARIABLES } from './urls';
-import { useAxios } from '../hooks/use-axios';
-// 格式数据
-const { transformData } = useAxios();
+import { transformData } from '@micro/helper/http'; // 格式数据
 
 /**
  * 登录

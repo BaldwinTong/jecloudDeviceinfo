@@ -1,31 +1,26 @@
-import { t } from '@micro/hooks/use-i18n';
-import routes4bus from '@/router';
-const routes = [
-  {
-    path: '/login',
-    name: 'Login',
-    text: t('menu.login'),
-    component: () => import('../views/login/index.vue'),
-  },
-  // {
-  //   path: '/icons',
-  //   name: 'Icons',
-  //   text: t('menu.icons'),
-  //   component: () => import('../views/icons/index.vue'),
-  // },
-  {
-    path: '/icons',
-    name: 'Icons',
-    redirect: '/icons.html',
-    text: t('menu.icons'),
-  },
-];
+import { createRouter, createWebHashHistory, createMemoryHistory } from 'vue-router';
+import routes from './routes';
+import { mixinJE } from '@micro/helper/je';
+import { createRouterGuard } from './guard';
+import * as routerInfo from '@/router';
+
 /**
- * 路由
+ * 注册路由
  *
  * @export
  * @return {*}
  */
-export function getRoutes() {
-  return [...routes4bus, ...routes];
+export function setupRouter(app, store) {
+  const router = createRouter({
+    history: store?.micro ? createMemoryHistory() : createWebHashHistory(),
+    routes: routes,
+  });
+  // 自定义路由守卫
+  if (routerInfo.createRouterGuard) {
+    routerInfo.createRouterGuard?.(router);
+  } else {
+    createRouterGuard(router, store);
+  }
+  app.use(router);
+  mixinJE({ $router: router });
 }

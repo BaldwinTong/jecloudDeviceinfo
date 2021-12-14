@@ -1,4 +1,4 @@
-import { mixinJE } from '../hooks/use-je';
+import { mixinJE } from './je';
 import { getCurrentUser, getSystemConfig } from '../api';
 
 /**

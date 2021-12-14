@@ -13,7 +13,7 @@
 <script>
   import { computed } from 'vue';
   import { Alert } from '@jecloud/ui';
-  import { useJE } from '../../hooks/use-je';
+  import { useJE } from '@micro/helper/je';
   import { Typography } from 'ant-design-vue';
   export default {
     name: 'Demo',
