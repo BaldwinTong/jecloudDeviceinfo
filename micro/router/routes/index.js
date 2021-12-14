@@ -1,4 +1,4 @@
-import { t } from '@micro/hooks/use-i18n';
+import { t } from '@micro/locales';
 import routes4custom from '@/router';
 const routes = [
   {

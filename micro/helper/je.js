@@ -1,4 +1,5 @@
 import * as utils from '@jecloud/utils';
+import { useGlobalStore } from '@micro/store/global-store';
 import { JE_SETTINGS_LOGOUT_URL } from './constant';
 
 /**
@@ -18,6 +19,7 @@ export function useJE() {
  */
 export function setupJE(vue) {
   mixinJE({ $vue: vue, logout });
+  window.JE = JE;
 }
 
 /**
@@ -37,9 +39,9 @@ export function mixinJE(object) {
  * @export
  */
 export function logout() {
-  const { cookie } = utils;
-  const router = JE.$router;
-  cookie.remove('authorization');
+  const globalStore = useGlobalStore();
+  globalStore.logout();
+  const router = useJE().$router;
   if (router) {
     router.push(JE_SETTINGS_LOGOUT_URL);
   } else {

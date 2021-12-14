@@ -2,9 +2,7 @@ import { toRaw } from 'vue';
 import { useRouter } from 'vue-router';
 import { doLogin } from '@micro/api';
 import { message } from 'ant-design-vue';
-import { useLocale } from '@micro/hooks/use-i18n';
 import { useGlobalStore } from '@micro/store/global-store';
-import { cookie } from '@jecloud/utils';
 
 /**
  *登录操作
@@ -15,7 +13,6 @@ import { cookie } from '@jecloud/utils';
  */
 export function useLogin(form, model) {
   const router = useRouter();
-  const { getLocales, getLocale, changeLocale } = useLocale();
   const globalStore = useGlobalStore();
 
   // 登录系统
@@ -27,12 +24,10 @@ export function useLogin(form, model) {
       doLogin(vals)
         .then((authorization) => {
           // 更改语言
-          globalStore.locale = vals.j_locale;
-          changeLocale(vals.j_locale).then((i18n) => {
-            message.success(i18n.global.t('login.loginSuccess'));
-          });
-          // 登录成功
-          cookie.set('authorization', authorization, 7);
+          globalStore.setLocale(vals.j_locale);
+          // token
+          globalStore.setToken(authorization);
+
           router.push({ name: 'Home' }); //跳转首页
         })
         .catch((e) => {
@@ -46,5 +41,5 @@ export function useLogin(form, model) {
     });
   }
 
-  return { login, locales: getLocales(), getLocale };
+  return { login };
 }

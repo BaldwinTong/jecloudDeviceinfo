@@ -6,16 +6,17 @@
   import { defineComponent, ref, watch } from 'vue';
   import { useI18n } from 'vue-i18n';
   import { ConfigProvider } from 'ant-design-vue';
-  import { useLocale } from '@micro/hooks/use-i18n';
   export default defineComponent({
     components: {
       AConfigProvider: ConfigProvider, // ant系统配置
     },
     setup(props) {
-      // 国际化处理
-      const { getAntdLocale } = useLocale();
-      let locale = ref(getAntdLocale());
       const i18n = useI18n();
+      const getAntdLocale = function () {
+        return i18n.getLocaleMessage(i18n.locale)?.antdLocale ?? {};
+      };
+      // 国际化处理
+      let locale = ref(getAntdLocale());
       watch(
         () => i18n.locale.value,
         () => {

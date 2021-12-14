@@ -11,4 +11,5 @@ export const JE_SETTINGS_LOGOUT_URL = '/login'; // 退出登录链接
 // 全局变量名
 export const GlobalSettingsEnum = {
   GLOBAL_SETTINGS_LOCALE: 'GLOBAL_SETTINGS_LOCALE', // 国际化
+  GLOBAL_SETTINGS_TOKENKEY: 'authorization', // token key
 };

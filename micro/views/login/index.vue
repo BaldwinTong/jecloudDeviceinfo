@@ -21,9 +21,12 @@
         </a-form-item>
         <a-form-item has-feedback :label="$t('login.language')" name="j_locale">
           <a-select ref="select" v-model:value="model.j_locale">
-            <a-select-option v-for="(item, index) in locales" :key="index" :value="item.code">{{
-              item.text
-            }}</a-select-option>
+            <a-select-option
+              v-for="(item, index) in globalStore.locales"
+              :key="index"
+              :value="item.code"
+              >{{ item.text }}</a-select-option
+            >
           </a-select>
         </a-form-item>
 
@@ -38,10 +41,11 @@
   </a-row>
 </template>
 <script>
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, unref } from 'vue';
   import { Form, Button, Input, Row, Col, Select } from 'ant-design-vue';
   import { useModel } from './model';
   import { useLogin } from './hook';
+  import { useGlobalStore } from '@micro/store/global-store';
   export default defineComponent({
     components: {
       AForm: Form,
@@ -56,16 +60,17 @@
     },
     setup() {
       const form = ref();
+      const globalStore = useGlobalStore();
       // 表单数据，校验规则
       const { model, rules } = useModel();
       // 登录函数
-      const { login, getLocale, locales } = useLogin(form, model);
-      model.j_locale = getLocale();
+      const { login } = useLogin(form, model);
+      model.j_locale = globalStore.locale;
       return {
+        globalStore,
         rules,
         model,
         form,
-        locales,
         login,
         layout: {
           labelCol: {

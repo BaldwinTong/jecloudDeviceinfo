@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import { setupRouter } from './router';
 import { setupAxios } from './helper/http';
 import { setupJE, useJE } from './helper/je';
-import { setupIi8n } from './hooks/use-i18n';
+import { setupIi8n } from './locales';
 import { setupStore } from './store';
 import { setupTheme } from './hooks/use-theme';
 import { useMicroStore, setupMicroStore } from './store/micro-store';

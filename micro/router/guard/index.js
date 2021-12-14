@@ -1,9 +1,7 @@
 import { cookie, isEmpty } from '@jecloud/utils';
-import { initSystemInfo } from '@micro/helper/system';
+import { initSystem } from '@micro/helper/system';
 import { useGlobalStore } from '@micro/store/global-store';
 
-// 路由白名单
-const whiteList = ['Login'];
 /**
  *注册路由守卫
  *
@@ -13,21 +11,17 @@ const whiteList = ['Login'];
 export function createRouterGuard(router, store) {
   router.beforeEach((to, from, next) => {
     const globalStore = useGlobalStore();
-    const authorization = cookie.get('authorization');
-    globalStore.toggleLoginState(false);
-    if (whiteList.includes(to.name)) {
+    if (globalStore.whiteRoutes.includes(to.name)) {
       next();
       return;
     }
-    if (isEmpty(authorization)) {
+    if (isEmpty(globalStore.token)) {
       next({ name: 'Login' });
       return;
     }
-    globalStore.toggleLoginState(true);
-    globalStore.route = to.name;
     if (to.name === 'Home') {
       // 初始化系统数据
-      initSystemInfo()
+      initSystem()
         .then(() => {
           next();
         })

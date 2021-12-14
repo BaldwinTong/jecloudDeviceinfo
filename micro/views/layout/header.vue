@@ -3,12 +3,7 @@
     <a-row align="middle">
       <a-col class="logo"><i :class="[APP_HTML_ICON]"></i>{{ APP_HTML_TITLE }}</a-col>
       <a-col flex="auto" class="menu">
-        <a-menu
-          v-model:selectedKeys="selectedKeys"
-          theme="dark"
-          mode="horizontal"
-          :style="{ lineHeight: '64px' }"
-        >
+        <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
           <a-menu-item v-for="menu in menus" :key="menu.name" @click="openMenu(menu)">
             {{ $t(menu.text) }}
           </a-menu-item>
@@ -19,9 +14,13 @@
           ref="select"
           v-model:value="globalStore.locale"
           class="lang-select"
-          @change="changeLocale"
+          @change="changeI18n"
         >
-          <a-select-option v-for="(item, index) in locales" :key="index" :value="item.code">
+          <a-select-option
+            v-for="(item, index) in globalStore.locales"
+            :key="index"
+            :value="item.code"
+          >
             {{ item.text }}
           </a-select-option>
         </a-select>
@@ -48,7 +47,7 @@
             <i class="fal fa-palette"></i>
           </div>
         </a-popover>
-        <div v-if="globalStore.login" class="action-icon logout-icon" @click="logout">
+        <div v-if="globalStore.token" class="action-icon logout-icon" @click="logout">
           <i class="fal fa-sign-out-alt"></i>
         </div>
       </a-col>
@@ -56,14 +55,14 @@
   </a-layout-header>
 </template>
 <script>
-  import { defineComponent, ref, watch } from 'vue';
+  import { defineComponent, ref, unref } from 'vue';
   import { Layout, Row, Col, Menu, Popover, Switch, Select } from 'ant-design-vue';
   import { CLI_ENVS } from '@micro/helper/constant';
   import { useMenu } from '@micro/hooks/use-menu';
   import { useTheme } from '@micro/hooks/use-theme';
   import { logout } from '@micro/helper/je';
-  import { useLocale } from '@micro/hooks/use-i18n';
-  import { useGlobalStore } from '../../store/global-store';
+  import { changeI18n } from '@micro/locales';
+  import { useGlobalStore } from '@micro/store/global-store';
   import { useRouter } from 'vue-router';
   export default defineComponent({
     name: 'Header',
@@ -79,11 +78,10 @@
       ASelectOption: Select.Option,
     },
     setup() {
+      const globalStore = useGlobalStore();
       const router = useRouter();
       // 系统变量
       const { VUE_APP_HTML_TITLE, VUE_APP_HTML_ICON } = CLI_ENVS;
-      // 多语言
-      const { getLocales, changeLocale } = useLocale();
       // 主题
       const { dark, gray, colorWeek, theme, themes } = useTheme();
       // 菜单数据
@@ -95,30 +93,20 @@
           router.push({ name: item.name });
         }
       };
-      const globalStore = useGlobalStore();
-      const selectedKeys = ref([globalStore.route]);
-      watch(
-        () => globalStore.route,
-        (route) => {
-          selectedKeys.value = [route];
-        },
-      );
 
       return {
-        openMenu,
-        selectedKeys,
         globalStore,
-        logout,
         themes,
         theme,
         dark,
         gray,
         colorWeek,
         menus,
-        locales: getLocales(),
-        changeLocale,
         APP_HTML_TITLE: VUE_APP_HTML_TITLE,
         APP_HTML_ICON: VUE_APP_HTML_ICON,
+        openMenu,
+        logout,
+        changeI18n,
       };
     },
   });
