@@ -6,14 +6,14 @@ import { createMock, resultInfo, resultList } from '../util';
 /**
  * 获取普通数据
  */
-const info = createMock('/deom/getInfoById', ({ headers, query }) => {
+const info = createMock('/demo/getInfoById', ({ headers, query }) => {
   return resultInfo({ headers, query });
 });
 
 /**
  *  获取列表数据
  */
-const list = createMock('/deom/load', ({ headers, query }) => {
+const list = createMock('/demo/load', ({ headers, query }) => {
   const rows = mockjs.mock({
     'rows|5-10': [
       {
@@ -28,7 +28,7 @@ const list = createMock('/deom/load', ({ headers, query }) => {
 /**
  * 自定义数据
  */
-const custom = createMock('/deom/custom', ({ headers, query }) => {
+const custom = createMock('/demo/custom', ({ headers, query }) => {
   const data = mockjs.mock({
     'name|1': ['张三', '李四', '王五'],
     'age|10-20': 20,
