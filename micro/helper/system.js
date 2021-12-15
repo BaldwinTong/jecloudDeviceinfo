@@ -2,6 +2,8 @@ import { mixinJE } from './je';
 import { getCurrentUser, getSystemConfig } from '../api';
 import { useGlobalStore } from '@micro/store/global-store';
 import { changeI18n } from '@micro/locales';
+import { JE_SETTINGS_LOGOUT_URL } from './constant';
+import { useJE } from './je';
 
 /**
  * 初始化系统数据
@@ -41,4 +43,20 @@ export function initSystemInfo() {
       systemConfig: data[1],
     });
   });
+}
+
+/**
+ * 退出登录
+ *
+ * @export
+ */
+export function logout() {
+  const globalStore = useGlobalStore();
+  globalStore.logout();
+  const router = useJE().$router;
+  if (router) {
+    router.push(JE_SETTINGS_LOGOUT_URL);
+  } else {
+    window.location.href = JE_SETTINGS_LOGOUT_URL;
+  }
 }

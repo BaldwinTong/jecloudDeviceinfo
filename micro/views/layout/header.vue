@@ -60,7 +60,7 @@
   import { CLI_ENVS } from '@micro/helper/constant';
   import { useMenu } from '@micro/hooks/use-menu';
   import { useTheme } from '@micro/hooks/use-theme';
-  import { logout } from '@micro/helper/je';
+  import { logout } from '@micro/helper/system';
   import { changeI18n } from '@micro/locales';
   import { useGlobalStore } from '@micro/store/global-store';
   import { useRouter } from 'vue-router';
