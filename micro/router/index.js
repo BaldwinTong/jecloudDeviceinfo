@@ -12,7 +12,7 @@ import * as routerInfo from '@/router';
  */
 export function setupRouter(app, store) {
   const router = createRouter({
-    history: store?.micro ? createMemoryHistory() : createWebHashHistory(),
+    history: store ? createMemoryHistory() : createWebHashHistory(),
     routes: routes,
   });
   // 自定义路由守卫

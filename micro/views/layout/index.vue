@@ -1,7 +1,7 @@
 <!-- 主页面布局 -->
 <template>
   <a-layout class="body-layout">
-    <Header v-if="showHeader"></Header>
+    <Header v-if="!isMicro"></Header>
     <!-- 路由 -->
     <router-view class="router-content" />
   </a-layout>
@@ -10,18 +10,16 @@
   import { defineComponent } from 'vue';
   import { Layout } from 'ant-design-vue';
   import Header from './header.vue';
+  import { useMicroStore } from '@micro/store/micro-store';
   export default defineComponent({
     components: {
       ALayout: Layout,
       Header,
     },
-    props: {
-      showHeader: {
-        type: Boolean,
-        default: true,
-      },
+    setup(props) {
+      const store = useMicroStore();
+      return { isMicro: !!store };
     },
-    setup(props) {},
   });
 </script>
 <style scoped>

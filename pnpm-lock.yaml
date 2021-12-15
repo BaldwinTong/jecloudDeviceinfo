@@ -22,7 +22,6 @@ specifiers:
   axios: ^0.23.0
   babel-eslint: ^10.1.0
   babel-plugin-import: ^1.13.3
-  color: ^4.1.0
   commitizen: ^4.2.4
   conventional-changelog-cli: ^2.1.1
   core-js: ^3.6.5
@@ -63,7 +62,6 @@ dependencies:
   '@jecloud/utils': link:.yalc/@jecloud/utils
   ant-design-vue: registry.npmmirror.com/ant-design-vue/3.0.0-alpha.12_6c363558ee21611f4fd805827a1f8ce7
   axios: registry.npmmirror.com/axios/0.23.0
-  color: registry.npmmirror.com/color/4.1.0
   core-js: registry.npmmirror.com/core-js/3.19.1
   dayjs: registry.nlark.com/dayjs/1.10.7
   js-cookie: registry.nlark.com/js-cookie/3.0.1
@@ -1720,6 +1718,7 @@ packages:
     engines: {node: '>=7.0.0'}
     dependencies:
       color-name: registry.nlark.com/color-name/1.1.4
+    dev: true
 
   registry.nlark.com/color-name/1.1.3:
     resolution: {integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/color-name/download/color-name-1.1.3.tgz}
@@ -1731,6 +1730,7 @@ packages:
     resolution: {integrity: sha1-wqCah6y95pVD3m9j+jmVyCbFNqI=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/color-name/download/color-name-1.1.4.tgz}
     name: color-name
     version: 1.1.4
+    dev: true
 
   registry.nlark.com/combined-stream/1.0.8:
     resolution: {integrity: sha1-w9RaizT9cwYxoRCoolIGgrMdWn8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/combined-stream/download/combined-stream-1.0.8.tgz}
@@ -4101,6 +4101,7 @@ packages:
     resolution: {integrity: sha1-RXSirlb3qyBolvtDHq7tBm/fjwM=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/is-arrayish/download/is-arrayish-0.3.2.tgz}
     name: is-arrayish
     version: 0.3.2
+    dev: true
 
   registry.nlark.com/is-bigint/1.0.4:
     resolution: {integrity: sha1-CBR6GHW8KzIAXUHM2Ckd/8ZpHfM=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/is-bigint/download/is-bigint-1.0.4.tgz}
@@ -11130,6 +11131,7 @@ packages:
     dependencies:
       color-name: registry.nlark.com/color-name/1.1.4
       simple-swizzle: registry.npmmirror.com/simple-swizzle/0.2.2
+    dev: true
 
   registry.npmmirror.com/color/3.2.1:
     resolution: {integrity: sha1-NUTcGYyvRJDD7MmnkLVP6f9F4WQ=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/color/download/color-3.2.1.tgz}
@@ -11139,15 +11141,6 @@ packages:
       color-convert: registry.nlark.com/color-convert/1.9.3
       color-string: registry.npmmirror.com/color-string/1.9.0
     dev: true
-
-  registry.npmmirror.com/color/4.1.0:
-    resolution: {integrity: sha512-o2rkkxyLGgYoeUy1OodXpbPAQNmlNBrirQ8ODO8QutzDiDMNdezSOZLNnusQ6pUpCQJUsaJIo9DZJKqa2HgH7A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/color/download/color-4.1.0.tgz}
-    name: color
-    version: 4.1.0
-    dependencies:
-      color-convert: registry.nlark.com/color-convert/2.0.1
-      color-string: registry.npmmirror.com/color-string/1.9.0
-    dev: false
 
   registry.npmmirror.com/commander/2.17.1:
     resolution: {integrity: sha1-vXerfebelCBc6sxy8XFtKfIKd78=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/commander/download/commander-2.17.1.tgz}
@@ -12701,7 +12694,7 @@ packages:
     dev: true
 
   registry.npmmirror.com/loader-utils/2.0.2:
-    resolution: {integrity: sha1-1uO0+4GHByGuTghoqxHdY4NowSk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/loader-utils/download/loader-utils-2.0.2.tgz}
+    resolution: {integrity: sha1-1uO0+4GHByGuTghoqxHdY4NowSk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/loader-utils/download/loader-utils-2.0.2.tgz?cache=0&sync_timestamp=1636687909281&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Floader-utils%2Fdownload%2Floader-utils-2.0.2.tgz}
     name: loader-utils
     version: 2.0.2
     engines: {node: '>=8.9.0'}
@@ -13473,6 +13466,7 @@ packages:
     version: 0.2.2
     dependencies:
       is-arrayish: registry.nlark.com/is-arrayish/0.3.2
+    dev: true
 
   registry.npmmirror.com/source-map-js/1.0.1:
     resolution: {integrity: sha512-4+TN2b3tqOCd/kaGRJ/sTYA0tR0mdXx26ipdolxcwtJVqEnqNYvlCAt1q3ypy4QMlYus+Zh34RNtYLoq2oQ4IA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map-js/download/source-map-js-1.0.1.tgz}
