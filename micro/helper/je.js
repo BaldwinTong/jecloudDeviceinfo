@@ -18,13 +18,13 @@ export function useJE() {
  */
 export async function setupJE(vue) {
   const microStore = useMicroStore();
-  if (microStore) {
-    mixinJE(microStore.JE);
-  } else {
-    const utils = await import('@jecloud/utils');
-    mixinJE(utils);
-    setupAxios();
-  }
+  // if (microStore) {
+  //   mixinJE(microStore.JE);
+  // } else {
+  const utils = await import('@jecloud/utils');
+  mixinJE(utils);
+  setupAxios();
+  // }
   mixinJE({ $vue: vue });
   window.JE = JE;
 }
