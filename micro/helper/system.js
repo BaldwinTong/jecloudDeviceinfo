@@ -22,7 +22,7 @@ export function initSystem(router, route) {
   }
 
   // 初始系统数据
-  return Promise.all([initSystemInfo(), changeI18n()]).then(() => {
+  return initSystemInfo().then(() => {
     // 系统数据初始化成功
     globalStore.init = true;
     // 返回系统登录成功后的跳转路由

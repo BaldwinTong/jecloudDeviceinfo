@@ -1,4 +1,5 @@
-import * as utils from '@jecloud/utils';
+import { useMicroStore } from '@micro/store/micro-store';
+import { setupAxios } from './http';
 
 /**
  * 使用全局工具类JE
@@ -6,7 +7,7 @@ import * as utils from '@jecloud/utils';
  * @export
  * @return { $vue,$i18n,$router,...utils }
  */
-const JE = Object.assign({}, utils);
+const JE = {};
 export function useJE() {
   return JE;
 }
@@ -15,7 +16,15 @@ export function useJE() {
  * 初始化JE工具类
  * 页面可以通过JE.调用utils里的所有工具函数
  */
-export function setupJE(vue) {
+export async function setupJE(vue) {
+  const microStore = useMicroStore();
+  if (microStore) {
+    mixinJE(microStore.JE);
+  } else {
+    const utils = await import('@jecloud/utils');
+    mixinJE(utils);
+    setupAxios();
+  }
   mixinJE({ $vue: vue });
   window.JE = JE;
 }

@@ -1,12 +1,11 @@
 import { createApp } from 'vue';
 import { setupRouter } from './router';
-import { setupAxios } from './helper/http';
 import { setupJE, useJE } from './helper/je';
 import { setupIi8n } from './locales';
 import { setupStore } from './store';
 import { setupTheme } from './hooks/use-theme';
 import { useMicroStore, setupMicroStore } from './store/micro-store';
-import '@micro/assets/styles/index.less';
+import { setupMicroAssets } from './helper/micro';
 
 /**
  * qiankun全局变量
@@ -54,13 +53,13 @@ async function setup({ app, router = true, callback }) {
  */
 async function render(app, container) {
   const store = useMicroStore();
-  const appid = '#app';
+
+  // 按需加载子应用资源
+  setupMicroAssets();
   // Init Vue
   const vue = createApp(app, store?.props);
   // JE
   setupJE(vue);
-  // Axios
-  setupAxios(vue);
   // Router
   useRouter && setupRouter(vue, store);
   // Store
@@ -70,6 +69,7 @@ async function render(app, container) {
   // theme
   setupTheme();
   // 渲染页面
+  const appid = '#app';
   vue.mount(container ? container.querySelector(appid) : appid);
   // 回调
   microCallback(vue);
