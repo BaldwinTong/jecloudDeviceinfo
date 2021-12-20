@@ -7,11 +7,10 @@ const config = {
 };
 
 const libs = ['@jecloud/ui']; // 私有包
-const npmLink = process.env.VUE_APP_LIBS_NPMLINK === 'true'; // 启用 npm link 依赖
-const prod = process.env.NODE_ENV === 'production'; // 生产环境
-
-// 生产环境 || 非npm link依赖，启用按需加载
-if (prod || !npmLink) {
+let prod = process.env.NODE_ENV === 'production'; // 生产环境
+prod = false; // TODO:先默认不使用jecloud包按需加载，后期稳定再加
+// 生产环境
+if (prod) {
   libs.forEach((lib) => {
     config.plugins.push(['import', { libraryName: lib, style: true }, lib]);
   });
