@@ -1,4 +1,5 @@
 const path = require('path');
+const os = require('os');
 
 /**
  * 解析系统变量
@@ -29,6 +30,25 @@ function isNumeric(value) {
 }
 
 /**
+ * 获取本机IP
+ *
+ * @return {*}
+ */
+function getIPAdress() {
+  var interfaces = os.networkInterfaces();
+  // console.log('interfaces', interfaces);
+  for (var devName in interfaces) {
+    var iface = interfaces[devName];
+    for (var i = 0; i < iface.length; i++) {
+      var alias = iface[i];
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address;
+      }
+    }
+  }
+}
+
+/**
  * 获得绝对路径
  *
  * @export
@@ -41,4 +61,5 @@ module.exports = {
   },
   resolveEnvs,
   isNumeric,
+  getIPAdress,
 };
