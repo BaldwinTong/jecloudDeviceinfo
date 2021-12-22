@@ -59,6 +59,10 @@ function getIPAdress() {
  * @return {*}
  */
 function getPublicPath(envs) {
+  // 主应用返回根目录
+  if (envs.VUE_APP_MICRO_CONFIG_ADMIN) {
+    return '/';
+  }
   const prefix = envs.VUE_APP_MICRO_CONFIG_PREFIX_SERVICE; // 微应用前缀
   const project = process.cwd().split(path.sep).pop(); // 项目名称
   const name = project.split('-').pop(); // 微应用名称
