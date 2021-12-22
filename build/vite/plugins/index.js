@@ -5,7 +5,7 @@ import { useTheme } from './theme';
 import { configStyleImportPlugin } from './style-import';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
-const utils = require('../../utils');
+export const utils = require('../../utils');
 /**
  * vite 插件
  *

@@ -21,6 +21,10 @@ function resolveEnvs(_envs) {
     } else if (['true', 'false'].includes(val)) {
       envs[key] = val == 'true';
     }
+    // 处理微应用的服务地址，如果是本地服务，改成IP
+    if (key.startsWith(envs.VUE_APP_MICRO_CONFIG_PREFIX_SERVICE)) {
+      envs[key] = val.replace('localhost', getIPAdress());
+    }
   }
   return envs;
 }
@@ -49,6 +53,19 @@ function getIPAdress() {
 }
 
 /**
+ * 获得项目根目录
+ *
+ * @param {*} envs
+ * @return {*}
+ */
+function getPublicPath(envs) {
+  const prefix = envs.VUE_APP_MICRO_CONFIG_PREFIX_SERVICE; // 微应用前缀
+  const project = process.cwd().split(path.sep).pop(); // 项目名称
+  const name = project.split('-').pop(); // 微应用名称
+  return `${prefix}/${name}/`;
+}
+
+/**
  * 获得绝对路径
  *
  * @export
@@ -59,6 +76,7 @@ module.exports = {
   resolve(dir) {
     return path.resolve(process.cwd(), '.', dir);
   },
+  getPublicPath,
   resolveEnvs,
   isNumeric,
   getIPAdress,

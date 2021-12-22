@@ -40,6 +40,7 @@ const configureWebpack = {
 module.exports = {
   config() {
     return {
+      publicPath: utils.getPublicPath(envs),
       chainWebpack,
       configureWebpack,
     };
