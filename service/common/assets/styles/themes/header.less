@@ -1,0 +1,53 @@
+.je-layout-default {
+  .je-layout-header {
+    background-color: @header-bg-color;
+    border-bottom-color: @header-border-bottom-color !important;
+
+    .je-layout-menu-top {
+      background-color: @header-bg-color !important;
+      border-bottom-color: @header-text-color !important;
+
+      .ant-menu-item{
+        color: @header-text-color !important;
+        .ant-menu-item-icon,
+        .action,
+        .ant-menu-item-icon + span,
+        .anticon + span{
+          color: @header-text-color !important;
+        }
+      }
+
+      // .ant-menu-item,
+      // .ant-menu-item > a,
+      // .ant-menu-item > span > a {
+      //   color: @header-text-color !important;
+      // }
+      .ant-menu-item-active,
+      .ant-menu-item:hover,
+      .ant-menu-item-selected {
+        background-color: @header-menu-selected-bg-color !important;
+      }
+    }
+    .je-layout-header-actions{
+      .action {
+        i {
+          color: @header-text-color;
+        }
+        &.user {
+          .user-icon {
+            background: @header-text-color;
+            i {
+              color: @header-bg-color;
+            }
+          }
+        }
+      }
+    }
+    .je-layout-header-logo{
+      color: @header-text-color;
+      .logo{
+        background-color: var(--header-text-color);
+      }
+    }
+  }
+}

@@ -15,7 +15,9 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         '@': resolve('src'),
-        '@micro': resolve('micro'),
+        '@micro': resolve('service/micro'),
+        '@admin': resolve('service/admin'),
+        '@common': resolve('service/common'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
       },
     },

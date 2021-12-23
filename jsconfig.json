@@ -3,13 +3,15 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@micro/*":["micro/*"]
+      "@micro/*":["service/micro/*"],
+      "@admin/*":["service/admin/*"],
+      "@common/*":["service/common/*"]
     },
     "target": "ES6",
     "module": "commonjs",
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*","micro/**/*"],
+  "include": ["src/**/*","service/**/*"],
   "exclude": ["node_modules"]
 }

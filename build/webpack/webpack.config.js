@@ -15,7 +15,9 @@ const chainWebpack = function (config) {
   } = envs;
 
   // 设置别名
-  config.resolve.alias.set('@micro', utils.resolve('micro'));
+  config.resolve.alias.set('@micro', utils.resolve('service/micro'));
+  config.resolve.alias.set('@admin', utils.resolve('service/admin'));
+  config.resolve.alias.set('@common', utils.resolve('service/common'));
   // 设置i18n警告
   config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 

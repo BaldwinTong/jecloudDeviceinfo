@@ -48,7 +48,7 @@ const lessVars = multipleScopeVars();
  */
 function generateModifyVars(dark) {
   return {
-    hack: `true; @import "${resolve('micro/assets/styles/theme-debug.less')}";`,
+    hack: `true; @import "${resolve('service/common/assets/styles/theme-debug.less')}";`,
   };
 }
 

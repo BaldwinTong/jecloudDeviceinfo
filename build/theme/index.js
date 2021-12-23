@@ -8,7 +8,7 @@ const themes = utils.getThemes();
 const themeMode = ['default', 'dark'];
 const files = ['less'];
 // 主题目录
-const themeDir = resolve('micro/assets/themes');
+const themeDir = resolve('service/common/assets/themes');
 fs.mkdirSync(themeDir, { recursive: true });
 
 // 生成主题文件

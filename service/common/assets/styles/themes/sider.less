@@ -1,0 +1,41 @@
+.je-layout-main {
+  .je-layout-sider {
+    background-color: @sider-bg-color !important;
+    border-right-color: @sider-border-right-color !important;
+
+    .ant-menu-sub,
+    .je-layout-menu-sider {
+      background-color: @sider-bg-color !important;
+    }
+    .je-layout-menu-sider {
+
+      .ant-menu-item,
+      .ant-menu-submenu-title,
+      .ant-menu-item-group-title,
+      .ant-menu-item > a,
+      .ant-menu-item > span > a{
+        color: @sider-text-color !important;
+      }
+      
+      .ant-menu-submenu{
+        &-arrow {
+          &::before,
+          &::after {
+            background-color: @sider-text-color !important;
+          }
+        }
+      }
+
+      .ant-menu-item-active,
+      .ant-menu-item:hover {
+        background-color: @sider-menu-hover-bg-color;
+      }
+
+      .ant-menu-item-selected {
+        background-color: @sider-menu-selected-bg-color !important;
+        color: @sider-menu-selected-text-color;
+      }
+
+    }
+  }
+}

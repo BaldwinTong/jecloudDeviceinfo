@@ -26,6 +26,10 @@ function resolveEnvs(_envs) {
       envs[key] = val.replace('localhost', getIPAdress());
     }
   }
+
+  // 基础路径
+  envs.PUBLIC_PATH = getPublicPath(envs);
+
   return envs;
 }
 
