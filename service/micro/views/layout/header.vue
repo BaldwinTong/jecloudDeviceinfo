@@ -20,54 +20,22 @@
         </a-menu>
       </a-col>
       <a-col class="je-layout-header-actions">
-        <!-- 国际化 -->
-        <a-select
-          ref="select"
-          v-model:value="globalStore.locale"
-          class="lang-select"
-          @change="changeI18n"
-        >
-          <a-select-option
-            v-for="(item, index) in globalStore.locales"
-            :key="index"
-            :value="item.code"
-          >
-            {{ item.text }}
-          </a-select-option>
-        </a-select>
-
-        <!-- 主题 -->
-        <a-popover trigger="click" placement="bottomRight">
-          <template #content>
-            <div class="je-settings-theme">
-              <ThemeColor mode="systemTheme" title="系统主题"></ThemeColor>
-              <ThemeMode mode="darkMode" title="深色主题"></ThemeMode>
-              <ThemeMode mode="grayMode" title="灰色模式"></ThemeMode>
-              <ThemeMode mode="colorWeak" title="色弱模式"></ThemeMode>
-            </div>
-          </template>
-          <div class="action">
-            <i class="fal fa-palette"></i>
-          </div>
-        </a-popover>
-        <!-- 退出 -->
-        <div v-if="globalStore.token" class="action logout-icon" @click="logout">
-          <i class="fal fa-sign-out-alt"></i>
+        <div class="action">
+          <a-popover trigger="click" placement="bottomRight" arrow-point-at-center>
+            <template #content><Settings /> </template>
+            <div class="action-settings"><i class="fal fa-cog"></i></div>
+          </a-popover>
         </div>
       </a-col>
     </a-row>
   </a-layout-header>
 </template>
 <script>
-  import { defineComponent, ref, unref } from 'vue';
+  import { defineComponent } from 'vue';
   import { useRouter } from 'vue-router';
-  import { Layout, Row, Col, Menu, Popover, Switch, Select } from 'ant-design-vue';
+  import { Layout, Row, Col, Menu, Popover } from 'ant-design-vue';
   import { CLI_ENVS } from '@common/helper/constant';
-  import { logout } from '@common/helper/system';
-  import { changeI18n } from '@common/locales';
-  import { useGlobalStore } from '@common/store/global-store';
-  import ThemeColor from '@common/components/theme/theme-color.vue';
-  import ThemeMode from '@common/components/theme/theme-mode.vue';
+  import Settings from './settings.vue';
   import { useMenu } from '@micro/hooks/use-menu';
   export default defineComponent({
     name: 'Header',
@@ -78,13 +46,9 @@
       APopover: Popover,
       AMenu: Menu,
       AMenuItem: Menu.Item,
-      ASelect: Select,
-      ASelectOption: Select.Option,
-      ThemeColor,
-      ThemeMode,
+      Settings,
     },
     setup() {
-      const globalStore = useGlobalStore();
       const router = useRouter();
       // 系统变量
       const { VUE_APP_HTML_TITLE, VUE_APP_HTML_ICON, PUBLIC_PATH } = CLI_ENVS;
@@ -100,13 +64,10 @@
       };
 
       return {
-        globalStore,
         menus,
         APP_HTML_TITLE: VUE_APP_HTML_TITLE,
         APP_HTML_ICON: VUE_APP_HTML_ICON,
         openMenu,
-        logout,
-        changeI18n,
       };
     },
   });
@@ -127,18 +88,16 @@
     .je-layout-header-actions {
       display: flex;
       align-items: center;
-      .lang-select {
-        width: 100px;
-        margin-right: 20px;
-      }
       .action {
         cursor: pointer;
         display: flex;
         padding: 0 20px;
-        color: @white;
         font-size: 24px;
-        i {
-          line-height: 64px;
+        .action-settings {
+          width: 34px;
+          height: 34px;
+          line-height: 34px;
+          text-align: center;
         }
       }
     }

@@ -1,4 +1,3 @@
-import { mixinJE } from './je';
 import { getCurrentUser, getSystemConfig } from '../api';
 import { useGlobalStore } from '../store/global-store';
 import { JE_SETTINGS_LOGOUT_URL } from './constant';
@@ -51,9 +50,9 @@ export function initSystemInfo() {
 export function logout() {
   const globalStore = useGlobalStore();
   globalStore.logout();
-  const router = useJE().$router;
-  if (router) {
-    router.push(JE_SETTINGS_LOGOUT_URL);
+  const { $router } = useJE();
+  if ($router) {
+    $router.push(JE_SETTINGS_LOGOUT_URL);
   } else {
     window.location.href = JE_SETTINGS_LOGOUT_URL;
   }

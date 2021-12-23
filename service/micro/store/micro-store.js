@@ -47,8 +47,10 @@ export const useMicroStore = defineStore({
      * @param path
      */
     go(path) {
-      const _path = this.app.path + (path === '/' ? '' : path);
-      this.adminStore?.go(_path);
+      if (this.app) {
+        const _path = this.app.path + (path === '/' ? '' : path);
+        this.adminStore?.go(_path);
+      }
     },
     /**
      * 绑定子应用事件，供主应用调用

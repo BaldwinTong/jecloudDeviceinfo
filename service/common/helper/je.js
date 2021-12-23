@@ -1,5 +1,5 @@
 import { setupAxios } from './http';
-
+import * as utils from '@jecloud/utils';
 /**
  * 使用全局工具类JE
  *
@@ -16,7 +16,6 @@ export function useJE() {
  * 页面可以通过JE.调用utils里的所有工具函数
  */
 export async function setupJE(vue) {
-  const utils = await import('@jecloud/utils');
   mixinJE(utils);
   setupAxios();
   mixinJE({ $vue: vue });

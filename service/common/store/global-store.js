@@ -30,10 +30,11 @@ export function useGlobalStore() {
     state: () => ({
       init: false, // 系统初始状态
       whiteRoutes: ['Login'], // 路由白名单
-      locale: cookie.get(GLOBAL_SETTINGS_LOCALE),
-      token: cookie.get(GLOBAL_SETTINGS_TOKENKEY),
-      user: null,
-      systemConfig: null,
+      locale: cookie.get(GLOBAL_SETTINGS_LOCALE), // 激活语言
+      token: cookie.get(GLOBAL_SETTINGS_TOKENKEY), // token
+      user: null, // 当前用户
+      systemConfig: null, // 系统变量
+      axiosConfig: null, // ajax配置
     }),
     getters: {
       locales() {
@@ -87,10 +88,6 @@ export function useGlobalStore() {
         this.init = false;
         this.token = null;
         cookie.remove(GLOBAL_SETTINGS_TOKENKEY);
-      },
-      // 系统路由
-      isMainRoute(route) {
-        return route.fullPath.startsWith('/main/');
       },
     },
   });
