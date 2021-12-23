@@ -13,7 +13,7 @@ let globalStore;
  * @param {*} store
  */
 export function setupGlobalStore(store) {
-  globalStore = store;
+  globalStore = store.globalStore;
 }
 
 /**
@@ -32,6 +32,8 @@ export function useGlobalStore() {
       whiteRoutes: ['Login'], // 路由白名单
       locale: cookie.get(GLOBAL_SETTINGS_LOCALE),
       token: cookie.get(GLOBAL_SETTINGS_TOKENKEY),
+      user: null,
+      systemConfig: null,
     }),
     getters: {
       locales() {

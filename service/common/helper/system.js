@@ -37,10 +37,9 @@ export function initSystem(router, route) {
  */
 export function initSystemInfo() {
   return Promise.all([getCurrentUser(), getSystemConfig()]).then((data) => {
-    mixinJE({
-      USER: data[0],
-      systemConfig: data[1],
-    });
+    const globalStore = useGlobalStore();
+    globalStore.user = data[0];
+    globalStore.systemConfig = data[1];
   });
 }
 

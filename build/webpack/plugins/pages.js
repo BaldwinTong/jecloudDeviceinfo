@@ -16,7 +16,7 @@ module.exports = {
     const pages = {};
     this.entrys.forEach((item) => {
       const name = item.name || item;
-      const entry = item.entry || `micro/apps/${item}/main.js`;
+      const entry = item.entry || `service/micro/apps/${item}/main.js`;
       const template = item.template || `build/webpack/pages/${name}.html`;
       pages[name] = {
         title: VUE_APP_HTML_TITLE, // 标题

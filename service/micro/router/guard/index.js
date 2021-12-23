@@ -1,6 +1,4 @@
-import { cookie, isEmpty } from '@jecloud/utils';
 import { initSystem } from '@common/helper/system';
-import { useGlobalStore } from '@common/store/global-store';
 import { useMicroStore } from '../../store/micro-store';
 
 /**
@@ -11,15 +9,6 @@ import { useMicroStore } from '../../store/micro-store';
  */
 export function createRouterGuard(router) {
   router.beforeEach((to, from, next) => {
-    const globalStore = useGlobalStore();
-    if (globalStore.whiteRoutes.includes(to.name)) {
-      next();
-      return;
-    }
-    if (isEmpty(globalStore.token)) {
-      next({ name: 'Login' });
-      return;
-    }
     if (to.name === 'Home') {
       // 初始化系统数据
       initSystem()

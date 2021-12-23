@@ -13,7 +13,7 @@
 <script>
   import { computed } from 'vue';
   import { Alert } from '@jecloud/ui';
-  import { useJE } from '@common/helper/je';
+  import { useGlobalStore } from '@common/store/global-store';
   import { Typography } from 'ant-design-vue';
   export default {
     name: 'Demo',
@@ -22,9 +22,9 @@
       ATypographyTitle: Typography.Title,
     },
     setup(props) {
-      const { USER } = useJE();
+      const globaleStore = useGlobalStore();
       const name = computed(() => {
-        return USER?.username;
+        return globaleStore.user?.username;
       });
       return { name };
     },
