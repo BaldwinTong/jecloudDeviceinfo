@@ -16,7 +16,7 @@ const includeStyles = {
     // },
   },
 };
-const themeDir = 'micro/assets/themes';
+const themeDir = 'service/common/assets/themes';
 // 主题变量
 const multipleScopeVars = function () {
   const vars = [];
