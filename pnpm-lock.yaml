@@ -70,7 +70,6 @@ dependencies:
   dayjs: registry.nlark.com/dayjs/1.10.7
   js-cookie: registry.nlark.com/js-cookie/3.0.1
   loadjs: registry.npmmirror.com/loadjs/4.2.0
-  lodash-es: registry.npmmirror.com/lodash-es/4.17.21
   monaco-editor: registry.npmmirror.com/monaco-editor/0.29.1
   overlayscrollbars: registry.npmmirror.com/overlayscrollbars/1.13.1
   pinia: registry.npmmirror.com/pinia/2.0.4_vue@3.2.23
@@ -114,6 +113,7 @@ devDependencies:
   husky: registry.npmmirror.com/husky/4.3.8
   less: registry.npmmirror.com/less/3.13.1
   less-loader: registry.npmmirror.com/less-loader/5.0.0_less@3.13.1
+  lodash-es: registry.npmmirror.com/lodash-es/4.17.21
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   prettier: registry.npmmirror.com/prettier/2.5.0
   regenerator-runtime: registry.nlark.com/regenerator-runtime/0.13.9
@@ -12719,7 +12719,6 @@ packages:
     resolution: {integrity: sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash-es/download/lodash-es-4.17.21.tgz?cache=0&sync_timestamp=1634002860116&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Flodash-es%2Fdownload%2Flodash-es-4.17.21.tgz}
     name: lodash-es
     version: 4.17.21
-    dev: false
 
   registry.npmmirror.com/lodash.map/4.6.0:
     resolution: {integrity: sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.map/download/lodash.map-4.6.0.tgz}
@@ -14037,7 +14036,7 @@ packages:
     dev: true
 
   registry.npmmirror.com/vue-loader/16.8.3_webpack@4.46.0:
-    resolution: {integrity: sha1-1D5nXe9bqTRdbH8FkUwT2GGZcIc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-loader/download/vue-loader-16.8.3.tgz}
+    resolution: {integrity: sha512-7vKN45IxsKxe5GcVCbc2qFU5aWzyiLrYJyUuMz4BQLKctCj/fmCa0w6fGiiQ2cLFetNcek1ppGJQDCup0c1hpA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-loader/download/vue-loader-16.8.3.tgz}
     id: registry.npmmirror.com/vue-loader/16.8.3
     name: vue-loader
     version: 16.8.3
