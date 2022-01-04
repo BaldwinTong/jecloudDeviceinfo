@@ -39,6 +39,7 @@ specifiers:
   less-loader: ^5.0.0
   loadjs: ^4.2.0
   lodash: ^4.17.21
+  lodash-es: ^4.17.21
   mockjs: ^1.1.0
   monaco-editor: 0.29.1
   overlayscrollbars: ^1.13.1
@@ -70,6 +71,7 @@ dependencies:
   dayjs: registry.nlark.com/dayjs/1.10.7
   js-cookie: registry.nlark.com/js-cookie/3.0.1
   loadjs: registry.npmmirror.com/loadjs/4.2.0
+  lodash-es: registry.npmmirror.com/lodash-es/4.17.21
   monaco-editor: registry.npmmirror.com/monaco-editor/0.29.1
   overlayscrollbars: registry.npmmirror.com/overlayscrollbars/1.13.1
   pinia: registry.npmmirror.com/pinia/2.0.4_vue@3.2.23
@@ -12711,7 +12713,7 @@ packages:
     dev: false
 
   registry.npmmirror.com/lodash-es/4.17.21:
-    resolution: {integrity: sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash-es/download/lodash-es-4.17.21.tgz?cache=0&sync_timestamp=1634002860116&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Flodash-es%2Fdownload%2Flodash-es-4.17.21.tgz}
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash-es/download/lodash-es-4.17.21.tgz}
     name: lodash-es
     version: 4.17.21
     dev: false
