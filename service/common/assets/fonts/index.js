@@ -1,4 +1,10 @@
-export default {
+import jeicon from './jeicon/iconfont.json';
+const jeIcons = [];
+jeicon.glyphs.forEach((item) => {
+  jeIcons.push(item.font_class);
+});
+
+const icons = {
   solid: [
     'abacus',
     'acorn',
@@ -2303,4 +2309,17 @@ export default {
     'youtube',
     'zhihu',
   ],
+  jeicon: jeIcons,
 };
+
+const types = [
+  { code: 'light', text: '细体图标', cls: 'fal', prefix: 'fa', name: 'solid' },
+  { code: 'solid', text: '实心图标', cls: 'fas', prefix: 'fa', name: 'solid' },
+  { code: 'brands', text: '品牌图标', cls: 'fab', prefix: 'fa', name: 'brands' },
+  { code: 'jeicon', text: 'JEIcons', cls: 'jeicon', prefix: 'jeicon', name: 'jeicon' },
+];
+types.forEach((item) => {
+  item.icons = icons[item.name];
+});
+
+export default types;

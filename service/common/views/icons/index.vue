@@ -6,7 +6,7 @@
         <a-col>
           <!-- 菜单 -->
           <a-menu v-model:selectedKeys="selectedKeys" mode="horizontal" class="menu">
-            <a-menu-item v-for="item in tabs" :key="item.code">{{ item.text }} </a-menu-item>
+            <a-menu-item v-for="item in fontIcons" :key="item.code">{{ item.text }} </a-menu-item>
           </a-menu>
         </a-col>
         <a-col flex="auto" style="padding-left: 20px">
@@ -46,7 +46,7 @@
 <script>
   import { defineComponent, ref, computed } from 'vue';
   import { debounce, copy } from '@jecloud/utils';
-  import names from '@common/assets/fonts/names';
+  import fontIcons from '@common/assets/fonts';
   import { message, Row, Col, Affix, Menu, BackTop, Input, Button, Modal } from 'ant-design-vue';
   export default defineComponent({
     components: {
@@ -61,19 +61,13 @@
       AModal: Modal,
     },
     setup() {
-      // 字体标签
-      const tabs = [
-        { code: 'light', text: '细体图标', cls: 'fal', name: 'solid' },
-        { code: 'solid', text: '实心图标', cls: 'fas', name: 'solid' },
-        { code: 'brands', text: '品牌图标', cls: 'fab', name: 'brands' },
-      ];
       // 当前激活标签
-      const selectedKeys = ref([tabs[0].code]);
+      const selectedKeys = ref([fontIcons[0].code]);
       // 搜索关键字
       const keyword = ref('');
 
       const getSelectedInfo = function () {
-        return tabs.find((item) => {
+        return fontIcons.find((item) => {
           return selectedKeys.value[0] === item.code;
         });
       };
@@ -81,7 +75,7 @@
       // 图标库
       const icons = computed(() => {
         const selected = getSelectedInfo();
-        const _icons = names[selected.name];
+        const _icons = selected.icons;
         if (keyword.value) {
           return _icons.filter((item) => {
             return item.includes(keyword.value);
@@ -92,7 +86,8 @@
       });
       // 格式化图标样式
       const formatIcon = function (code) {
-        return getSelectedInfo().cls + ' fa-' + code;
+        const { cls, prefix } = getSelectedInfo();
+        return `${cls} ${prefix}-${code}`;
       };
 
       // 查询方法
@@ -128,8 +123,8 @@
         getHtmlStr,
         visible,
         selectedKeys,
-        tabs,
         icons,
+        fontIcons,
         coopyCls,
         onSearch,
         formatIcon,
