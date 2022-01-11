@@ -1,16 +1,12 @@
 <template>
-  <App>
-    <Icons />
-  </App>
+  <IconPage />
 </template>
 <script>
   import { defineComponent } from 'vue';
-  import App from '@micro/app.vue';
-  import Icons from '@common/views/icons/index.vue';
+  import { Icon } from '@jecloud/ui';
   export default defineComponent({
     components: {
-      App, // 系统配置
-      Icons,
+      IconPage: Icon.Page,
     },
   });
 </script>
