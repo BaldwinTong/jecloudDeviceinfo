@@ -13,6 +13,7 @@
     "preview": "node build/server/index.js",
     "dev:vuecli": "vue-cli-service serve",
     "build:vuecli": "vue-cli-service build",
+    "build:report": "vue-cli-service build --report",
     "dev:vite": "vite",
     "build:vite": "vite build",
     "preview:vite": "vite preview",

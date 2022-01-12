@@ -20,6 +20,11 @@ const chainWebpack = function (config) {
   config.resolve.alias.set('@common', utils.resolve('service/common'));
   // 设置i18n警告
   config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
+  // antd图标按需加载
+  config.resolve.alias.set(
+    '@ant-design/icons-vue/lib/icons$',
+    utils.resolve('service/common/assets/icons/antd-icons.js'),
+  );
 
   // 环境配置
   return NODE_ENV == 'development' ? dev(config) : prod(config);
