@@ -7,6 +7,7 @@ const prod = require('./webpack.prod');
 const utils = require('../utils');
 const { name } = require('../../package.json');
 const envs = utils.resolveEnvs(process.env);
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 // 链式配置
 const chainWebpack = function (config) {
@@ -35,6 +36,9 @@ const configureWebpack = {
   plugins: [
     new webpack.DefinePlugin({
       __CLI_ENVS__: JSON.stringify(envs),
+    }),
+    new MonacoWebpackPlugin({
+      languages: ['typescript', 'javascript', 'css'],
     }),
   ],
   // 微应用配置

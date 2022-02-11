@@ -5,6 +5,7 @@ import { useTheme } from './theme';
 import { configStyleImportPlugin } from './style-import';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
+import { configMonacoPlugin } from './monaco';
 export const utils = require('../../utils');
 /**
  * vite 插件
@@ -21,6 +22,7 @@ export function usePlugins(envs, command) {
     configStyleImportPlugin(envs, command),
     configHtmlPlugin(envs, command),
     configMockPlugin(envs, command),
+    configMonacoPlugin(envs, command),
     ...themePlugins,
   ];
   return {
