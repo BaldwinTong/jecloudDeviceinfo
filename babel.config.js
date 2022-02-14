@@ -1,8 +1,12 @@
 const config = {
   presets: ['@vue/cli-plugin-babel/preset'],
   plugins: [
-    ['import', { libraryName: 'ant-design-vue', style: true }, 'ant-design-vue'],
-    ['import', { libraryName: 'vxe-table', style: true }, 'vxe-table'],
+    [
+      'import',
+      { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: true },
+      'ant-design-vue',
+    ],
+    ['import', { libraryName: 'vxe-table', libraryDirectory: 'es', style: false }, 'vxe-table'],
     ['import', { libraryName: '@jecloud/ui', libraryDirectory: 'src', style: true }, '@jecloud/ui'],
   ],
 };
