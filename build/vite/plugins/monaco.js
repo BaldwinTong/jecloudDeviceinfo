@@ -1,4 +1,4 @@
-import monacoEditorPlugin from 'vite-plugin-monaco-editor';
+import monacoEditorPlugin from './vite-plugin-monaco-editor';
 /**
  * ejs html模板
  *
@@ -6,8 +6,9 @@ import monacoEditorPlugin from 'vite-plugin-monaco-editor';
  * @param {*} envs
  * @return {*}
  */
-export function configMonacoPlugin() {
+export function configMonacoPlugin(envs) {
   return monacoEditorPlugin({
+    base: envs.PUBLIC_PATH,
     languageWorkers: ['editorWorkerService', 'typescript', 'css'],
   });
 }
