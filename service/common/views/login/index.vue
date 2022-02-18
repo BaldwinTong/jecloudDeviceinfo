@@ -39,6 +39,7 @@
       </a-form>
     </a-col>
   </a-row>
+  <div class="net"><a href="http://jecloud.net/" target="_blank">京ICP备18023569号-7</a></div>
 </template>
 <script>
   import { defineComponent, ref, unref } from 'vue';
@@ -100,5 +101,12 @@
         font-size: 30px;
       }
     }
+  }
+  .net {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    padding: 20px;
   }
 </style>
