@@ -4,8 +4,19 @@ module.exports = {
     node: true,
   },
   extends: ['plugin:vue/vue3-recommended', 'eslint:recommended', 'prettier', '@vue/prettier'],
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    jsxPragma: 'React',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   globals: {
     JE: true,
