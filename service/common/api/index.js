@@ -29,5 +29,5 @@ export function getCurrentUser() {
  * @return {Object}
  */
 export function getSystemConfig() {
-  return ajax({ url: API_SYSTEM_VARIABLES }).then(transformData);
+  return ajax({ url: API_SYSTEM_VARIABLES }, { headers: { pd: 'meta' } }).then(transformData);
 }
