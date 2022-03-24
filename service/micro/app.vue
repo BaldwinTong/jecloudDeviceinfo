@@ -4,7 +4,7 @@
 </template>
 <script>
   import { defineComponent, ref, watch } from 'vue';
-  import { useI18n } from 'vue-i18n';
+  import { useI18n } from '@common/locales';
   import { ConfigProvider } from 'ant-design-vue';
   export default defineComponent({
     components: {
@@ -13,12 +13,12 @@
     setup(props) {
       const i18n = useI18n();
       const getAntdLocale = function () {
-        return i18n.getLocaleMessage(i18n.locale)?.antdLocale ?? {};
+        return i18n.global.getLocaleMessage(i18n.locale)?.antdLocale ?? {};
       };
       // 国际化处理
       let locale = ref(getAntdLocale());
       watch(
-        () => i18n.locale.value,
+        () => i18n.global.locale.value,
         () => {
           locale.value = getAntdLocale();
         },

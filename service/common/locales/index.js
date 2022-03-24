@@ -3,7 +3,9 @@ import { mixinJE } from '../helper/je';
 import { useGlobalStore } from '../store/global-store';
 
 let i18n;
-
+export function useI18n() {
+  return i18n;
+}
 /**
  * 安装i18n
  *
