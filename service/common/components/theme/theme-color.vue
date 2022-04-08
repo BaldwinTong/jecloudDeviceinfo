@@ -2,24 +2,25 @@
   <div class="je-settings-theme-color">
     <div>{{ title }}</div>
     <div class="themes">
-      <i
+      <div
         v-for="(item, index) in themeStore.themes"
         :key="index"
-        :class="[
-          'theme',
-          item.code,
-          item.code === 'white' ? 'fal' : 'fas',
-          themeStore[mode] === item.code ? 'fa-check-square' : 'fa-square',
-        ]"
-        :style="{ color: item.color }"
+        :class="['theme-color', item.colour]"
+        :style="{
+          backgroundColor: item.color,
+          borderColor: item.colour === 'dark' ? item.color : darken(item.color, 15),
+        }"
         @click="toggleThemeColor(item)"
-      ></i>
+      >
+        <i v-show="themeStore[mode] === item.code" class="fas fa-check" />
+      </div>
     </div>
   </div>
 </template>
 <script>
   import { defineComponent } from 'vue';
   import { useThemeSetting } from './hooks';
+  import { darken } from '@jecloud/utils';
   export default defineComponent({
     name: 'SettingsThemeColor',
     props: {
@@ -40,6 +41,7 @@
       return {
         themeStore,
         toggleThemeColor,
+        darken,
       };
     },
   });
@@ -53,12 +55,22 @@
     .themes {
       display: flex;
       justify-content: center;
-      .theme {
+      .theme-color {
         cursor: pointer;
-        font-size: 18px;
+        font-size: 12px;
         margin: 0 4px;
-        &.white {
-          color: #d8d8d8 !important;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        color: #ffffff;
+        border: 1px solid transparent;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        &.light {
+          color: #3f3f3f;
         }
       }
     }

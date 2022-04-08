@@ -29,7 +29,7 @@ export const useThemeStore = defineStore({
         },
         {
           code: 'gray',
-          color: '#DCDFE7',
+          color: '#F1F3F7',
           theme: 'primary',
           colour: 'light',
           primaryAttrs: ['textColor'],
