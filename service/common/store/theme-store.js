@@ -53,6 +53,7 @@ export const useThemeStore = defineStore({
         'HEADER_BORDER_BOTTOM_COLOR', // 边框底边色
         // 左侧菜单主题颜色
         'SIDER_BG_COLOR', // 背景色
+        'SIDER_BG_DARK_COLOR', // 背景色
         'SIDER_TEXT_COLOR', // 文字色
         'SIDER_MENU_HOVER_BG_COLOR', // 菜单悬浮背景色
         'SIDER_MENU_SELECTED_BG_COLOR', // 菜单选中背景色

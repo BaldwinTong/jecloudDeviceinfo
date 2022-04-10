@@ -115,6 +115,7 @@ export const toggleSiderTheme = function () {
   const { COLOUR_LIGHT_TEXT_COLOR, COLOUR_DARK_TEXT_COLOR } = themeStore.colors; // 文字色系值
   const {
     SIDER_BG_COLOR, // 背景色
+    SIDER_BG_DARK_COLOR, // 背景深色
     SIDER_TEXT_COLOR, // 文字色
     SIDER_MENU_HOVER_BG_COLOR, // 菜单悬浮背景色
     SIDER_MENU_SELECTED_BG_COLOR, // 菜单选中背景色
@@ -124,6 +125,7 @@ export const toggleSiderTheme = function () {
 
   const lightColour = theme.colour === 'light'; // 浅色系
   let bgColor = theme.color;
+  let bgDarkColor = darken(bgColor, darkenNum);
   let textColor = lightColour ? COLOUR_LIGHT_TEXT_COLOR : COLOUR_DARK_TEXT_COLOR;
   let menuHoverBgColor = lighten(bgColor, darkenNum);
   let menuSelectedBgColor = darken(bgColor, darkenNum);
@@ -132,7 +134,7 @@ export const toggleSiderTheme = function () {
 
   // 浅色系 选中颜色加深
   if (lightColour) {
-    // menuSelectedBgColor = color(bgColor).darken(0.1);
+    menuHoverBgColor = darken(bgColor, darkenNum / 2);
   }
 
   // 菜单选中信息跟随主题色变化的属性
@@ -151,6 +153,7 @@ export const toggleSiderTheme = function () {
     // 默认使用black主题
     const blackTheme = themeStore.getThemeInfo('black');
     bgColor = blackTheme.color;
+    bgDarkColor = darken(bgColor, darkenNum);
     textColor = COLOUR_DARK_TEXT_COLOR;
     menuHoverBgColor = lighten(bgColor, darkenNum);
     menuSelectedBgColor = themeInfo.themeColor;
@@ -160,6 +163,7 @@ export const toggleSiderTheme = function () {
 
   // 设置css变量
   setCssVar(SIDER_BG_COLOR, bgColor);
+  setCssVar(SIDER_BG_DARK_COLOR, bgDarkColor);
   setCssVar(SIDER_TEXT_COLOR, textColor);
   setCssVar(SIDER_MENU_HOVER_BG_COLOR, menuHoverBgColor);
   setCssVar(SIDER_MENU_SELECTED_BG_COLOR, menuSelectedBgColor);

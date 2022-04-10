@@ -23,8 +23,9 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'warn',
     'vue/no-reserved-keys': 'off',
+    'vue/require-default-prop': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
