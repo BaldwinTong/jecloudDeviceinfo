@@ -10,8 +10,8 @@ import { ref } from 'vue';
 export function useMenu() {
   const menus = [];
   routes.forEach((route) => {
-    const { path, name, text, redirect } = route;
-    name !== 'Login' &&
+    const { path, name, text, menu, redirect } = route;
+    menu &&
       menus.push({
         path,
         name,

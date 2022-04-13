@@ -26,7 +26,7 @@ export function createRouterGuard(router) {
   router.afterEach((to, from, failure) => {
     const microStore = useMicroStore();
     if (!failure) {
-      microStore.go(to.path);
+      microStore.go?.(to.path);
     }
   });
 }

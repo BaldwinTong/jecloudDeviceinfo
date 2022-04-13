@@ -9,6 +9,7 @@ const routes = [
   {
     path: '/icons',
     name: 'Icons',
+    menu: true,
     redirect: '/icons.html',
     text: t('menu.icons'),
   },

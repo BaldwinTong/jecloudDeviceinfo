@@ -1,6 +1,8 @@
 <template>
   <App>
     <Layout />
+    <!-- 如果不使用系统顶栏，请将Layout 换成 RouterView -->
+    <!-- <router-view></router-view> -->
   </App>
 </template>
 <script>
