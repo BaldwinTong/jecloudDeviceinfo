@@ -4,20 +4,33 @@
 
 import { useJE } from '@common/helper/je';
 import { setupGlobalStore } from '@common/store/global-store';
-import { setupMicroStore } from '../store/micro-store';
+import { setupMicroStore } from '@common/store/micro-store';
+import { updateAxiosInstance } from '@jecloud/utils';
+
+/**
+ * 安装微应用
+ * @param {*} param0
+ */
+function setMicro({ microStore, globalStore, axiosInstance }) {
+  // 更新axios实例，使用与主应用相同的axios
+  updateAxiosInstance(axiosInstance);
+  // 安装全局store，使用与主应用相同的globalStore
+  setupGlobalStore(globalStore);
+  // 安装微应用store，用于与主应用交互
+  setupMicroStore(microStore);
+}
 
 /**
  * 微应用渲染函数
  */
 let _render;
-
 /**
  * 初始化
  *
  * @param {*} { store }
  */
-async function bootstrap({ store }) {
-  setupGlobalStore(store);
+async function bootstrap(...args) {
+  setMicro(...args);
 }
 
 /**
@@ -25,9 +38,8 @@ async function bootstrap({ store }) {
  *
  * @param {*} { container, store }
  */
-async function mount({ name, container, store }) {
+async function mount({ container }) {
   _render(container);
-  setupMicroStore(name, store);
 }
 
 /**

@@ -21,7 +21,7 @@ let config = {};
 });
 
 //路由代理
-const { VUE_APP_SERVICE_PROXY, VUE_APP_SERVICE_PORT, VUE_APP_MICRO_CONFIG_PREFIX_SERVICE } = config;
+const { VUE_APP_SERVICE_PROXY, VUE_APP_SERVICE_PORT, VUE_APP_MICRO_CONFIG_ROUTE } = config;
 const distDir = resolve('dist');
 
 var app = express();
@@ -44,7 +44,7 @@ files.forEach((name) => {
   if (name.startsWith('jecloud-')) {
     const folder = name.split('-').pop();
     const fileDist = path.resolve(jecloud, name, 'dist');
-    app.use(`${VUE_APP_MICRO_CONFIG_PREFIX_SERVICE}/${folder}/`, express.static(fileDist));
+    app.use(`${VUE_APP_MICRO_CONFIG_ROUTE}/${folder}/`, express.static(fileDist));
   }
 });
 

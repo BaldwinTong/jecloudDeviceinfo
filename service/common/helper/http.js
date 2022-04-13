@@ -1,6 +1,5 @@
 import { initAxios } from '@jecloud/utils';
 import { HTTP_BASE_URL } from './constant';
-import { useGlobalStore } from '../store/global-store';
 
 /**
  * 个性化配置
@@ -31,10 +30,7 @@ const axiosConfig = {
  * @export
  */
 export function setupAxios() {
-  // 绑定配置，主子应用共用
-  const globalStore = useGlobalStore();
-  globalStore.axiosConfig = globalStore.axiosConfig ?? axiosConfig;
-  initAxios(globalStore.axiosConfig);
+  initAxios(axiosConfig);
 }
 
 /**

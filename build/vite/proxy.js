@@ -1,3 +1,4 @@
+const { getMicroProxys } = require('../utils');
 /**
  * 服务代理
  *
@@ -16,5 +17,7 @@ export function configProxy(envs) {
       changeOrigin: true,
       rewrite: (path) => path.replace(VUE_APP_SERVICE_PROXY_PREFIX, ''),
     },
+    // 微应用代理地址
+    ...getMicroProxys(envs),
   };
 }

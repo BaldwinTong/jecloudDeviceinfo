@@ -1,5 +1,5 @@
 import { initSystem } from '@common/helper/system';
-import { useMicroStore } from '../../store/micro-store';
+import { useMicroStore } from '@common/store/micro-store';
 
 /**
  *注册路由守卫

@@ -1,3 +1,4 @@
+const { getMicroProxys } = require('../../utils');
 /**
  * 服务配置
  */
@@ -18,6 +19,7 @@ module.exports = {
             target: VUE_APP_SERVICE_PROXY,
             pathRewrite: { [`^${VUE_APP_SERVICE_PROXY_PREFIX}`]: '' },
           },
+          ...getMicroProxys(envs),
         },
       },
     };
