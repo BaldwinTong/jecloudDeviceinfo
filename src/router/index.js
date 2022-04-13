@@ -16,5 +16,19 @@ const routes = [
   },
   ...baseRoutes,
 ];
-
 export default routes;
+
+/**
+ * 自定义路由History
+ * @returns History
+ */
+// export function createRouterHistory() {
+//   return createMemoryHistory();
+// }
+
+/**
+ * 自定义路由守卫
+ */
+// export function createRouterGuard(router) {
+//   // 业务逻辑
+// }

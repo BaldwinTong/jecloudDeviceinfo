@@ -12,8 +12,10 @@ import * as routerInfo from '@/router';
  */
 export function setupRouter(app, isMicro) {
   _setupRouter(app, {
-    history: isMicro ? createMemoryHistory() : createWebHashHistory(),
     routes: routes,
     guards: routerInfo.createRouterGuard || createRouterGuard,
+    history:
+      routerInfo.createRouterHistory?.() ??
+      (isMicro ? createMemoryHistory() : createWebHashHistory()),
   });
 }
