@@ -58,8 +58,12 @@ function getIPAdress() {
  */
 function getMicroProxys(envs) {
   // 代理地址，代理地址前缀
-  const { VUE_APP_SERVICE_PROXY, VUE_APP_MICRO_CONFIG_ROUTE, VUE_APP_MICRO_CONFIG_PROXY_VAR } =
-    envs;
+  const {
+    VUE_APP_SERVICE_PROXY,
+    VUE_APP_MICRO_CONFIG_ROUTE,
+    VUE_APP_MICRO_CONFIG_PROXY_VAR,
+    VUE_APP_MICRO_CONFIG_ADMIN,
+  } = envs;
   // 微应用代理地址
   const proxys = {};
   // 调试地址
@@ -74,7 +78,8 @@ function getMicroProxys(envs) {
   }
   // 默认代理
   proxys[VUE_APP_MICRO_CONFIG_ROUTE] = { target: VUE_APP_SERVICE_PROXY };
-  return proxys;
+
+  return VUE_APP_MICRO_CONFIG_ADMIN ? proxys : {};
 }
 
 /**
