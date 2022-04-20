@@ -2,13 +2,7 @@
  * 多页面配置
  */
 module.exports = {
-  entrys: [
-    { name: 'index', entry: 'src/main.js', template: `public/index.html` },
-    'demo',
-    'main',
-    'icons',
-    'func',
-  ],
+  entrys: [{ name: 'index', entry: 'src/main.js', template: `public/index.html` }],
   config(envs) {
     const {
       VUE_APP_HTML_TITLE, // 首页标题

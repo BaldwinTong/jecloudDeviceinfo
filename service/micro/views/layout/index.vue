@@ -3,7 +3,13 @@
   <a-layout class="je-layout-default">
     <Header v-if="!isMicro()"></Header>
     <!-- 路由 -->
-    <router-view class="router-content" />
+    <router-view class="router-content">
+      <template #default="{ Component, route }">
+        <keep-alive>
+          <component :is="Component" :key="route.fullPath" />
+        </keep-alive>
+      </template>
+    </router-view>
   </a-layout>
 </template>
 <script>

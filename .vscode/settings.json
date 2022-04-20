@@ -41,5 +41,8 @@
   "i18n-ally.enabledFrameworks": [
     "vue",
     "react"
-  ]
+  ],
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }
