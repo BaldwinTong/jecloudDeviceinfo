@@ -1,11 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const del = require('del');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { getLess } = require('@zougt/some-loader-utils');
-const ThemeCssExtractWebpackPlugin = require('@zougt/theme-css-extract-webpack-plugin');
-const { exec } = require('child_process');
 const { resolve } = require('../utils');
 const { lessVars } = require('../theme/config');
 const rootDir = resolve('build/public');
@@ -18,6 +17,7 @@ const entrys = {
   icons: `${rootDir}/src/icons.js`,
 };
 
+console.log('开始构建公共资源');
 // 打包主题文件，依赖webpack插件
 webpack(
   {
@@ -27,7 +27,6 @@ webpack(
       path: distDir,
       filename: '[name].js',
     },
-    // context: resolve('.'),
     module: {
       rules: [
         {
@@ -65,27 +64,15 @@ webpack(
     },
     plugins: [
       new CleanWebpackPlugin(),
-      ...Object.keys(entrys).map(
-        (key) => new HtmlWebpackPlugin({ filename: key + '.html', chunks: [key] }),
-      ),
+      new OptimizeCSSAssetsPlugin(),
       new MiniCssExtractPlugin({
-        // filename: '[name].[contenthash:8].css',
-        filename: '[name].css',
-      }),
-      new ThemeCssExtractWebpackPlugin({
-        multipleScopeVars: lessVars,
-        extract: true,
+        filename: '[name].[contenthash:8].css',
       }),
     ],
   },
   () => {
-    // 生成文件hash，清除无用文件
-    exec('gulp build-css-hash', (error) => {
-      if (error) {
-        console.error(`执行出错: ${error}`);
-        return;
-      }
-      console.log(`公共资源构建成功`);
-    });
+    // 删除无用文件
+    del([path.join(distDir, '*.js'), path.join(distDir, '*.json')]);
+    console.log(`公共资源构建成功`);
   },
 );

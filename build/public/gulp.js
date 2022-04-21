@@ -1,39 +1,14 @@
 const gulp = require('gulp');
-const rev = require('gulp-rev');
 const merge = require('merge-stream');
 const fs = require('fs');
 const path = require('path');
+const rev = require('gulp-rev');
 const del = require('del');
 const cleancss = require('gulp-clean-css');
 const { resolve } = require('../utils');
 const distDir = resolve('build/public/dist');
-const jsonFile = 'styles.json';
 const publicLibsConfig = require('./static/libs/config.json');
 const publicStylesConfig = require('./static/styles/config.json');
-/**
- * 构建css文件hash
- */
-gulp.task('build-css-hash', () => {
-  return gulp
-    .src([path.join(distDir, '*.css')])
-    .pipe(cleancss())
-    .pipe(rev())
-    .pipe(gulp.dest(distDir))
-    .pipe(rev.manifest(jsonFile))
-    .pipe(gulp.dest(distDir))
-    .on('end', () => {
-      const files = JSON.parse(fs.readFileSync(path.join(distDir, jsonFile)));
-      // 删除无用文件
-      const folders = [
-        path.join(distDir, '*.js'),
-        path.join(distDir, '*.html'),
-        ...Object.keys(files).map((name) => path.join(distDir, name)),
-      ];
-      del(folders).then((...args) => {
-        console.log(args);
-      });
-    });
-});
 
 /**
  * webpack构建完成，复制资源完成
@@ -75,3 +50,30 @@ const buildHtmlTags = function (envs) {
 };
 
 module.exports = { buildHtmlTags };
+
+/**
+ * 构建css文件hash
+ * 废弃
+ */
+gulp.task('build-css-hash', () => {
+  const jsonFile = 'styles.json';
+  return gulp
+    .src([path.join(distDir, '*.css')])
+    .pipe(cleancss())
+    .pipe(rev())
+    .pipe(gulp.dest(distDir))
+    .pipe(rev.manifest(jsonFile))
+    .pipe(gulp.dest(distDir))
+    .on('end', () => {
+      const files = JSON.parse(fs.readFileSync(path.join(distDir, jsonFile)));
+      // 删除无用文件
+      const folders = [
+        path.join(distDir, '*.js'),
+        path.join(distDir, '*.json'),
+        ...Object.keys(files).map((name) => path.join(distDir, name)),
+      ];
+      del(folders).then((...args) => {
+        console.log(args);
+      });
+    });
+});
