@@ -28,7 +28,7 @@ const chainWebpack = function (config) {
   // );
 
   // 环境配置
-  return NODE_ENV == 'development' ? dev(config) : prod(config);
+  return NODE_ENV == 'development' ? dev({ config, envs }) : prod({ config, envs });
 };
 
 // 简单配置
@@ -46,6 +46,17 @@ const configureWebpack = {
     library: `${name}-[name]`,
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
     jsonpFunction: `webpackJsonp_${name}`,
+  },
+  externals: {
+    vue: 'Vue',
+    'vue-i18n': 'VueI18n',
+    'vue-router': 'VueRouter',
+    'pinyin-pro': 'pinyin',
+    sortablejs: 'Sortable',
+    dayjs: 'dayjs',
+    axios: 'axios',
+    'lodash-es': { commonjs: 'lodash', amd: 'lodash', commonjs2: 'lodash', root: '_' },
+    'xe-utils': 'XEUtils',
   },
 };
 module.exports = {
