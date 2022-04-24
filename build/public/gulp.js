@@ -7,8 +7,9 @@ const del = require('del');
 const cleancss = require('gulp-clean-css');
 const { resolve } = require('../utils');
 const distDir = resolve('build/public/dist');
-const publicLibsConfig = require('./static/libs/config.json');
-const publicStylesConfig = require('./static/styles/config.json');
+const publicConfig = require('./src/config');
+const publicLibsConfig = publicConfig.libs;
+const publicStylesConfig = publicConfig.styles;
 
 /**
  * webpack构建完成，复制资源完成
@@ -16,7 +17,7 @@ const publicStylesConfig = require('./static/styles/config.json');
 gulp.task('copy-public', () => {
   return merge(
     gulp.src(path.join(distDir, '**/*')).pipe(gulp.dest(resolve('dist/static/styles'))),
-    gulp.src(resolve('build/public/static/libs/**/*')).pipe(gulp.dest(resolve('dist/static/libs'))),
+    gulp.src(resolve('build/public/src/libs/**/*')).pipe(gulp.dest(resolve('dist/static/libs'))),
   );
 });
 
@@ -49,7 +50,19 @@ const buildHtmlTags = function (envs) {
   return { libs, styles };
 };
 
-module.exports = { buildHtmlTags };
+/**
+ * 排除静态资源包
+ * @returns
+ */
+const buildExternals = function () {
+  const externals = {}; // 外部工具类
+  publicLibsConfig.forEach((item) => {
+    externals[item.lib] = item.externals;
+  });
+  return externals;
+};
+
+module.exports = { buildHtmlTags, buildExternals };
 
 /**
  * 构建css文件hash

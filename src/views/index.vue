@@ -1,11 +1,11 @@
-<template> <Demo /> </template>
+<template> <Welcome /> </template>
 
 <script>
-  import Demo from '@micro/views/demo/index.vue';
+  import Welcome from '@common/components/welcome.vue';
   export default {
     name: 'Home',
     components: {
-      Demo,
+      Welcome,
     },
   };
 </script>

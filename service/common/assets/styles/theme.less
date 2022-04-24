@@ -1,5 +1,5 @@
 
-html {
+body {
   
   --colour-dark-text-color:#ffffff; /*浅色系文字色*/
   --colour-light-text-color:#3F3F3F; /*深色系文字色*/
@@ -20,17 +20,13 @@ html {
   --sider-border-right-color:var(--sider-bg-color);
 }
 
-/*------------------- header menu --------------------*/
-@header-bg-color:var(--header-bg-color);
-@header-text-color:var(--header-text-color);
-@header-menu-selected-bg-color:var(--header-menu-selected-bg-color);
-@header-border-bottom-color:var(--header-border-bottom-color);
+/*------------------- 色弱模式 --------------------*/
+.je-theme-color-weak {
+  filter: invert(80%);
+}
 
-/*------------------- sider menu --------------------*/
-@sider-bg-color:var(--sider-bg-color);
-@sider-bg-dark-color:var(--sider-bg-dark-color);
-@sider-text-color:var(--sider-text-color);
-@sider-menu-hover-bg-color:var(--sider-menu-hover-bg-color);
-@sider-menu-selected-bg-color:var(--sider-menu-selected-bg-color);
-@sider-menu-selected-text-color:var(--sider-menu-selected-text-color);
-@sider-border-right-color:var(--sider-border-right-color);
+/*------------------- 灰色模式 --------------------*/
+.je-theme-gray-mode {
+  filter: grayscale(100%);
+  filter: progid:dximagetransform.microsoft.basicimage(grayscale=1);
+}

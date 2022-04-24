@@ -4,7 +4,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     text: t('menu.login'),
-    component: () => import('@common/views/login/index.vue'),
+    component: () => import('@common/components/login/index.vue'),
   },
   {
     path: '/icons',

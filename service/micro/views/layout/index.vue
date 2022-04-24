@@ -1,22 +1,22 @@
 <!-- 主页面布局 -->
 <template>
-  <a-layout class="je-layout-default">
+  <div class="je-layout-main">
     <Header v-if="!isMicro()"></Header>
     <!-- 路由 -->
-    <router-view class="router-content">
+    <router-view class="je-layout-main-router">
       <template #default="{ Component, route }">
         <keep-alive>
           <component :is="Component" :key="route.fullPath" />
         </keep-alive>
       </template>
     </router-view>
-  </a-layout>
+  </div>
 </template>
 <script>
   import { defineComponent } from 'vue';
   import { Layout } from 'ant-design-vue';
   import Header from './header.vue';
-  import { isMicro } from '@micro';
+  import { isMicro } from '@micro/helper';
   export default defineComponent({
     components: {
       ALayout: Layout,
@@ -28,10 +28,12 @@
   });
 </script>
 <style scoped>
-  .je-layout-default {
+  .je-layout-main {
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  .router-content {
+  .je-layout-main-router {
     height: 100%;
     overflow: hidden;
   }

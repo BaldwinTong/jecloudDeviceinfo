@@ -7,15 +7,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { getLess } = require('@zougt/some-loader-utils');
 const { resolve } = require('../utils');
 const { lessVars } = require('../theme/config');
+const { styles } = require('./src/config');
 const rootDir = resolve('build/public');
 const distDir = path.join(rootDir, 'dist');
 
 // 单独打包样式
-const entrys = {
-  'ant-design-vue': `${rootDir}/src/theme/ant-design-vue.js`,
-  'jecloud-ui': `${rootDir}/src/theme/jecloud-ui.js`,
-  icons: `${rootDir}/src/icons.js`,
-};
+const entrys = {};
+styles.forEach((name) => {
+  entrys[name] = path.join(rootDir, `src/styles/${name}.js`);
+});
 
 console.log('开始构建公共资源');
 // 打包主题文件，依赖webpack插件
@@ -69,6 +69,11 @@ webpack(
         filename: '[name].[contenthash:8].css',
       }),
     ],
+    resolve: {
+      alias: {
+        '@common': resolve('service/common'),
+      },
+    },
   },
   () => {
     // 删除无用文件

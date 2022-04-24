@@ -46,7 +46,7 @@
     },
   });
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .je-settings-theme-color {
     text-align: center;
     & > div {

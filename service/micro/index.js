@@ -2,9 +2,7 @@ import { createApp } from 'vue';
 import { setupCommon } from '@common/helper';
 import { setupRouter } from './router';
 import { useMicroHooks } from './hooks/use-micro';
-import { ConfigProvider } from '@jecloud/ui';
-import { CLI_ENVS } from '@common/helper/constant';
-import * as JeFunc from '@jecloud/func';
+import { isMicro } from './helper';
 import './helper/public-path';
 
 let _app; // 应用入口
@@ -38,8 +36,6 @@ async function setup({ app, router = true, callback }) {
 async function render(container) {
   // Init Vue
   const vue = createApp(_app);
-  // 注册 Vue
-  ConfigProvider.setup({ appContext: vue, publicPath: CLI_ENVS.PUBLIC_PATH, func: JeFunc });
   // Common
   await setupCommon(vue);
   // Router
@@ -51,16 +47,6 @@ async function render(container) {
   _callback(vue);
 
   return vue;
-}
-
-/**
- * 是否微应用
- *
- * @export
- * @return {*}
- */
-export function isMicro() {
-  return !!window.__POWERED_BY_QIANKUN__;
 }
 
 export default {

@@ -9,30 +9,25 @@ const { name } = require('../../package.json');
 const envs = utils.resolveEnvs(process.env);
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
+// 自定义配置
+const customConfig = envs.NODE_ENV == 'development' ? dev : prod;
+
 // 链式配置
 const chainWebpack = function (config) {
-  const {
-    NODE_ENV, // 环境参数
-  } = envs;
-
   // 设置别名
   config.resolve.alias.set('@micro', utils.resolve('service/micro'));
   config.resolve.alias.set('@admin', utils.resolve('service/admin'));
   config.resolve.alias.set('@common', utils.resolve('service/common'));
+  config.resolve.alias.set('@build', utils.resolve('build'));
   // 设置i18n警告
   config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
-  // antd图标按需加载
-  // config.resolve.alias.set(
-  //   '@ant-design/icons-vue/lib/icons',
-  //   utils.resolve('service/common/assets/icons/antd-icons.js'),
-  // );
 
   // 环境配置
-  return NODE_ENV == 'development' ? dev({ config, envs }) : prod({ config, envs });
+  return customConfig.chainWebpack({ config, envs });
 };
 
 // 简单配置
-const configureWebpack = {
+const configureWebpack = customConfig.config({
   plugins: [
     new webpack.DefinePlugin({
       __CLI_ENVS__: JSON.stringify(envs),
@@ -47,18 +42,7 @@ const configureWebpack = {
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
     jsonpFunction: `webpackJsonp_${name}`,
   },
-  externals: {
-    vue: 'Vue',
-    'vue-i18n': 'VueI18n',
-    'vue-router': 'VueRouter',
-    'pinyin-pro': 'pinyin',
-    sortablejs: 'Sortable',
-    dayjs: 'dayjs',
-    axios: 'axios',
-    'lodash-es': { commonjs: 'lodash', amd: 'lodash', commonjs2: 'lodash', root: '_' },
-    'xe-utils': 'XEUtils',
-  },
-};
+});
 module.exports = {
   config() {
     return {

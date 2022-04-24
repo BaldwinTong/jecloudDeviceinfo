@@ -1,6 +1,6 @@
 <template>
-  <div class="je-settings">
-    <div class="je-settings-lang">
+  <div class="je-layout-main-settings">
+    <div class="je-layout-main-settings-lang">
       国际化：<Select
         ref="select"
         v-model:value="globalStore.locale"
@@ -13,13 +13,13 @@
       </Select>
     </div>
 
-    <div class="je-settings-theme">
+    <div class="je-layout-main-settings-theme">
       <ThemeColor mode="systemTheme" title="系统主题"></ThemeColor>
       <ThemeMode mode="darkMode" title="深色主题"></ThemeMode>
       <ThemeMode mode="grayMode" title="灰色模式"></ThemeMode>
       <ThemeMode mode="colorWeak" title="色弱模式"></ThemeMode>
     </div>
-    <div v-if="globalStore.token" class="je-settings-logout">
+    <div v-if="globalStore.token" class="je-layout-main-settings-logout">
       <Button type="primary" block @click="logout">退出登录</Button>
     </div>
   </div>
@@ -48,15 +48,15 @@
   });
 </script>
 <style lang="less" scoped>
-  .je-settings {
-    .je-settings-theme {
+  .je-layout-main-settings {
+    &-theme {
       width: 300px;
     }
-    .je-settings-logout {
+    &-logout {
       text-align: center;
       padding: 10px;
     }
-    .je-settings-lang {
+    &-lang {
       text-align: center;
       padding: 10px;
       .lang-select {

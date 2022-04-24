@@ -185,7 +185,7 @@ export const toggleDarkMode = function () {
  *
  */
 export const toggleGrayMode = function () {
-  const grayModeCls = 'gray-mode';
+  const grayModeCls = 'je-theme-gray-mode';
   toggleClass(grayModeCls);
 };
 
@@ -194,7 +194,7 @@ export const toggleGrayMode = function () {
  *
  */
 export const toggleColorWeak = function () {
-  const colorWeakCls = 'color-weak';
+  const colorWeakCls = 'je-theme-color-weak';
   toggleClass(colorWeakCls);
 };
 
@@ -205,7 +205,7 @@ export const toggleColorWeak = function () {
  * @param {*} val
  * @param {*} [dom=docEle]
  */
-const docEle = document.documentElement;
+const docEle = document.body;
 function setCssVar(prop, val, dom = docEle) {
   dom.style.setProperty(prop, val);
 }

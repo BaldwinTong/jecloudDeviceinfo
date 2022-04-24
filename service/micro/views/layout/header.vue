@@ -1,8 +1,8 @@
 <template>
-  <a-layout-header class="je-layout-header">
+  <div class="je-layout-main-header">
     <a-row align="middle">
       <!-- logo -->
-      <a-col class="je-layout-header-logo">
+      <a-col class="je-layout-main-header-logo">
         <i :class="[APP_HTML_ICON]"></i>{{ APP_HTML_TITLE }}
       </a-col>
 
@@ -10,7 +10,7 @@
       <a-col flex="auto">
         <a-menu
           theme="dark"
-          class="je-layout-menu-top"
+          class="je-layout-main-header-menu"
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
         >
@@ -19,7 +19,7 @@
           </a-menu-item>
         </a-menu>
       </a-col>
-      <a-col class="je-layout-header-actions">
+      <a-col class="je-layout-main-header-actions">
         <div class="action">
           <a-popover trigger="click" placement="bottomRight" arrow-point-at-center>
             <template #content><Settings /> </template>
@@ -28,19 +28,18 @@
         </div>
       </a-col>
     </a-row>
-  </a-layout-header>
+  </div>
 </template>
 <script>
   import { defineComponent } from 'vue';
   import { useRouter } from 'vue-router';
-  import { Layout, Row, Col, Menu, Popover } from 'ant-design-vue';
+  import { Row, Col, Menu, Popover } from 'ant-design-vue';
   import { CLI_ENVS } from '@common/helper/constant';
   import Settings from './settings.vue';
   import { useMenu } from '@micro/hooks/use-menu';
   export default defineComponent({
     name: 'Header',
     components: {
-      ALayoutHeader: Layout.Header,
       ARow: Row,
       ACol: Col,
       APopover: Popover,
@@ -73,11 +72,29 @@
   });
 </script>
 <style lang="less" scoped>
-  .je-layout-header {
+  @import '../../../common/assets/styles/theme-variable.less';
+  .je-layout-main-header {
     padding: 0;
-    .je-layout-header-logo {
+    background-color: @header-bg-color;
+    border-bottom: 1px solid transparent;
+    border-bottom-color: @header-border-bottom-color;
+    :deep(&-menu) {
+      transition-property: none;
+      background-color: @header-bg-color !important;
+      border-bottom-color: @header-text-color !important;
+      .ant-menu-item {
+        color: @header-text-color !important;
+        transition-property: none;
+      }
+      .ant-menu-item-active,
+      .ant-menu-item:hover,
+      .ant-menu-item-selected {
+        background-color: @header-menu-selected-bg-color !important;
+      }
+    }
+    &-logo {
       padding: 0 20px;
-      color: #fff;
+      color: @header-text-color;
       font-size: 20px;
       font-weight: bold;
       min-width: 200px;
@@ -85,9 +102,10 @@
         margin-right: 10px;
       }
     }
-    .je-layout-header-actions {
+    &-actions {
       display: flex;
       align-items: center;
+      color: @header-text-color;
       .action {
         cursor: pointer;
         display: flex;

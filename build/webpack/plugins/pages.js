@@ -8,10 +8,7 @@ module.exports = {
       VUE_APP_HTML_TITLE, // 首页标题
     } = envs;
     const pages = {};
-    this.entrys.forEach((item) => {
-      const name = item.name || item;
-      const entry = item.entry || `service/micro/apps/${item}/main.js`;
-      const template = item.template || `build/webpack/pages/${name}.html`;
+    this.entrys.forEach(({ name, entry, template }) => {
       pages[name] = {
         title: VUE_APP_HTML_TITLE, // 标题
         // page 的入口

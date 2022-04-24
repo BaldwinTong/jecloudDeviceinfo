@@ -35,7 +35,7 @@
     },
   });
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .je-settings-theme-mode {
     text-align: center;
     & > div {
