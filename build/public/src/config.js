@@ -12,7 +12,7 @@ module.exports = {
         'lodash-es': { commonjs: 'lodash', amd: 'lodash', commonjs2: 'lodash', root: '_' },
       },
     },
-    { lib: 'pinyin-pro', version: '3.8.3', externals: 'pinyin' },
+    { lib: 'pinyin-pro', version: '3.8.3', externals: 'pinyinPro' },
     { lib: 'sortablejs', version: '1.15.0', externals: 'Sortable' },
     { lib: 'xe-utils', version: '3.5.4', externals: 'XEUtils' },
   ],
