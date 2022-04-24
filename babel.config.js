@@ -12,12 +12,7 @@ const config = {
       'ant-design-vue',
     ],
     ['import', { libraryName: 'vxe-table', libraryDirectory: 'es', style: dev }, 'vxe-table'],
-    ['import', { libraryName: '@jecloud/ui', libraryDirectory: 'src', style: dev }, '@jecloud/ui'],
-    [
-      'import',
-      { libraryName: '@jecloud/func', libraryDirectory: 'src', style: dev },
-      '@jecloud/func',
-    ],
+    // ['import', { libraryName: '@jecloud/ui', libraryDirectory: 'src', style: dev }, '@jecloud/ui'],
   ],
 };
 module.exports = config;

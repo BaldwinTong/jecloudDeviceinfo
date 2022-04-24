@@ -8,7 +8,9 @@ module.exports = {
     {
       lib: 'lodash-es',
       version: '4.17.10',
-      externals: { commonjs: 'lodash', amd: 'lodash', commonjs2: 'lodash', root: '_' },
+      externals: {
+        'lodash-es': { commonjs: 'lodash', amd: 'lodash', commonjs2: 'lodash', root: '_' },
+      },
     },
     { lib: 'pinyin-pro', version: '3.8.3', externals: 'pinyin' },
     { lib: 'sortablejs', version: '1.15.0', externals: 'Sortable' },

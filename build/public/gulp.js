@@ -32,7 +32,13 @@ const buildHtmlTags = function (envs) {
   let libs = [];
   const libTpl = `<script src="${PUBLIC_PATH}static/libs/{file}"></script>`;
   publicLibsConfig.forEach((lib) => {
-    libs.push(`${lib.lib}/${lib.version}/min.js`);
+    if (lib.files) {
+      lib.files.forEach((file) => {
+        libs.push(`${lib.lib}/${lib.version}/${file}`);
+      });
+    } else {
+      libs.push(`${lib.lib}/${lib.version}/min.js`);
+    }
   });
   libs = libs.map((file) => libTpl.replace('{file}', file));
 
@@ -57,7 +63,11 @@ const buildHtmlTags = function (envs) {
 const buildExternals = function () {
   const externals = {}; // 外部工具类
   publicLibsConfig.forEach((item) => {
-    externals[item.lib] = item.externals;
+    if (typeof item.externals == 'string') {
+      externals[item.lib] = item.externals;
+    } else {
+      Object.assign(externals, item.externals);
+    }
   });
   return externals;
 };
