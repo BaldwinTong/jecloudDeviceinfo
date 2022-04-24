@@ -62,7 +62,7 @@ app.use('/', (req, res, next) => {
 });
 
 //启动服务
-const port = Number(VUE_APP_SERVICE_PORT) + 100; // 默认端口增加100
+const port = Number(VUE_APP_SERVICE_PORT) + 10; // 默认端口增加10
 const server = '0.0.0.0';
 app.listen(port, server, function () {
   console.log('\n', '预览服务已启动，请访问：', '\n');

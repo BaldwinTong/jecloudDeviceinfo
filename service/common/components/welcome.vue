@@ -24,6 +24,8 @@
     text-align: center;
     font-size: 42px;
     font-weight: bold;
+    color: @text-color;
+    background-color: @component-background;
     i {
       color: @primary-color;
       margin-left: 10px;
