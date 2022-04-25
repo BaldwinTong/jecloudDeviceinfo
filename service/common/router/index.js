@@ -2,6 +2,10 @@ import { createRouter } from 'vue-router';
 import { createRouterGuard } from './guard';
 import { mixinJE } from '../helper/je';
 
+let router;
+export function useRouter() {
+  return router;
+}
 /**
  * 注册路由
  *
@@ -10,7 +14,7 @@ import { mixinJE } from '../helper/je';
  */
 export function setupRouter(app, { history, routes, guards }) {
   // 创建路由
-  const router = createRouter({ history, routes });
+  router = createRouter({ history, routes });
   // 基础路由守卫
   createRouterGuard(router);
   // 路由守卫

@@ -1,8 +1,7 @@
 import { toRaw } from 'vue';
-import { useRouter } from 'vue-router';
 import { doLogin } from '@common/api';
 import { message } from 'ant-design-vue';
-import { useGlobalStore } from '@common/store/global-store';
+import { login as _login } from '@common/helper/system';
 
 /**
  *登录操作
@@ -12,9 +11,6 @@ import { useGlobalStore } from '@common/store/global-store';
  * @param {*} model
  */
 export function useLogin(form, model) {
-  const router = useRouter();
-  const globalStore = useGlobalStore();
-
   // 登录系统
   function login() {
     form.value.validate().then(() => {
@@ -22,13 +18,8 @@ export function useLogin(form, model) {
       const vals = toRaw(model);
       // 提交登录
       doLogin(vals)
-        .then((authorization) => {
-          // 更改语言
-          globalStore.setLocale(vals.j_locale);
-          // token
-          globalStore.setToken(authorization);
-
-          router.push({ name: 'Home' }); //跳转首页
+        .then((token) => {
+          _login({ token });
         })
         .catch((e) => {
           // 登录失败

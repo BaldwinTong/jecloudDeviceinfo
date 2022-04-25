@@ -34,6 +34,7 @@ const usePrivateGlobalStore = defineStore({
   id: 'global-store',
   state: () => ({
     init: false, // 系统初始状态
+    tokenKey: GLOBAL_SETTINGS_TOKENKEY,
     whiteRoutes: ['Login'], // 路由白名单
     locale: cookie.get(GLOBAL_SETTINGS_LOCALE), // 激活语言
     token: cookie.get(GLOBAL_SETTINGS_TOKENKEY), // token
@@ -83,7 +84,29 @@ const usePrivateGlobalStore = defineStore({
      */
     setToken(token) {
       this.token = token;
-      cookie.set(GLOBAL_SETTINGS_TOKENKEY, token);
+      if (token) {
+        cookie.set(GLOBAL_SETTINGS_TOKENKEY, token);
+      } else {
+        cookie.remove(GLOBAL_SETTINGS_TOKENKEY);
+      }
+    },
+    /**
+     * 获取token
+     * @returns
+     */
+    getToken() {
+      return cookie.get(GLOBAL_SETTINGS_TOKENKEY);
+    },
+
+    /**
+     * 登录
+     * @param {*} param0
+     */
+    login({ token, locale }) {
+      // 更改语言
+      this.setLocale(locale ?? this.locale);
+      // token
+      this.setToken(token);
     },
     /**
      * 退出
@@ -91,8 +114,7 @@ const usePrivateGlobalStore = defineStore({
      */
     logout() {
       this.init = false;
-      this.token = null;
-      cookie.remove(GLOBAL_SETTINGS_TOKENKEY);
+      this.setToken();
     },
   },
 });

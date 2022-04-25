@@ -1,5 +1,6 @@
 import { initAxios } from '@jecloud/utils';
 import { HTTP_BASE_URL } from './constant';
+import { useGlobalStore } from '@common/store/global-store';
 
 /**
  * 个性化配置
@@ -20,8 +21,18 @@ const axiosConfig = {
     // 消息提示类型
     errorMessageMode: 'message',
   },
-  // token无效时，处理
-  tokenInvalid() {},
+  /**
+   * 请求前拦截器
+   * @param {*} config
+   */
+  requestInterceptors(config) {
+    const globalStore = useGlobalStore();
+    const token = globalStore.getToken();
+    // 添加请求头
+    if (token) {
+      config.headers = Object.assign(config.headers ?? {}, { [globalStore.tokenKey]: token });
+    }
+  },
 };
 
 /**

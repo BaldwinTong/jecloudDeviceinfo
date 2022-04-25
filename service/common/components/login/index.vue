@@ -19,7 +19,7 @@
         />
       </a-form-item>
       <a-form-item has-feedback :label="$t('login.language')" name="j_locale">
-        <a-select ref="select" v-model:value="model.j_locale" @change="changeI18n">
+        <a-select ref="select" v-model:value="globalStore.locale" @change="changeI18n">
           <a-select-option
             v-for="(item, index) in globalStore.locales"
             :key="index"
@@ -63,7 +63,6 @@
       const { model, rules } = useModel();
       // 登录函数
       const { login } = useLogin(form, model);
-      model.j_locale = globalStore.locale;
       return {
         changeI18n,
         globalStore,

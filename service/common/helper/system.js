@@ -1,7 +1,9 @@
 import { getCurrentUser, getSystemConfig } from '../api';
 import { useGlobalStore } from '../store/global-store';
+import { useMicroStore } from '../store/micro-store';
 import { JE_SETTINGS_LOGOUT_URL } from './constant';
-import { useJE } from './je';
+import { useRouter } from '@common/router';
+import { isMicro } from '@micro/helper';
 
 /**
  * 初始化系统数据
@@ -43,6 +45,26 @@ export function initSystemInfo() {
 }
 
 /**
+ * 系统登录
+ */
+export function login(options) {
+  // 微应用，触发主应用登录事件
+  if (isMicro()) {
+    const microStore = useMicroStore();
+    microStore.emitAdmin('login', options);
+    return;
+  }
+  // 自应用，正常调用
+  const { route = 'Home' } = options;
+  const router = useRouter();
+  const globalStore = useGlobalStore();
+  // 设置登录信息
+  globalStore.login(options);
+  // 登录成功，跳转首页
+  router.push({ name: route });
+}
+
+/**
  * 退出登录
  *
  * @export
@@ -50,9 +72,9 @@ export function initSystemInfo() {
 export function logout() {
   const globalStore = useGlobalStore();
   globalStore.logout();
-  const { $router } = useJE();
-  if ($router) {
-    $router.push(JE_SETTINGS_LOGOUT_URL);
+  const router = useRouter();
+  if (router) {
+    router.push(JE_SETTINGS_LOGOUT_URL);
   } else {
     window.location.href = JE_SETTINGS_LOGOUT_URL;
   }

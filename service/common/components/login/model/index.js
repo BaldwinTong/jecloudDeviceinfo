@@ -5,7 +5,6 @@ export function useModel() {
   const model = reactive({
     j_username: '', // 用户名
     j_password: '', // 密码
-    j_locale: '', //语言
     code: '', // 验证码
   });
 
