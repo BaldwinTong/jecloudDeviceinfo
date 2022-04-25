@@ -48,6 +48,7 @@ function defineMicroStore(name) {
     const store = defineStore({
       id,
       state: () => ({
+        name,
         options: {}, // 微应用配置
         props: {}, // 微应用参数
         instance: null, // 微应用实例
