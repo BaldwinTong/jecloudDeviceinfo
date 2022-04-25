@@ -1,39 +1,7 @@
 import { initAxios } from '@jecloud/utils';
 import { HTTP_BASE_URL } from './constant';
 import { useGlobalStore } from '@common/store/global-store';
-
-/**
- * 个性化配置
- *
- * @type {Object}
- */
-const axiosConfig = {
-  // 请求超时时间
-  timeout: 30 * 1000,
-  // 基础接口地址
-  baseURL: HTTP_BASE_URL,
-  // 如果是form-data格式
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-  // 配置项，下面的选项都可以在独立的接口请求中覆盖
-  requestOptions: {
-    // 是否返回原生响应头 比如：需要获取响应头时使用该属性
-    isReturnNativeResponse: false,
-    // 消息提示类型
-    errorMessageMode: 'message',
-  },
-  /**
-   * 请求前拦截器
-   * @param {*} config
-   */
-  requestInterceptors(config) {
-    const globalStore = useGlobalStore();
-    const token = globalStore.getToken();
-    // 添加请求头
-    if (token) {
-      config.headers = Object.assign(config.headers ?? {}, { [globalStore.tokenKey]: token });
-    }
-  },
-};
+import { useMicroStore } from '@common/store/micro-store';
 
 /**
  * 注册axios配置
@@ -41,6 +9,34 @@ const axiosConfig = {
  * @export
  */
 export function setupAxios() {
+  const globalStore = useGlobalStore();
+  const microStore = useMicroStore();
+  const axiosConfig = {
+    // 请求超时时间
+    timeout: 30 * 1000,
+    // 基础接口地址
+    baseURL: (microStore.options.httpBaseUrl ?? '') + HTTP_BASE_URL,
+    // 如果是form-data格式
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    // 配置项，下面的选项都可以在独立的接口请求中覆盖
+    requestOptions: {
+      // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+      isReturnNativeResponse: false,
+      // 消息提示类型
+      errorMessageMode: 'message',
+    },
+    /**
+     * 请求前拦截器
+     * @param {*} config
+     */
+    requestInterceptors(config) {
+      const token = globalStore.getToken();
+      // 添加请求头
+      if (token) {
+        config.headers = Object.assign(config.headers ?? {}, { [globalStore.tokenKey]: token });
+      }
+    },
+  };
   initAxios(axiosConfig);
 }
 

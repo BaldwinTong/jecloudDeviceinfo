@@ -80,5 +80,5 @@ function defineMicroStore(name) {
     });
     defineStores.set(id, store);
   }
-  return defineStores.get(id);
+  return defineStores.get(id)();
 }
