@@ -11,7 +11,15 @@ const config = {
       { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: dev },
       'ant-design-vue',
     ],
-    ['import', { libraryName: 'vxe-table', libraryDirectory: 'es', style: dev }, 'vxe-table'],
+    [
+      'import',
+      {
+        libraryName: 'vxe-table',
+        libraryDirectory: 'es',
+        style: dev ? (name) => `${name}/style.css` : false,
+      },
+      'vxe-table',
+    ],
     // ['import', { libraryName: '@jecloud/ui', libraryDirectory: 'src', style: dev }, '@jecloud/ui'],
   ],
 };
