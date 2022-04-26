@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
-const { name } = require('../../package.json');
 const envs = utils.resolveEnvs(process.env);
 // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
@@ -19,8 +18,6 @@ const chainWebpack = function (config) {
   config.resolve.alias.set('@admin', utils.resolve('service/admin'));
   config.resolve.alias.set('@common', utils.resolve('service/common'));
   config.resolve.alias.set('@build', utils.resolve('build'));
-  // 设置i18n警告
-  // config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
   // 环境配置
   return customConfig.chainWebpack({ config, envs });
@@ -28,6 +25,8 @@ const chainWebpack = function (config) {
 
 // 简单配置
 const projectName = utils.getProjectName();
+// 主应用
+const { VUE_APP_MICRO_CONFIG_ADMIN } = envs;
 const configureWebpack = customConfig.config({
   plugins: [
     new webpack.DefinePlugin({
@@ -38,7 +37,7 @@ const configureWebpack = customConfig.config({
     // }),
   ],
   // 微应用配置
-  output: {
+  output: VUE_APP_MICRO_CONFIG_ADMIN && {
     library: `${projectName}`,
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
     jsonpFunction: `webpackJsonp_${projectName}`,
