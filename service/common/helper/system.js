@@ -51,6 +51,11 @@ export function login(options) {
   // 微应用，触发主应用登录事件
   if (isMicro()) {
     const microStore = useMicroStore();
+    // TODO: 临时数据，后期删除
+    Object.assign(options, {
+      token: 'YG6LYYksvjrVAUrwgPe',
+      locale: 'zh_CN',
+    });
     microStore.emitAdmin('login', options);
     return;
   }
