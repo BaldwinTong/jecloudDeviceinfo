@@ -20,7 +20,7 @@ const chainWebpack = function (config) {
   config.resolve.alias.set('@common', utils.resolve('service/common'));
   config.resolve.alias.set('@build', utils.resolve('build'));
   // 设置i18n警告
-  config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
+  // config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
   // 环境配置
   return customConfig.chainWebpack({ config, envs });
