@@ -26,7 +26,6 @@ const chainWebpack = function (config) {
 // 简单配置
 const projectName = utils.getProjectName();
 // 主应用
-const { VUE_APP_MICRO_CONFIG_ADMIN } = envs;
 const configureWebpack = customConfig.config({
   plugins: [
     new webpack.DefinePlugin({
@@ -37,7 +36,7 @@ const configureWebpack = customConfig.config({
     // }),
   ],
   // 微应用配置
-  output: VUE_APP_MICRO_CONFIG_ADMIN && {
+  output: {
     library: `${projectName}`,
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
     jsonpFunction: `webpackJsonp_${projectName}`,
