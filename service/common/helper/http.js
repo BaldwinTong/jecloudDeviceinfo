@@ -15,7 +15,7 @@ export function setupAxios() {
     // 请求超时时间
     timeout: 30 * 1000,
     // 基础接口地址
-    baseURL: (microStore.options.httpBaseUrl ?? '') + HTTP_BASE_URL,
+    baseURL: microStore.options.proxyPrefix ?? HTTP_BASE_URL,
     // 如果是form-data格式
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
     // 配置项，下面的选项都可以在独立的接口请求中覆盖
