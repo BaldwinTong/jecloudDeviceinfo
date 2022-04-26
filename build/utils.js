@@ -94,11 +94,15 @@ function getPublicPath(envs) {
     return '/';
   }
   const route = envs.VUE_APP_MICRO_CONFIG_ROUTE; // 微应用路由前缀
-  const project = process.cwd().split(path.sep).pop(); // 项目名称
+  const project = getProjectName(); // 项目名称
   const name = project.split('-').pop(); // 微应用名称
   return `${route}/${name}/`;
 }
 
+function getProjectName() {
+  const project = process.cwd().split(path.sep).pop(); // 项目名称
+  return project;
+}
 /**
  * 获得绝对路径
  *
@@ -115,4 +119,5 @@ module.exports = {
   resolveEnvs,
   isNumeric,
   getIPAdress,
+  getProjectName,
 };

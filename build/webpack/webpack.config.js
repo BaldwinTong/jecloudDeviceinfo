@@ -27,6 +27,7 @@ const chainWebpack = function (config) {
 };
 
 // 简单配置
+const projectName = utils.getProjectName();
 const configureWebpack = customConfig.config({
   plugins: [
     new webpack.DefinePlugin({
@@ -38,9 +39,9 @@ const configureWebpack = customConfig.config({
   ],
   // 微应用配置
   output: {
-    library: `${name}-[name]`,
+    library: `${projectName}`,
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
-    jsonpFunction: `webpackJsonp_${name}`,
+    jsonpFunction: `webpackJsonp_${projectName}`,
   },
 });
 module.exports = {
