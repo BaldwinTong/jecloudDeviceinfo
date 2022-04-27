@@ -71,6 +71,20 @@ function defineMicroStore(name) {
           this.emitter.emit(...args);
         },
         /**
+         * 销毁子应用
+         * @returns
+         */
+        destroy() {
+          if (!this.instance) return;
+          if (this.instance.getStatus() === 'MOUNTED') {
+            this.instance.unmount();
+          } else {
+            this.instance.mountPromise.then((instance) => {
+              instance.unmount();
+            });
+          }
+        },
+        /**
          * 触发主应用事件
          * 只有集成到主应用时起效，子应用默认空函数，兼容代码
          * 使用方式参考emit

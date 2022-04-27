@@ -22,5 +22,5 @@ export function setupRouter(app, { history, routes, guards }) {
   // 注册路由
   app.use(router);
   // 注入JE
-  mixinJE({ $router: router });
+  mixinJE({ $router: router, $history: history });
 }

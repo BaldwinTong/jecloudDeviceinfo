@@ -47,11 +47,12 @@ async function mount({ container }) {
  *
  */
 async function unmount() {
-  let { $vue, $router } = useJE();
+  let { $vue, $router, $history } = useJE();
   $vue.unmount();
   $vue._container.innerHTML = '';
   $vue = null;
   $router = null;
+  $history.destroy();
 }
 
 /**

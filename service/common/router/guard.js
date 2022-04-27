@@ -1,5 +1,5 @@
-import { useGlobalStore } from '@common/store/global-store';
-
+import { logout, isLogin } from '@common/helper/system';
+import { whiteRoutes } from './routes-white';
 export function createRouterGuard(router) {
   createAuthGuard(router);
 }
@@ -11,17 +11,12 @@ export function createRouterGuard(router) {
  * @param {Router} router
  */
 export function createAuthGuard(router) {
-  const globalStore = useGlobalStore();
-  // 路由白名单
   router.beforeEach((to, from, next) => {
-    if (globalStore.whiteRoutes.includes(to.name)) {
+    // 路由白名单，已经登录
+    if (whiteRoutes.includes(to.name) || isLogin()) {
       next();
-      return;
+    } else {
+      logout();
     }
-    if (!globalStore.token) {
-      next({ name: 'Login' });
-      return;
-    }
-    next();
   });
 }

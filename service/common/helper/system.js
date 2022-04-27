@@ -60,13 +60,16 @@ export function login(options) {
     return;
   }
   // 自应用，正常调用
-  const { route = 'Home' } = options;
-  const router = useRouter();
   const globalStore = useGlobalStore();
-  // 设置登录信息
   globalStore.login(options);
-  // 登录成功，跳转首页
-  router.push({ name: route });
+}
+/**
+ * 是否登录成功
+ * @returns
+ */
+export function isLogin() {
+  const globalStore = useGlobalStore();
+  return !!globalStore.token;
 }
 
 /**
@@ -77,10 +80,4 @@ export function login(options) {
 export function logout() {
   const globalStore = useGlobalStore();
   globalStore.logout();
-  const router = useRouter();
-  if (router) {
-    router.push(JE_SETTINGS_LOGOUT_URL);
-  } else {
-    window.location.href = JE_SETTINGS_LOGOUT_URL;
-  }
 }

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
-import { cookie } from '@jecloud/utils';
-import { GlobalSettingsEnum } from '../helper/constant';
+import { cookie, mitt } from '@jecloud/utils';
+import { GlobalSettingsEnum, JE_SETTINGS_LOGOUT_URL } from '../helper/constant';
+import { useRouter } from '@common/router';
 const { GLOBAL_SETTINGS_TOKENKEY, GLOBAL_SETTINGS_LOCALE } = GlobalSettingsEnum;
 
 // 主子应用共享
@@ -34,13 +35,13 @@ const usePrivateGlobalStore = defineStore({
   id: 'global-store',
   state: () => ({
     init: false, // 系统初始状态
-    tokenKey: GLOBAL_SETTINGS_TOKENKEY,
     whiteRoutes: ['Login'], // 路由白名单
+    historyRoute: null, // 退出前的路由fullPath，用于登录成功后再次打开
     locale: cookie.get(GLOBAL_SETTINGS_LOCALE), // 激活语言
     token: cookie.get(GLOBAL_SETTINGS_TOKENKEY), // token
     user: null, // 当前用户
     systemConfig: null, // 系统变量
-    axiosConfig: null, // ajax配置
+    emitter: mitt(), // 事件触发器
   }),
   getters: {
     locales() {
@@ -51,6 +52,20 @@ const usePrivateGlobalStore = defineStore({
     },
   },
   actions: {
+    /**
+     * 绑定子应用事件，供主应用调用
+     * @param args
+     */
+    on(...args) {
+      this.emitter.on(...args);
+    },
+    /**
+     * 触发应用事件
+     * @param args
+     */
+    emit(...args) {
+      this.emitter.emit(...args);
+    },
     /**
      * 获得初始语言
      *
@@ -102,19 +117,41 @@ const usePrivateGlobalStore = defineStore({
      * 登录
      * @param {*} param0
      */
-    login({ token, locale }) {
+    login({ token, locale, route = 'Home' }) {
       // 更改语言
       this.setLocale(locale ?? this.locale);
       // token
       this.setToken(token);
+      // 初始路由
+      const router = useRouter();
+      // 登录成功，跳转首页
+      if (this.historyRoute) {
+        router.push({ path: this.historyRoute });
+      } else {
+        router.push({ name: route });
+      }
     },
     /**
      * 退出
      *
      */
     logout() {
+      // 重置状态
       this.init = false;
+      // 重置token
       this.setToken();
+      // 触发注销事件
+      this.emit('logout');
+      // 路由处理
+      const router = useRouter();
+      // 记录退出前路由
+      this.historyRoute = router.currentRoute?.value?.fullPath;
+      // 退出路由
+      if (router) {
+        router.push(JE_SETTINGS_LOGOUT_URL);
+      } else {
+        window.location.href = JE_SETTINGS_LOGOUT_URL;
+      }
     },
   },
 });
