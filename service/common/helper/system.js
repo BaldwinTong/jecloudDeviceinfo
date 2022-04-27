@@ -80,4 +80,12 @@ export function isLogin() {
 export function logout() {
   const globalStore = useGlobalStore();
   globalStore.logout();
+  // 路由处理
+  const router = useRouter();
+  // 退出路由
+  if (router) {
+    router.push(JE_SETTINGS_LOGOUT_URL);
+  } else {
+    window.location.href = JE_SETTINGS_LOGOUT_URL;
+  }
 }

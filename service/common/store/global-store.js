@@ -142,16 +142,6 @@ const usePrivateGlobalStore = defineStore({
       this.setToken();
       // 触发注销事件
       this.emit('logout');
-      // 路由处理
-      const router = useRouter();
-      // 记录退出前路由
-      this.historyRoute = router.currentRoute?.value?.fullPath;
-      // 退出路由
-      if (router) {
-        router.push(JE_SETTINGS_LOGOUT_URL);
-      } else {
-        window.location.href = JE_SETTINGS_LOGOUT_URL;
-      }
     },
   },
 });
