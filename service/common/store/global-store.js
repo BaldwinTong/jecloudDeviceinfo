@@ -122,13 +122,17 @@ const usePrivateGlobalStore = defineStore({
       this.setLocale(locale ?? this.locale);
       // token
       this.setToken(token);
-      // 初始路由
-      const router = useRouter();
-      // 登录成功，跳转首页
-      if (this.historyRoute) {
-        router.push({ path: this.historyRoute });
-      } else {
-        router.push({ name: route });
+      // 触发登录事件
+      if (this.emit('login') !== false) {
+        // 初始路由
+        const router = useRouter();
+        // 登录成功，跳转首页
+        if (this.historyRoute) {
+          router.push({ path: this.historyRoute });
+          this.historyRoute = ''; // 清空历史
+        } else {
+          router.push({ name: route });
+        }
       }
     },
     /**
@@ -141,7 +145,16 @@ const usePrivateGlobalStore = defineStore({
       // 重置token
       this.setToken();
       // 触发注销事件
-      this.emit('logout');
+      if (this.emit('logout') !== false) {
+        // 路由处理
+        const router = useRouter();
+        // 退出路由
+        if (router) {
+          router.push(JE_SETTINGS_LOGOUT_URL);
+        } else {
+          window.location.href = JE_SETTINGS_LOGOUT_URL;
+        }
+      }
     },
   },
 });

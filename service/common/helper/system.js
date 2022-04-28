@@ -1,8 +1,6 @@
 import { getCurrentUser, getSystemConfig } from '../api';
 import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
-import { JE_SETTINGS_LOGOUT_URL } from './constant';
-import { useRouter } from '@common/router';
 import { isMicro } from '@micro/helper';
 
 /**
@@ -69,7 +67,7 @@ export function login(options) {
  */
 export function isLogin() {
   const globalStore = useGlobalStore();
-  return !!globalStore.token;
+  return !!globalStore.getToken();
 }
 
 /**
@@ -77,15 +75,11 @@ export function isLogin() {
  *
  * @export
  */
-export function logout() {
+export function logout(next) {
   const globalStore = useGlobalStore();
   globalStore.logout();
-  // 路由处理
-  const router = useRouter();
-  // 退出路由
-  if (router) {
-    router.push(JE_SETTINGS_LOGOUT_URL);
-  } else {
-    window.location.href = JE_SETTINGS_LOGOUT_URL;
+  // 子应用路由处理
+  if (isMicro() && next) {
+    next({ name: 'Login' });
   }
 }
