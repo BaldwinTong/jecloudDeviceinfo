@@ -2,23 +2,23 @@
   <div class="je-login-view">
     <a-form ref="form" class="login-form" :model="model" v-bind="layout" :rules="rules">
       <div class="login-title">{{ $t('login.title') }}</div>
-      <a-form-item has-feedback :label="$t('login.username')" name="j_username">
+      <a-form-item has-feedback :label="$t('login.username')" name="account">
         <a-input
-          v-model:value="model.j_username"
+          v-model:value="model.account"
           autocomplete="off"
           :placeholder="$t('login.usernamePlaceholder')"
           @pressEnter="login"
         />
       </a-form-item>
-      <a-form-item has-feedback :label="$t('login.password')" name="j_password">
+      <a-form-item has-feedback :label="$t('login.password')" name="password">
         <a-input-password
-          v-model:value="model.j_password"
+          v-model:value="model.password"
           autocomplete="off"
           :placeholder="$t('login.passwordPlaceholder')"
           @pressEnter="login"
         />
       </a-form-item>
-      <a-form-item has-feedback :label="$t('login.language')" name="j_locale">
+      <a-form-item has-feedback :label="$t('login.language')" name="locale">
         <a-select ref="select" v-model:value="globalStore.locale" @change="changeI18n">
           <a-select-option
             v-for="(item, index) in globalStore.locales"

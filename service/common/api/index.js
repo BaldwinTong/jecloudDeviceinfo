@@ -19,7 +19,7 @@ export function doLogin(params) {
  * @return {Object}
  */
 export function getCurrentUser() {
-  return ajax({ url: API_RBAC_USER }).then(transformData);
+  return ajax({ url: API_RBAC_USER, method: 'GET' }).then(transformData);
 }
 
 /**
