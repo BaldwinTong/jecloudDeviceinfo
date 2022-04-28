@@ -1,4 +1,4 @@
 /**
  * 路由白名单
  */
-export const whiteRoutes = ['Login'];
+export const whiteRoutes = ['Login', 'PlanLogin'];

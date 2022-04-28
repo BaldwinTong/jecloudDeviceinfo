@@ -41,6 +41,8 @@ const usePrivateGlobalStore = defineStore({
     token: cookie.get(GLOBAL_SETTINGS_TOKENKEY), // token
     user: null, // 当前用户
     systemConfig: null, // 系统变量
+    plans: new Map(), // 方案配置
+    activePlan: 'je', // 激活方案，默认je
     emitter: mitt(), // 事件触发器
   }),
   getters: {
@@ -112,7 +114,6 @@ const usePrivateGlobalStore = defineStore({
     getToken() {
       return cookie.get(GLOBAL_SETTINGS_TOKENKEY);
     },
-
     /**
      * 登录
      * @param {*} param0
