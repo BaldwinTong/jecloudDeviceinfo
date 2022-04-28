@@ -16,7 +16,7 @@ export function createAuthGuard(router) {
     if (whiteRoutes.includes(to.name) || isLogin()) {
       next();
     } else {
-      logout();
+      logout(next);
     }
   });
 }
