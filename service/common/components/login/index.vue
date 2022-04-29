@@ -95,6 +95,7 @@
     align-items: center;
     padding-bottom: 5%;
     background-image: url('../../assets/image/login-bg.png');
+    background-size: cover;
     .login-form {
       width: 440px;
       height: 540px;
