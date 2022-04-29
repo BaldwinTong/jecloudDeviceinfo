@@ -66,7 +66,7 @@ const usePrivateGlobalStore = defineStore({
      * @param args
      */
     emit(...args) {
-      this.emitter.emit(...args);
+      return this.emitter.emit(...args);
     },
     /**
      * 获得初始语言
@@ -128,12 +128,7 @@ const usePrivateGlobalStore = defineStore({
         // 初始路由
         const router = useRouter();
         // 登录成功，跳转首页
-        if (this.historyRoute) {
-          router.push({ path: this.historyRoute });
-          this.historyRoute = ''; // 清空历史
-        } else {
-          router.push({ name: route });
-        }
+        router.push({ name: route });
       }
     },
     /**

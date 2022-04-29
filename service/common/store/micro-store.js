@@ -68,20 +68,15 @@ function defineMicroStore(name) {
          * @param args
          */
         emit(...args) {
-          this.emitter.emit(...args);
+          return this.emitter.emit(...args);
         },
         /**
          * 销毁子应用
          * @returns
          */
         destroy() {
-          if (!this.instance) return;
-          if (this.instance.getStatus() === 'MOUNTED') {
+          if (this.instance?.getStatus() === 'MOUNTED') {
             this.instance.unmount();
-          } else {
-            this.instance.mountPromise.then((instance) => {
-              instance.unmount();
-            });
           }
         },
         /**
