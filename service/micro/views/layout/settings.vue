@@ -1,12 +1,7 @@
 <template>
   <div class="je-layout-main-settings">
     <div class="je-layout-main-settings-lang">
-      国际化：<Select
-        ref="select"
-        v-model:value="globalStore.locale"
-        class="lang-select"
-        @change="changeI18n"
-      >
+      国际化：<Select ref="select" v-model:value="globalStore.locale" class="lang-select">
         <SelectOption v-for="(item, index) in globalStore.locales" :key="index" :value="item.code">
           {{ item.text }}
         </SelectOption>
@@ -28,7 +23,6 @@
   import { defineComponent } from 'vue';
   import { Button, Select } from 'ant-design-vue';
   import { logout } from '@common/helper/system';
-  import { changeI18n } from '@common/locales';
   import { useGlobalStore } from '@common/store/global-store';
   import ThemeColor from '@common/components/theme/theme-color.vue';
   import ThemeMode from '@common/components/theme/theme-mode.vue';
@@ -41,9 +35,9 @@
       ThemeColor,
       ThemeMode,
     },
-    setup(props) {
+    setup() {
       const globalStore = useGlobalStore();
-      return { logout, changeI18n, globalStore };
+      return { logout, globalStore };
     },
   });
 </script>

@@ -1,6 +1,7 @@
 import { createI18n } from 'vue-i18n';
 import { mixinJE } from '../helper/je';
 import { useGlobalStore } from '../store/global-store';
+import { watch } from 'vue';
 
 let i18n;
 export function useI18n() {
@@ -19,6 +20,7 @@ export async function setupIi8n(app) {
   await changeI18n(locale);
   app.use(i18n);
   mixinJE({ $i18n: i18n });
+  watch(() => globalStore.locale, changeI18n);
 }
 /**
  * 切换语言
