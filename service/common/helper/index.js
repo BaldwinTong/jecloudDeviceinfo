@@ -2,9 +2,13 @@ import { setupJE } from './je';
 import { setupTheme } from './theme';
 import { setupStore } from '../store';
 import { setupIi8n } from '../locales';
-import '@common/assets/externals';
+import { isMicro } from '@micro/helper';
 
 export async function setupCommon(vue) {
+  // Style
+  if (!isMicro()) {
+    await import('@common/assets/externals');
+  }
   // Store
   setupStore(vue);
   // JE

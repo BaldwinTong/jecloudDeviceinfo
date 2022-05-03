@@ -1,25 +1,12 @@
-const utils = require('./build/utils');
-const envs = utils.resolveEnvs(process.env);
-// 开发环境，按需加载style，生产环境，有静态资源处理
-const dev = envs.NODE_ENV == 'development';
-debugger;
 const config = {
   presets: ['@vue/cli-plugin-babel/preset'],
   plugins: [
     [
       'import',
-      { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: dev },
+      { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: false },
       'ant-design-vue',
     ],
-    [
-      'import',
-      {
-        libraryName: 'vxe-table',
-        libraryDirectory: 'es',
-        style: dev ? (name) => `${name}/style.css` : false,
-      },
-      'vxe-table',
-    ],
+    ['import', { libraryName: 'vxe-table', libraryDirectory: 'es', style: false }, 'vxe-table'],
     // ['import', { libraryName: '@jecloud/ui', libraryDirectory: 'src', style: dev }, '@jecloud/ui'],
   ],
 };
