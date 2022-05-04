@@ -32,3 +32,8 @@ export default routes;
 // export function createRouterGuard(router) {
 //   // 业务逻辑
 // }
+
+/**
+ * 路由白名单
+ */
+//  export const whiteRoutes = [];

@@ -12,11 +12,11 @@ export function useRouter() {
  * @export
  * @return {*}
  */
-export function setupRouter(app, { history, routes, guards }) {
+export function setupRouter(app, { history, routes, guards, whites }) {
   // 创建路由
   router = createRouter({ history, routes });
   // 基础路由守卫
-  createRouterGuard(router);
+  createRouterGuard({ router, whites });
   // 路由守卫
   guards?.(router);
   // 注册路由

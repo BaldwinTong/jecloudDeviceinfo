@@ -1,7 +1,7 @@
 import { logout, isLogin } from '@common/helper/system';
-import { whiteRoutes } from './routes-white';
-export function createRouterGuard(router) {
-  createAuthGuard(router);
+
+export function createRouterGuard(options) {
+  createAuthGuard(options);
 }
 
 /**
@@ -10,7 +10,9 @@ export function createRouterGuard(router) {
  * @export
  * @param {Router} router
  */
-export function createAuthGuard(router) {
+export function createAuthGuard({ router, whites = [] }) {
+  // 路由白名单
+  const whiteRoutes = ['Login', 'PlanLogin', ...whites];
   router.beforeEach((to, from, next) => {
     // 路由白名单，已经登录
     if (whiteRoutes.includes(to.name) || isLogin()) {
