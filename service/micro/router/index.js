@@ -3,6 +3,10 @@ import { setupRouter as _setupRouter } from '@common/router';
 import { createRouterGuard } from './guard';
 import * as customRouter from '@/router';
 import { useMicroStore } from '@common/store/micro-store';
+/**
+ * 自定义路由
+ */
+export const routes = customRouter.default ?? customRouter.routes;
 
 /**
  * 注册路由
@@ -11,7 +15,6 @@ import { useMicroStore } from '@common/store/micro-store';
  * @return {*}
  */
 export function setupRouter(app, isMicro) {
-  const routes = customRouter.default ?? customRouter.routes;
   if (isMicro) {
     const microStore = useMicroStore();
     // 处理子应用激活路由，根据配置处理
@@ -22,7 +25,7 @@ export function setupRouter(app, isMicro) {
   }
 
   _setupRouter(app, {
-    routes: routes,
+    routes,
     guards: customRouter.createRouterGuard || createRouterGuard,
     whites: customRouter.whiteRoutes,
     history:

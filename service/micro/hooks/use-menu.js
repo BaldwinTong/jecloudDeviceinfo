@@ -1,4 +1,4 @@
-import routes from '@micro/router/routes'; // 默认路由
+import { routes } from '@micro/router'; // 默认路由
 import { ref } from 'vue';
 
 /**
