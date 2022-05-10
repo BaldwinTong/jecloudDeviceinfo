@@ -39,7 +39,8 @@ const usePrivateGlobalStore = defineStore({
     historyRoute: null, // 退出前的路由fullPath，用于登录成功后再次打开
     locale: cookie.get(GLOBAL_SETTINGS_LOCALE), // 激活语言
     token: cookie.get(GLOBAL_SETTINGS_TOKENKEY), // token
-    user: null, // 当前用户
+    tokenKey: GLOBAL_SETTINGS_TOKENKEY, // token属性值
+    currentAccount: null, // 当前账号
     systemConfig: null, // 系统变量
     plans: new Map(), // 方案配置
     activePlan: 'je', // 激活方案，默认je

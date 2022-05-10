@@ -1,8 +1,7 @@
-import { getCurrentUser, getSystemConfig } from '../api';
 import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
 import { isMicro } from '@micro/helper';
-
+import { initSystem as _initSystem } from '@jecloud/utils';
 /**
  * 初始化系统数据
  *
@@ -35,10 +34,12 @@ export function initSystem(router, route) {
  * @return {Promise}
  */
 export function initSystemInfo() {
-  return Promise.all([getCurrentUser(), getSystemConfig()]).then((data) => {
-    const globalStore = useGlobalStore();
-    globalStore.user = data[0];
-    globalStore.systemConfig = data[1];
+  const globalStore = useGlobalStore();
+  return _initSystem().then(({ currentAccount, systemConfig }) => {
+    Object.assign(globalStore, {
+      currentAccount,
+      systemConfig,
+    });
   });
 }
 
@@ -49,11 +50,6 @@ export function login(options) {
   // 微应用，触发主应用登录事件
   if (isMicro()) {
     const microStore = useMicroStore();
-    // TODO: 临时数据，后期删除
-    Object.assign(options, {
-      token: 'YG6LYYksvjrVAUrwgPe',
-      locale: 'zh_CN',
-    });
     microStore.emitAdmin('login', options);
     return;
   }

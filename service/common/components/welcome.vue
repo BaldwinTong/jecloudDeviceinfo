@@ -12,7 +12,7 @@
     setup() {
       const globaleStore = useGlobalStore();
       const name = computed(() => {
-        return globaleStore.user?.name;
+        return globaleStore.currentAccount?.name;
       });
       return { name };
     },
