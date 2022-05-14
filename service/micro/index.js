@@ -3,7 +3,6 @@ import { setupCommon } from '@common/helper';
 import { setupRouter } from './router';
 import { useMicroHooks } from './hooks/use-micro';
 import { isMicro } from './helper';
-import './helper/public-path';
 
 let _app; // 应用入口
 let _router = true; // 使用路由

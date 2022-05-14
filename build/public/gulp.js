@@ -44,7 +44,7 @@ const buildHtmlTags = function (envs) {
 
   // 处理styles
   let styles = [];
-  const styleTpl = `<link href="${PUBLIC_PATH}static/styles/{file}" rel="stylesheet"></link>`;
+  const styleTpl = `<link href="${PUBLIC_PATH}static/styles/{file}" rel="stylesheet" exclude></link>`;
   const files = fs.readdirSync(distDir);
   publicStylesConfig.forEach((lib) => {
     styles.push(...files.filter((fileName) => fileName.startsWith(lib)));

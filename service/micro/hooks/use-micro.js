@@ -24,21 +24,14 @@ function setMicro({ microStore, globalStore, axiosInstance }) {
  * 微应用渲染函数
  */
 let _render;
-/**
- * 初始化
- *
- * @param {*} { store }
- */
-async function bootstrap(...args) {
-  setMicro(...args);
-}
 
 /**
  * 实例化
  *
  * @param {*} { container, store }
  */
-async function mount({ container }) {
+async function mount({ container, props }) {
+  setMicro(props);
   _render(container);
 }
 
@@ -56,15 +49,6 @@ async function unmount() {
 }
 
 /**
- * 更新内容
- *
- * @param {*} props
- */
-async function update(props) {
-  console.log('update props', props);
-}
-
-/**
  * 微应用钩子函数
  *
  * @export
@@ -74,9 +58,7 @@ async function update(props) {
 export function useMicroHooks(render) {
   _render = render;
   return {
-    bootstrap,
     mount,
     unmount,
-    update,
   };
 }

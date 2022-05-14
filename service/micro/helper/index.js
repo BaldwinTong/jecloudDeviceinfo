@@ -5,5 +5,5 @@
  * @return {*}
  */
 export function isMicro() {
-  return !!window.__POWERED_BY_QIANKUN__;
+  return !!window.__MICRO_APP_ENVIRONMENT__;
 }
