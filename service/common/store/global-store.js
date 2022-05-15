@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { cookie, mitt } from '@jecloud/utils';
+import { cookie, mitt, setSystemInfo } from '@jecloud/utils';
 import { GlobalSettingsEnum, JE_SETTINGS_LOGOUT_URL } from '../helper/constant';
 import { useRouter } from '@common/router';
 const { GLOBAL_SETTINGS_TOKENKEY, GLOBAL_SETTINGS_LOCALE } = GlobalSettingsEnum;
@@ -15,6 +15,8 @@ let globalStore;
  */
 export function setupGlobalStore(store) {
   globalStore = store;
+  // 初始化系统信息，共享主应用数据
+  setSystemInfo(store);
 }
 
 /**
@@ -42,6 +44,7 @@ const usePrivateGlobalStore = defineStore({
     tokenKey: GLOBAL_SETTINGS_TOKENKEY, // token属性值
     currentAccount: null, // 当前账号
     systemConfig: null, // 系统变量
+    ddCache: null, // 字典信息缓存
     plans: new Map(), // 方案配置
     activePlan: 'je', // 激活方案，默认je
     emitter: mitt(), // 事件触发器
@@ -55,6 +58,15 @@ const usePrivateGlobalStore = defineStore({
     },
   },
   actions: {
+    /**
+     * 初始化系统信息
+     * @param {*} param0
+     */
+    initSystem({ currentAccount, systemConfig, ddCache }) {
+      this.currentAccount = currentAccount;
+      this.systemConfig = systemConfig;
+      this.ddCache = ddCache;
+    },
     /**
      * 绑定子应用事件，供主应用调用
      * @param args

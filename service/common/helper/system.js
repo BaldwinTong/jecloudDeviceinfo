@@ -35,11 +35,8 @@ export function initSystem(router, route) {
  */
 export function initSystemInfo() {
   const globalStore = useGlobalStore();
-  return _initSystem().then(({ currentAccount, systemConfig }) => {
-    Object.assign(globalStore, {
-      currentAccount,
-      systemConfig,
-    });
+  return _initSystem().then((data) => {
+    globalStore.initSystem(data);
   });
 }
 
