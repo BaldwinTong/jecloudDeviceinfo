@@ -15,10 +15,8 @@ export function useRouter() {
 export function setupRouter(app, { history, routes, guards, whites }) {
   // 创建路由
   router = createRouter({ history, routes });
-  // 基础路由守卫
-  createRouterGuard({ router, whites });
   // 路由守卫
-  guards?.(router);
+  createRouterGuard({ router, whites, guards });
   // 注册路由
   app.use(router);
   // 注入JE

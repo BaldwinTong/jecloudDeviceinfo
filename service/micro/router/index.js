@@ -1,6 +1,5 @@
 import { createMemoryHistory, createWebHashHistory } from 'vue-router';
 import { setupRouter as _setupRouter } from '@common/router';
-import { createRouterGuard } from './guard';
 import * as customRouter from '@/router';
 import { useMicroStore } from '@common/store/micro-store';
 /**
@@ -26,7 +25,7 @@ export function setupRouter(app, isMicro) {
 
   _setupRouter(app, {
     routes,
-    guards: customRouter.createRouterGuard || createRouterGuard,
+    guards: customRouter.createRouterGuard,
     whites: customRouter.whiteRoutes,
     history:
       customRouter.createRouterHistory?.() ??

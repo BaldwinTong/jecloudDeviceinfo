@@ -1,7 +1,11 @@
-import { logout, isLogin } from '@common/helper/system';
+import { logout, initSystem } from '@common/helper/system';
 
 export function createRouterGuard(options) {
-  createAuthGuard(options);
+  // 自定义守卫
+  const { guards, router } = options;
+  if (guards?.(router) !== false) {
+    createAuthGuard(options);
+  }
 }
 
 /**
@@ -14,11 +18,17 @@ export function createAuthGuard({ router, whites = [] }) {
   // 路由白名单
   const whiteRoutes = ['Login', 'PlanLogin', ...whites];
   router.beforeEach((to, from, next) => {
-    // 路由白名单，已经登录
-    if (whiteRoutes.includes(to.name) || isLogin()) {
+    if (whiteRoutes.includes(to.name)) {
       next();
     } else {
-      logout(next);
+      // 初始化系统数据
+      initSystem(router, to)
+        .then(() => {
+          next();
+        })
+        .catch(() => {
+          logout();
+        });
     }
   });
 }
