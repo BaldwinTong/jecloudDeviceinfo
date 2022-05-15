@@ -1,4 +1,6 @@
-module.exports = {
+const config = require('./config.json');
+module.exports = config;
+/* module.exports = {
   libs: [
     // { "lib": "vue", "version": "3.2.33", "externals": "Vue" },
     // { "lib": "vue-router", "version": "4.0.14", "externals": "VueI18n" },
@@ -17,4 +19,4 @@ module.exports = {
     { lib: 'xe-utils', version: '3.5.4', externals: 'XEUtils' },
   ],
   styles: ['ant-design-vue', 'vxe-table', 'icons', 'common', 'jecloud-ui', 'jecloud-func'],
-};
+}; */
