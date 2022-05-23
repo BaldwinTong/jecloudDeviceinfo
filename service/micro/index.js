@@ -19,8 +19,11 @@ async function setup({ app, router = true, callback }) {
   _callback = callback;
   _router = router;
 
-  // 如果不是微应用，直接渲染
-  if (!isMicro()) {
+  // 如果是微应用，注册钩子函数
+  if (isMicro()) {
+    window[`micro-app-${window.__MICRO_APP_NAME__}`] = useMicroHooks(render);
+  } else {
+    // 直接渲染
     render();
   }
 }
