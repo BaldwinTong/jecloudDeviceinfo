@@ -83,8 +83,19 @@ function defineMicroStore(name) {
          * 触发主应用事件
          * 只有集成到主应用时起效，子应用默认空函数，兼容代码
          * 使用方式参考emit
+         * @param {*} eventName 事件编码
+         * @param  {...any} args 事件参数
          */
-        emitAdmin() {},
+        emitAdmin(eventName, ...args) {},
+        /**
+         * 触发其他微应用事件
+         * 只有集成到主应用时起效，子应用默认空函数，兼容代码
+         * 使用方式参考emit
+         * @param {*} microName 微应用编码
+         * @param {*} eventName 事件编码
+         * @param  {...any} args 事件参数
+         */
+        emitMicro(microName, eventName, ...args) {},
       },
     });
     defineStores.set(id, store);
