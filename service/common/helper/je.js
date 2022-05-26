@@ -1,12 +1,24 @@
 import { setupAxios } from './http';
-import * as utils from '@jecloud/utils';
+import * as Vue from 'vue';
+import * as Utils from '@jecloud/utils';
+import * as Ui from '@jecloud/ui';
 /**
  * 使用全局工具类JE
  *
  * @export
  * @return { $vue,$i18n,$router,...utils }
  */
-const JE = {};
+const JE = {
+  useUi() {
+    return Ui;
+  },
+  useUtils() {
+    return Utils;
+  },
+  useVue() {
+    return Vue;
+  },
+};
 export function useJE() {
   return JE;
 }
@@ -16,10 +28,8 @@ export function useJE() {
  * 页面可以通过JE.调用utils里的所有工具函数
  */
 export async function setupJE(vue) {
-  mixinJE(utils);
   setupAxios();
   mixinJE({ $vue: vue });
-  window.JE = JE;
 }
 
 /**
