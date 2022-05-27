@@ -27,7 +27,7 @@ microStore.emitMicro('microName','eventName',...args);
 
 ```
 
-# 3. 功能脚本中，其他微应用事件
+# 3. 功能脚本中，触发其他微应用事件
 ```js
 // 本函数，只有在主应用中有效
 const { emitMicroEvent } = JE.useSystem();
