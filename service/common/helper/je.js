@@ -2,6 +2,7 @@ import { setupAxios } from './http';
 import * as Vue from 'vue';
 import * as Utils from '@jecloud/utils';
 import * as Ui from '@jecloud/ui';
+import { FuncUtil } from '@jecloud/func';
 import { logout, isLogin } from './system';
 /**
  * 使用全局工具类JE
@@ -20,7 +21,7 @@ const JE = {
     return Vue;
   },
   useSystem() {
-    return { logout, isLogin };
+    return { logout, isLogin, ...FuncUtil };
   },
 };
 export function useJE() {
