@@ -10,5 +10,7 @@ import './styles/common';
 import './styles/icons';
 // jecloud/ui
 import './styles/jecloud-ui';
-// jecloud/ui
+// jecloud/func
 import './styles/jecloud-func';
+// jecloud/workflow
+import './styles/jecloud-workflow';
