@@ -11,6 +11,7 @@ specifiers:
   '@jecloud/func': file:.yalc/@jecloud/func
   '@jecloud/ui': file:.yalc/@jecloud/ui
   '@jecloud/utils': file:.yalc/@jecloud/utils
+  '@jecloud/workflow': file:.yalc/@jecloud/workflow
   '@simonwep/pickr': ^1.8.2
   '@tinymce/tinymce-vue': ^4.0.5
   '@vitejs/plugin-vue': ^1.9.3
@@ -90,6 +91,7 @@ dependencies:
   '@jecloud/func': link:.yalc/@jecloud/func
   '@jecloud/ui': link:.yalc/@jecloud/ui
   '@jecloud/utils': link:.yalc/@jecloud/utils
+  '@jecloud/workflow': link:.yalc/@jecloud/workflow
   '@simonwep/pickr': registry.npmmirror.com/@simonwep/pickr/1.8.2
   '@tinymce/tinymce-vue': registry.npmmirror.com/@tinymce/tinymce-vue/4.0.5_vue@3.2.30
   ant-design-vue: registry.npmmirror.com/ant-design-vue/3.2.3_vue@3.2.30
