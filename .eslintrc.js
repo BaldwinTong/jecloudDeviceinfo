@@ -23,6 +23,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'no-case-declarations': 'warn',
     'no-unused-vars': 'warn',
     'vue/no-reserved-keys': 'off',
     'vue/require-default-prop': 'off',
