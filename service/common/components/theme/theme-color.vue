@@ -1,6 +1,6 @@
 <template>
   <div class="je-settings-theme-color">
-    <div>{{ title }}</div>
+    <div v-if="title" class="title">{{ title }}</div>
     <div class="themes">
       <div
         v-for="(item, index) in themeStore.themes"
@@ -31,13 +31,11 @@
           return ['systemTheme', 'siderTheme', 'headerTheme'].includes(value);
         },
       },
-      title: {
-        type: String,
-        default: '',
-      },
+      title: String,
     },
-    setup(props) {
-      const { themeStore, toggleThemeColor } = useThemeSetting(props);
+    emit: ['toggle-theme-color'],
+    setup(props, context) {
+      const { themeStore, toggleThemeColor } = useThemeSetting({ props, context });
       return {
         themeStore,
         toggleThemeColor,
@@ -49,8 +47,8 @@
 <style lang="less" scoped>
   .je-settings-theme-color {
     text-align: center;
-    & > div {
-      padding: 5px 0;
+    .title {
+      padding: 20px 0;
     }
     .themes {
       display: flex;
@@ -58,10 +56,10 @@
       .theme-color {
         cursor: pointer;
         font-size: 12px;
-        margin: 0 4px;
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
+        margin: 0 5px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
         text-align: center;
         color: #ffffff;
         border: 1px solid transparent;

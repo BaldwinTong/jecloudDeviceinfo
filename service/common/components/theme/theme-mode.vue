@@ -1,13 +1,13 @@
 <template>
   <div class="je-settings-theme-mode">
-    <div>{{ title }}</div>
+    <div v-if="title" class="title">{{ title }}</div>
     <div class="mode">
       <Switch v-model:checked="themeStore[mode]" @change="toggleThemeMode"></Switch>
     </div>
   </div>
 </template>
 <script>
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import { Switch } from 'ant-design-vue';
   import { useThemeSetting } from './hooks';
   export default defineComponent({
@@ -26,8 +26,9 @@
         default: '',
       },
     },
-    setup(props) {
-      const { themeStore, toggleThemeMode } = useThemeSetting(props);
+    emit: ['toggle-theme-mode'],
+    setup(props, context) {
+      const { themeStore, toggleThemeMode } = useThemeSetting({ props, context });
       return {
         themeStore,
         toggleThemeMode,
@@ -38,8 +39,8 @@
 <style lang="less" scoped>
   .je-settings-theme-mode {
     text-align: center;
-    & > div {
-      padding: 5px 0;
+    .title {
+      padding: 20px 0;
     }
   }
 </style>
