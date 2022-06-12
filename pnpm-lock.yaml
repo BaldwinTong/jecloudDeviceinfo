@@ -8,6 +8,7 @@ specifiers:
   '@babel/preset-react': ^7.16.7
   '@commitlint/cli': ^13.2.1
   '@commitlint/config-conventional': ^13.2.0
+  '@flowjs/flow.js': ^2.14.1
   '@jecloud/func': file:.yalc/@jecloud/func
   '@jecloud/ui': file:.yalc/@jecloud/ui
   '@jecloud/utils': file:.yalc/@jecloud/utils
@@ -88,6 +89,7 @@ specifiers:
   xe-utils: ^3.5.4
 
 dependencies:
+  '@flowjs/flow.js': registry.npmmirror.com/@flowjs/flow.js/2.14.1
   '@jecloud/func': link:.yalc/@jecloud/func
   '@jecloud/ui': link:.yalc/@jecloud/ui
   '@jecloud/utils': link:.yalc/@jecloud/utils
@@ -2174,6 +2176,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  registry.npmmirror.com/@flowjs/flow.js/2.14.1:
+    resolution: {integrity: sha512-99DWlPnksOOS8uHfo+bhSjvs8d2MfLTB/22JBDC2ONwz/OCdP+gL/iiM4puMSTE2wH4A2/+J0eMc7pKwusXunw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@flowjs/flow.js/-/flow.js-2.14.1.tgz}
+    name: '@flowjs/flow.js'
+    version: 2.14.1
+    dev: false
 
   registry.npmmirror.com/@hapi/address/2.1.4:
     resolution: {integrity: sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@hapi/address/-/address-2.1.4.tgz}
