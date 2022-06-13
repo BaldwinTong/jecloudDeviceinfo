@@ -39,10 +39,10 @@ jecloud-cli
 
 ### [pnpm](https://pnpm.io/zh/) 
 快速的，节省磁盘空间的包管理工具，本项目采用pnpm进行包管理。
-- 版本：`v 6.23.2` 
+- 版本：`v 6.23.2`，由于pnpm7不兼容yalc，不支持file:xxx安装本地包，所以请使用 `pnpm6`
 - 常用命令
 ```bash
-npm install -g pnpm    # 全局安装 pnpm
+npm install -g pnpm@v6.23.2    # 全局安装 pnpm
 
 pnpm add xxx	       # 保存到 dependencies
 pnpm add -D xxx	       # 保存到 devDependencies
