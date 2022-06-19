@@ -23,6 +23,7 @@ const JE = {
   useSystem() {
     return { logout, isLogin, ...FuncUtil };
   },
+  watchWebSocket() {},
 };
 export function useJE() {
   return JE;
