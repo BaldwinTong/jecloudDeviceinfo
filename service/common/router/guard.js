@@ -26,7 +26,8 @@ export function createAuthGuard({ router, whites = [] }) {
         .then(() => {
           next();
         })
-        .catch(() => {
+        .catch((e) => {
+          console.error(e);
           logout();
         });
     }

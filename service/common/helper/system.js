@@ -1,7 +1,7 @@
 import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
 import { isMicro } from '@micro/helper';
-import { initSystem as _initSystem } from '@jecloud/utils';
+import { initSystem as _initSystem, cookie } from '@jecloud/utils';
 /**
  * 初始化系统数据
  *
@@ -14,7 +14,7 @@ export function initSystem(router, route) {
   const globalStore = useGlobalStore();
 
   // 已经初始化数据，设置默认菜单
-  if (globalStore.init) {
+  if (globalStore.init || isMicro()) {
     return Promise.resolve();
   }
 
@@ -71,8 +71,16 @@ export function isLogin() {
 export function logout(next) {
   const globalStore = useGlobalStore();
   globalStore.logout();
+  cleanToken();
   // 子应用路由处理
   if (isMicro() && next) {
     next({ name: 'Login' });
   }
+}
+/**
+ * 删除token
+ */
+function cleanToken() {
+  const globalStore = useGlobalStore();
+  cookie.remove(globalStore.tokenKey);
 }

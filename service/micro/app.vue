@@ -27,7 +27,7 @@
         },
       );
       // 设置登录后的系统信息
-      microStore.on('admin-login', (options) => {
+      microStore.on('admin-login-success', (options) => {
         setSystemInfo(options);
       });
       return { locale };
