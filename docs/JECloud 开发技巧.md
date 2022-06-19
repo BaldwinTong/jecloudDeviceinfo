@@ -37,3 +37,50 @@ const { emitMicroEvent } = JE.useSystem();
 emitMicroEvent('microName','eventName',...args);
 
 ```
+
+# 4. WebSocket 监听
+- 子应用监听
+```js
+// 获取子应用store
+const microStore = useMicroStore();
+// 注册事件
+microStore.on('websocket-message',(message)=>{
+  // ...业务逻辑
+})
+
+```
+- 主应用监听
+
+```js
+// 获取websocket store
+const webSocketStore = useWebSocketStore();
+// 注册事件
+webSocketStore.on('message',(message)=>{
+  // ...业务逻辑
+})
+```
+
+- 事件脚本监听
+```js
+const { Modal } = JE.useUi();
+const { ref, h } = JE.useVue();
+const messages = ref([]);
+// 注册监听事件
+const watchFn = JE.watchWebSocket((message)=>{
+  messages.value.push(message);
+  console.log(message)
+});
+// 查看消息内容
+Modal.window({
+  content(){
+    // 实时更新数据
+    return messages.value.map((msg)=>{
+        return h('div',msg.content)
+    })
+  },
+  onClose(){
+    // 停止监听，防止重复执行
+    watchFn();
+  }
+})
+```
