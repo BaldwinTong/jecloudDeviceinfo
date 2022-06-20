@@ -165,5 +165,13 @@ const usePrivateGlobalStore = defineStore({
         }
       }
     },
+    /**
+     * 获取当前激活方案的配置项
+     * @param {*} key
+     * @returns
+     */
+    getPlanConfig(key) {
+      return this.plans.get(this.activePlan)?.[key];
+    },
   },
 });

@@ -1,5 +1,6 @@
-import { toggleClass, darken, lighten } from '@jecloud/utils';
+import { toggleClass, darken, lighten, isNotEmpty } from '@jecloud/utils';
 import { useThemeStore } from '../store/theme-store';
+import { isMicro } from '@micro/helper';
 
 // 高亮系数
 const darkenNum = 5;
@@ -7,7 +8,8 @@ const darkenNum = 5;
  * 初始主题
  */
 export function setupTheme() {
-  toggleSystemTheme();
+  // 子应用使用主应用主题，不需要自行设置
+  !isMicro() && toggleSystemTheme();
 }
 /**
  * 切换主题
@@ -30,13 +32,13 @@ export function toggleTheme(theme, value) {
       toggleSiderTheme();
       break;
     case 'darkMode': // 黑暗主题
-      toggleDarkMode();
+      toggleDarkMode(value);
       break;
     case 'grayMode': // 灰色模式
-      toggleGrayMode();
+      toggleGrayMode(value);
       break;
     case 'colorWeak': // 色弱模式
-      toggleColorWeak();
+      toggleColorWeak(value);
       break;
   }
 }
@@ -54,7 +56,7 @@ export const toggleSystemTheme = function () {
   let currentHtmlClassNames = (document.body.className || '').split(/\s+/g);
   if (!currentHtmlClassNames.includes(themeCls)) {
     currentHtmlClassNames = currentHtmlClassNames.filter(
-      (classname) => !classname.startsWith('theme-'),
+      (classname) => !classname.startsWith('theme-') && isNotEmpty(classname),
     );
     currentHtmlClassNames.push(themeCls);
     document.body.className = currentHtmlClassNames.join(' ');
@@ -184,18 +186,18 @@ export const toggleDarkMode = function () {
  * 灰色模式
  *
  */
-export const toggleGrayMode = function () {
+export const toggleGrayMode = function (toggle) {
   const grayModeCls = 'je-theme-gray-mode';
-  toggleClass(grayModeCls);
+  toggleClass(grayModeCls, toggle);
 };
 
 /**
  * 色弱模式
  *
  */
-export const toggleColorWeak = function () {
+export const toggleColorWeak = function (toggle) {
   const colorWeakCls = 'je-theme-color-weak';
-  toggleClass(colorWeakCls);
+  toggleClass(colorWeakCls, toggle);
 };
 
 /**
