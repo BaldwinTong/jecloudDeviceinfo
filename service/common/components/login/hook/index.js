@@ -1,6 +1,8 @@
-import { toRaw } from 'vue';
+import { toRaw, h } from 'vue';
 import { doLogin } from '@common/api';
 import { message } from 'ant-design-vue';
+import { Modal } from '@jecloud/ui';
+import { isArray } from '@jecloud/utils';
 import { login as _login } from '@common/helper/system';
 
 /**
@@ -12,14 +14,43 @@ import { login as _login } from '@common/helper/system';
  */
 export function useLogin(form, model) {
   // 登录系统
-  function login() {
+  function login(deptId) {
+    model.deptId = deptId;
     form.value.validate().then(() => {
       // 获取原始对象
       const vals = toRaw(model);
       // 提交登录
       doLogin(vals)
         .then((token) => {
-          _login({ token });
+          if (isArray(token)) {
+            const modal = Modal.dialog({
+              title: '选择部门',
+              className: 'je-login-view-dept-modal',
+              width: 100,
+              content() {
+                return h(
+                  'div',
+                  { class: 'dept-list' },
+                  token.map((item) =>
+                    h(
+                      'div',
+                      {
+                        class: 'dept-list-item',
+                        onClick() {
+                          login(item.id);
+                          modal.close();
+                        },
+                      },
+                      item.name,
+                    ),
+                  ),
+                );
+              },
+              showFooter: false,
+            });
+          } else {
+            _login({ token });
+          }
         })
         .catch((e) => {
           // 登录失败

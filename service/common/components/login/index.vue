@@ -148,3 +148,18 @@
     }
   }
 </style>
+<style lang="less">
+  .je-login-view-dept-modal {
+    .dept-list {
+      padding-bottom: 20px;
+      &-item {
+        padding: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+</style>
