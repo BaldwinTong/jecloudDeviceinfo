@@ -11,5 +11,5 @@
     { "lib": "sortablejs", "version": "1.15.0", "externals": "Sortable" },
     { "lib": "xe-utils", "version": "3.5.4", "externals": "XEUtils" }
   ],
-  "styles": ["ant-design-vue", "vxe-table", "icons", "common", "jecloud-ui", "jecloud-func","jecloud-workflow"]
+  "styles": ["ant-design-vue", "vxe-table", "icons", "common", "jecloud-ui", "jecloud-func","jecloud-plugin"]
 }
