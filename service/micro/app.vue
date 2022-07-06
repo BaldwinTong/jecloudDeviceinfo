@@ -16,12 +16,12 @@
       const microStore = useMicroStore();
       const i18n = useI18n();
       const getAntdLocale = function () {
-        return i18n.global.getLocaleMessage(i18n.locale)?.antdLocale ?? {};
+        return i18n.global.getLocaleMessage(i18n.global.locale)?.antdLocale ?? {};
       };
       // 国际化处理
       let locale = ref(getAntdLocale());
       watch(
-        () => i18n.global.locale.value,
+        () => i18n.global.locale,
         () => {
           locale.value = getAntdLocale();
         },
