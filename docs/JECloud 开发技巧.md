@@ -64,9 +64,10 @@ webSocketStore.on('message',(message)=>{
 ```js
 const { Modal } = JE.useUi();
 const { ref, h } = JE.useVue();
+const { watchWebSocket } = JE.useSystem();
 const messages = ref([]);
 // 注册监听事件
-const watchFn = JE.watchWebSocket((message)=>{
+const watchFn = watchWebSocket((message)=>{
   messages.value.push(message);
   console.log(message)
 });

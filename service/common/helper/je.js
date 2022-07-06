@@ -21,9 +21,8 @@ const JE = {
     return Vue;
   },
   useSystem() {
-    return { logout, isLogin, ...FuncUtil };
+    return { logout, isLogin, ...FuncUtil, watchWebSocket() {} };
   },
-  watchWebSocket() {},
 };
 export function useJE() {
   return JE;
