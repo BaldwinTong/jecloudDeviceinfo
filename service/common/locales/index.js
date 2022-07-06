@@ -1,12 +1,33 @@
 import { createI18n } from 'vue-i18n';
 import { mixinJE } from '../helper/je';
 import { useGlobalStore } from '../store/global-store';
-import { watch } from 'vue';
+import { watch, ref } from 'vue';
 
 let i18n;
 export function useI18n() {
   return i18n;
 }
+
+/**
+ * 监听国际化
+ * @returns
+ */
+export function watchI18n() {
+  const getAntdLocale = function () {
+    return i18n.global.getLocaleMessage(i18n.global.locale)?.antdLocale ?? {};
+  };
+  // 国际化处理
+  const locale = ref();
+  watch(
+    () => i18n.global.locale,
+    () => {
+      locale.value = getAntdLocale();
+    },
+    { immediate: true },
+  );
+  return { locale };
+}
+
 /**
  * 安装i18n
  *
