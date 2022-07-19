@@ -15,6 +15,7 @@ micro.setup({
     ConfigProvider.setup({ publicPath: CLI_ENVS.PUBLIC_PATH, func });
     // 功能组件绑定JE，用于事件操作
     func.ConfigProvider.setup({ JE: useJE() });
+    plugin.ConfigProvider.setup({ JE: useJE() });
   },
 });
 
