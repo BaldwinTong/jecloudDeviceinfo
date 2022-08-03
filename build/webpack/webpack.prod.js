@@ -3,6 +3,7 @@
  */
 const { buildHtmlTags, buildExternals } = require('../public/gulp');
 const { resolve } = require('../utils');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
   chainWebpack({ config, envs }) {
     config.plugin('html-index').tap((args) => {
@@ -35,6 +36,15 @@ module.exports = {
   config(config) {
     return Object.assign(config, {
       externals: buildExternals(),
+      optimization: {
+        minimizer: [
+          new UglifyJsPlugin({
+            uglifyOptions: {
+              output: { comments: false },
+            },
+          }),
+        ],
+      },
     });
   },
 };

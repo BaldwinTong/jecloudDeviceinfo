@@ -108,6 +108,7 @@
     "regenerator-runtime": "^0.13.9",
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.1",
     "vite": "^2.6.4",
     "vite-plugin-html": "^2.1.1",
