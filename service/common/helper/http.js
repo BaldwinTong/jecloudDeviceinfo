@@ -1,4 +1,4 @@
-import { initAxios } from '@jecloud/utils';
+import { initAxios, transformAjaxData } from '@jecloud/utils';
 import { HTTP_BASE_URL } from './constant';
 import { useGlobalStore } from '@common/store/global-store';
 import { useMicroStore } from '@common/store/micro-store';
@@ -46,29 +46,4 @@ export function setupAxios() {
  * @export
  * @return {*}
  */
-export function transformData(data) {
-  // TODO: 数据兼容，后期去掉，后台返回数据格式，参考：mock/util.js
-  const _data = {};
-  if (data.obj) {
-    // 正常返回
-    _data.data = data.obj;
-  } else if (!Object.prototype.hasOwnProperty.call(data, 'success')) {
-    // 直接返回对象
-    _data.data = data;
-    _data.success = true;
-    _data.code = 200;
-    _data.message = 'ok';
-    data = {}; // 清空原始数据
-  }
-  ['obj', 'rows', 'totalCount'].forEach((key) => {
-    delete data[key];
-  });
-  Object.assign(data, _data);
-
-  // 返回业务数据
-  if (data.success) {
-    return data.data;
-  } else {
-    return Promise.reject(data);
-  }
-}
+export const transformData = transformAjaxData;

@@ -6,7 +6,6 @@ const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
 const envs = utils.resolveEnvs(process.env);
-// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 // 自定义配置
 const customConfig = envs.NODE_ENV == 'development' ? dev : prod;
@@ -31,9 +30,6 @@ const configureWebpack = customConfig.config({
     new webpack.DefinePlugin({
       __CLI_ENVS__: JSON.stringify(envs),
     }),
-    // new MonacoWebpackPlugin({
-    //   languages: ['typescript', 'javascript', 'css'],
-    // }),
   ],
   // 微应用配置
   output: {
@@ -48,7 +44,6 @@ module.exports = {
       publicPath: utils.getPublicPath(envs),
       chainWebpack,
       configureWebpack,
-      productionSourceMap: false,
     };
   },
 };

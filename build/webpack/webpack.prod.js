@@ -18,15 +18,6 @@ module.exports = {
     config.module
       .rule('externals')
       .test(resolve('service/common/assets/externals.js'))
-      // .test((file) => {
-      //   if (
-      //     file.includes('vxe-table') &&
-      //     (file.endsWith('.css') || file.endsWith('.scss') || file.endsWith('.less'))
-      //   ) {
-      //     console.log(file);
-      //   }
-      //   return false;
-      // })
       .use('null-loader')
       .loader('null-loader')
       .end();
@@ -36,6 +27,7 @@ module.exports = {
   config(config) {
     return Object.assign(config, {
       externals: buildExternals(),
+      productionSourceMap: false,
       optimization: {
         minimizer: [
           new UglifyJsPlugin({

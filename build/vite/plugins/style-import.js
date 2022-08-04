@@ -6,7 +6,6 @@ import styleImport from 'vite-plugin-style-import';
 export function configStyleImportPlugin(envs, command) {
   return styleImport({
     libs: [
-      // TODO: 未作@jecloud/ui的按需加载，后续支持
       {
         libraryName: 'ant-design-vue',
         esModule: true,
