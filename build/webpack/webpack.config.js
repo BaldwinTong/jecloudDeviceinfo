@@ -44,6 +44,7 @@ module.exports = {
       publicPath: utils.getPublicPath(envs),
       chainWebpack,
       configureWebpack,
+      ...customConfig.vueCliConfig(),
     };
   },
 };

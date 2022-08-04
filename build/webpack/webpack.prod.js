@@ -24,10 +24,14 @@ module.exports = {
 
     return config;
   },
+  /**
+   * webpack配置项
+   * @param {*} config
+   * @returns
+   */
   config(config) {
     return Object.assign(config, {
       externals: buildExternals(),
-      productionSourceMap: false,
       optimization: {
         minimizer: [
           new UglifyJsPlugin({
@@ -38,5 +42,14 @@ module.exports = {
         ],
       },
     });
+  },
+  /**
+   * 脚手架配置项
+   * @returns
+   */
+  vueCliConfig() {
+    return {
+      productionSourceMap: false,
+    };
   },
 };

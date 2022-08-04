@@ -10,7 +10,17 @@ module.exports = {
     config.resolve.alias.set('vue', utils.resolve('node_modules/vue'));
     return config;
   },
+  /**
+   * webpack配置项
+   * @param {*} config
+   * @returns
+   */
   config(config) {
     return config;
   },
+  /**
+   * 脚手架配置项
+   * @returns
+   */
+  vueCliConfig() {},
 };
