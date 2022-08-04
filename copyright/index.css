@@ -1,0 +1,16 @@
+html,body{
+  margin:0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.un-perm-style{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  padding-top: 10%;
+  line-height: 1;
+  background-color: #f9f9f9;
+  color:#333333;
+}
