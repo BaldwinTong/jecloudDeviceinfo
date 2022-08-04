@@ -5,12 +5,17 @@ import './index.css';
  * @param {*} options
  */
 function setupCopyright() {
+  const win = window;
+  const doc = win[['d', 'ocume', 'nt'].join('')];
+  const body = doc[['b', 'od', 'y'].join('')];
+  const appId = ['ap', 'p'].join('');
+  const microMark = ['_', '_MIC', 'RO_A', 'PP', '_', 'ENVIRO', 'NMENT_', '_'].join('');
   // 微应用环境
-  const isMicro = !!window[['_', '_MIC', 'RO_A', 'PP', '_', 'ENVIRO', 'NMENT_', '_'].join('')];
+  const isMicro = !!win[microMark];
   if (!isMicro) {
-    const decode = window[['deco', 'deURICom', 'ponent'].join('')];
+    const decode = win[['deco', 'deURICom', 'ponent'].join('')];
     // 添加提示
-    const dom = document.createElement('div');
+    const dom = doc[['cre', 'ateE', 'lem', 'ent'].join('')]('div');
     dom.setAttribute(['cl', 'as', 's'].join(''), ['u', 'n-pe', 'rm-s', 'tyle'].join(''));
     dom.innerHTML = decode(
       // 平台级微应用不允许单独访问！
@@ -20,10 +25,10 @@ function setupCopyright() {
         'E5%8D%95%E7%8B%AC%E8%AE%BF%E9%97%AE%EF%BC%81',
       ].join(''),
     );
-    document.body.appendChild(dom);
+    body.appendChild(dom);
     // 定时清空appDom
     timer(() => {
-      const appDom = document.getElementById('app');
+      const appDom = doc[['ge', 'tE', 'lem', 'entB', 'yId'].join('')](appId);
       if (appDom) {
         appDom.parentNode.removeChild(appDom);
       }
