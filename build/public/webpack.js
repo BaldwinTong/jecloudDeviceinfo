@@ -60,6 +60,18 @@ webpack(
             },
           ],
         },
+        {
+          test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[contenthash:8].[ext]',
+                outputPath: 'images',
+              },
+            },
+          ],
+        },
       ],
     },
     plugins: [
