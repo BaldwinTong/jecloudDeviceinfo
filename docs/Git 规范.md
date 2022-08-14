@@ -81,3 +81,21 @@ git remote prune origin
 # 查看分支
 git branch -a
 ```
+### 撤销已经提交到远程分支的代码
+有时候我们提交了代码，发现有问题，需要撤销操作。这个时候我们就需要指定需要回退的版本， 回滚代码。
+
+```bash
+# 1.首先通过git log查看提交记录
+git log
+
+# 2.选中需要回退的版本。使用命令：git reset --soft 版本号
+git reset --soft xxx
+
+# 3.使用git log查看是否回退成功，确认回退成功
+git log
+
+# 4.同步到远程分支。命令：git push --force
+git push --force
+
+# 5.这个时候我们看远程分支上之前的提交已经撤销了。修改暂存到了本地。
+```
