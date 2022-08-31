@@ -7,7 +7,6 @@ const config = {
       'ant-design-vue',
     ],
     ['import', { libraryName: 'vxe-table', libraryDirectory: 'es', style: false }, 'vxe-table'],
-    // ['import', { libraryName: '@jecloud/ui', libraryDirectory: 'src', style: dev }, '@jecloud/ui'],
   ],
 };
 module.exports = config;

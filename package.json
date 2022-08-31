@@ -41,7 +41,7 @@
     "clean": "rimraf node_modules",
     "clean:vite": "rimraf node_modules/.vite",
     "theme": "node build/theme/index.js",
-    "config": "vue inspect > output.js"
+    "config": "vue inspect > .vue.config.js"
   },
   "husky": {
     "hooks": {
