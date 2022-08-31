@@ -35,24 +35,24 @@
 - To Do：待办列表
 - v1.0.0: 平台版本号。平台每次增加版本，都会增加对应的版本标记； 每个issue都必须包含版本号标记，用于记录版本的改动
 
-## 脚手架项目更新规范
+## 业务项目更新规范
 
-1、项目中关联脚手架项目(jecloud-cli)仓库地址：
+1、项目中关联骨架项目仓库地址：
 ```bash
  # 添加远程仓库
- git remote add cli http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli.git
+ git remote add template http://xxx/xxx.git
 
  # 查看是否添加成功
  git remote -v
 ```
 
-2、切换本地脚手架项目分支 cli，更新仓库代码
+2、切换本地骨架项目分支 template，更新仓库代码
 ```bash
-# 切换 cli 分支
-git checkout cli
+# 切换 template 分支
+git checkout template
 
-# 更新cli远程仓库的develop分支代码
-git pull cli develop
+# 更新template远程仓库的develop分支代码
+git pull template develop
 ```
 
 3、合并到本地代码
@@ -62,7 +62,7 @@ git pull cli develop
 git checkout develop
 
 # 合并代码，解决冲突
-git merge cli
+git merge template
 ```
 
 ## 代码定版
@@ -110,3 +110,20 @@ git push origin v1.0.0
 ```bash
 git branch -d release/1.0.0
 ```
+
+## 源码开发规范
+1. 全局安装 [yalc](https://github.com/wclr/yalc)，进行本地调试开发
+    ```bash
+    npm i -g yalc
+    ```
+
+2. 下载项目 `jecloud-libs`，在 `jecloud-libs` 根目录执行命令 `npm run yalc:publish`，模拟npm发布本地调试包
+3. 下载 `业务项目`，如 `jecloud-core-table`
+4. 在 `业务项目` 根目录，执行命令 `npm run setup` 安装依赖，进行本地开发调试
+5. 当 `jecloud-libs` 代码有变动，在 `jecloud-libs` 根目录执行命令 `npm run yalc:push` 同步代码
+6. 同步完代码，`业务项目` 执行 `npm run clean:vite`,清理`vite`缓存
+7. 注意事项：
+    ``` bash
+    # 当控制台报错如下，请手动删除 node_modules/.ignored目录，再重新操作
+     EPERM: operation not permitted, rename 'E:\workspace\jecloud\jecloud-cli\node_modules\@jecloud\utils' -> 'E:\workspace\jecloud\jecloud-cli\node_modules\.ignored\@jecloud\utils'
+    ```
