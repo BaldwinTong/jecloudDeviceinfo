@@ -2,11 +2,20 @@
   "name": "jecloud-cli",
   "version": "1.0.0",
   "private": true,
-  "description": "JECloud 插件项目",
+  "description": "JECloud 前端微应用项目骨架",
   "author": {
     "name": "linzhichao",
     "email": "linzc@china-hbp.com"
   },
+  "keywords": [
+    "jecloud",
+    "je",
+    "jepaas",
+    "低代码平台",
+    "低代码开发",
+    "微应用",
+    "微前端"
+  ],
   "scripts": {
     "dev": "npm run dev:vite",
     "build": "npm run build:public && npm run build:vuecli && npm run copy:public",
