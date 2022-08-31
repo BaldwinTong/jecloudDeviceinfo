@@ -25,3 +25,6 @@ pnpm-debug.log*
 # yalc files
 .yalc
 yalc.lock
+
+# webpack config
+.vue.config.js
