@@ -1,7 +1,15 @@
-import { initAxios, transformAjaxData } from '@jecloud/utils';
+import { initAxios, transformAjaxData, debounce } from '@jecloud/utils';
+import { Modal } from '@jecloud/ui';
 import { HTTP_BASE_URL } from './constant';
 import { useGlobalStore } from '@common/store/global-store';
 import { useMicroStore } from '@common/store/micro-store';
+
+/**
+ * 展示错误信息
+ */
+const showErrorMessage = debounce(({ code, message } = {}) => {
+  code && Modal.message(`${message}【${code}】`, Modal.status.error);
+}, 100);
 
 /**
  * 注册axios配置
@@ -36,6 +44,11 @@ export function setupAxios() {
         config.headers = Object.assign(config.headers ?? {}, { [globalStore.tokenKey]: token });
       }
     },
+    // transform: {
+    //   requestCatchHook(error) {
+    //     showErrorMessage(error.errorInfo);
+    //   },
+    // },
   };
   initAxios(axiosConfig);
 }

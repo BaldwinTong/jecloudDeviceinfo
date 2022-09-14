@@ -70,11 +70,13 @@ export function isLogin() {
  */
 export function logout(next) {
   const globalStore = useGlobalStore();
-  return logoutApi().then(() => {
-    globalStore.logout();
-    // 子应用路由处理
-    if (isMicro() && next) {
-      return next({ name: 'Login' });
-    }
-  });
+  return logoutApi()
+    .catch(() => {})
+    .finally(() => {
+      globalStore.logout();
+      // 子应用路由处理
+      if (isMicro() && next) {
+        return next({ name: 'Login' });
+      }
+    });
 }
