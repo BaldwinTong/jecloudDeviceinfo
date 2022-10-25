@@ -1,3 +1,15 @@
+## [1.0.1](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/compare/v1.0.0...v1.0.1) (2022-10-25)
+
+
+### Bug Fixes
+
+* **code:** 调整代码，适应所有分支结构 ([2e7d448](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/commit/2e7d44879680fda6cf2af72b7c6b1fd4cc18ed5c))
+* **logout:** 修复退出登录接口[[#9](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/issues/9)] ([e244604](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/commit/e244604c6aa1bfd01268e4cbf35af8e7a82afc44))
+* **logout:** 增加退出登录接口调用[[#9](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/issues/9)] ([bda04a2](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/commit/bda04a21469159c1973ab121b15c49c81f838425))
+* **npm:** 修改npm私服地址 ([cb61aad](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-cli/commit/cb61aadb4077424573b8b7e8770972d0091aa569))
+
+
+
 # 1.0.0 (2022-08-30)
 
 
