@@ -64,66 +64,25 @@ git checkout develop
 # 合并代码，解决冲突
 git merge template
 ```
-
-## 代码定版
-1、确保`develop`分支代码是最新,最稳定代码
-
-2、从`develop`分支新建版本分支`release/x.x.x`
-
-```bash
-# 切换develop分支
-git checkout develop
-# 新建版本分支
-git checkout -b release/1.0.0
-```
-
-3、修改package.json的版本，生成changelog记录
-
-```bash
-# 1. 修改package.json版本为1.0.0
-{"version": "1.0.0"}
-# 2. 生成changelog记录
-npm run changelog
-```
-4、提交记录，feat(version): release v1.0.0
-
-5、合并master代码
-```bash
-# 1. 切换master分支
-git checkout master
-# 2. 合并代码
-git merge release/1.0.0
-# 3. 推送代码
-git push
-```
-
-6、生成tag v1.0.0
-```bash
-# 生成tag
-git tag v1.0.0
-
-# 推送tag
-git push origin v1.0.0
-
-```
-7、完成定版，删除版本分支
-```bash
-git branch -d release/1.0.0
-```
-
 ## 源码开发规范
-1. 全局安装 [yalc](https://github.com/wclr/yalc)，进行本地调试开发
-    ```bash
-    npm i -g yalc
-    ```
+1、全局安装 [yalc](https://github.com/wclr/yalc)，进行本地调试开发
 
-2. 下载项目 `jecloud-libs`，在 `jecloud-libs` 根目录执行命令 `npm run yalc:publish`，模拟npm发布本地调试包
-3. 下载 `业务项目`，如 `jecloud-core-table`
-4. 在 `业务项目` 根目录，执行命令 `npm run setup` 安装依赖，进行本地开发调试
-5. 当 `jecloud-libs` 代码有变动，在 `jecloud-libs` 根目录执行命令 `npm run yalc:push` 同步代码
-6. 同步完代码，`业务项目` 执行 `npm run clean:vite`,清理`vite`缓存
-7. 注意事项：
-    ``` bash
-    # 当控制台报错如下，请手动删除 node_modules/.ignored目录，再重新操作
-     EPERM: operation not permitted, rename 'E:\workspace\jecloud\jecloud-cli\node_modules\@jecloud\utils' -> 'E:\workspace\jecloud\jecloud-cli\node_modules\.ignored\@jecloud\utils'
-    ```
+```bash
+npm i -g yalc
+```
+
+2、下载项目 `jecloud-libs`，在 `jecloud-libs` 根目录执行命令 `npm run yalc:publish`，模拟npm发布本地调试包
+
+3、下载 `业务项目`，如 `jecloud-core-table`
+
+4、在 `业务项目` 根目录，执行命令 `npm run setup`安装依赖，进行本地开发调试
+
+5、当 `jecloud-libs` 代码有变动，在 `jecloud-libs` 根目录执行命令 `npm run yalc:push` 同步代码
+
+6、同步完代码，`业务项目` 执行 `npm run clean:vite`,清理`vite`缓存
+
+7、注意事项：
+``` bash
+# 当控制台报错如下，请手动删除 node_modules/.ignored目录，再重新操作
+ EPERM: operation not permitted, rename 'E:\workspace\jecloud\jecloud-cli\node_modules\@jecloud\utils' -> 'E:\workspace\jecloud\jecloud-cli\node_modules\.ignored\@jecloud\utils'
+```
