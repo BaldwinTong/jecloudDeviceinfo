@@ -5,7 +5,7 @@ import { watch, ref } from 'vue';
 
 let i18n;
 export function useI18n() {
-  return i18n;
+  return i18n?.global;
 }
 
 /**
