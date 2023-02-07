@@ -16,5 +16,5 @@ export default {
     resetText: '重置',
     loginSuccess: '登录成功！',
   },
-  welcome: '欢迎 {0}，请开始你的表演',
+  welcome: '欢迎！请开始你的表演',
 };
