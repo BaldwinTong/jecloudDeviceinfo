@@ -1,6 +1,6 @@
 <template>
   <div class="je-common-welcome">
-    {{ $t('welcome', [name]) }}<i class="fal fa-rocket-launch"></i>
+    {{ name }}，{{ $t('welcome') }}<i class="fal fa-rocket-launch"></i>
   </div>
 </template>
 
