@@ -37,7 +37,7 @@
       </FormItem>
 
       <FormItem :wrapper-col="{ span: 24 }" style="text-align: center">
-        <Button type="primary" class="login-btn" block @click="login">{{
+        <Button type="primary" class="login-btn" block @click="login()">{{
           $t('login.loginText')
         }}</Button>
       </FormItem>

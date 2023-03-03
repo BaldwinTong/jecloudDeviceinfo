@@ -8,6 +8,7 @@ import './styles/vxe-table';
 import './styles/common';
 // 字体图标
 import './styles/icons';
+import './styles/icons-static';
 // jecloud/ui
 import './styles/jecloud-ui';
 // jecloud/func
