@@ -16,5 +16,5 @@ export default {
     resetText: 'Reset',
     loginSuccess: 'Login successfully!',
   },
-  welcome: 'Welcome {0}, please begin your performance',
+  welcome: 'Welcome ! Please begin your performance',
 };

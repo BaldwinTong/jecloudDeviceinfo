@@ -41,24 +41,6 @@ JECloud是基于微服务架构的低代码平台，是新一代企业级APaaS�
 ### npm 
 `v 6.14.14`
 
-### [pnpm](https://pnpm.io/zh/) 
-快速的，节省磁盘空间的包管理工具，本项目采用pnpm进行包管理。
-- 版本：`v 6.23.2`，由于pnpm7不兼容yalc，不支持file:xxx安装本地包，所以请使用 `pnpm6`
-- 常用命令
-```bash
-npm install -g pnpm@v6.23.2    # 全局安装 pnpm
-
-pnpm add xxx	       # 保存到 dependencies
-pnpm add -D xxx	       # 保存到 devDependencies
-pnpm add -g xxx	       # 全局安装依赖包xxx
-
-pnpm remove xxx        # 删除依赖
-pnpm remove -g xxx     # 删除全局依赖
-
-# 其他更多命令，请参考官网：https://pnpm.io/zh/
-
-```
-
 ### JECloud npm私服地址
 http://verdaccio.jecloud.net/
 
