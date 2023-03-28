@@ -34,7 +34,7 @@ const parseDistCssHash = function () {
   let styles = files.filter((file) => file.endsWith('.css'));
   const hashJson = JSON.parse(fs.readFileSync(hashFile));
   // 生成hash参数，方便移动端调用
-  return styles.map((file) => `${file}?h=${hashJson[file]}`);
+  return styles.map((file) => `${file}?v=${hashJson[file]}`);
 };
 
 /**
@@ -61,7 +61,6 @@ const buildHtmlTags = function (envs) {
   // 处理styles
   const styleTpl = `<link href="${PUBLIC_PATH}static/styles/{file}" rel="stylesheet" exclude></link>`;
   const styles = parseDistCssHash().map((style) => styleTpl.replace('{file}', style));
-  console.log(styles);
   return { libs, styles };
 };
 /**

@@ -55,7 +55,7 @@ webpack(
             {
               loader: 'file-loader',
               options: {
-                name: '[name].[contenthash:8].[ext]',
+                name: '[name].[ext]?v=[contenthash:8]',
                 outputPath: 'fonts',
               },
             },
