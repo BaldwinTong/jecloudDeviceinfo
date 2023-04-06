@@ -8,6 +8,7 @@ const { getLess } = require('@zougt/some-loader-utils');
 const { resolve } = require('../utils');
 const { lessVars } = require('../theme/config');
 const { styles } = require('./src/config');
+const { buildDistCssHash } = require('./util');
 const rootDir = resolve('build/public');
 const distDir = path.join(rootDir, 'dist');
 
@@ -54,7 +55,7 @@ webpack(
             {
               loader: 'file-loader',
               options: {
-                name: '[name].[contenthash:8].[ext]',
+                name: '[name].[ext]?v=[contenthash:8]',
                 outputPath: 'fonts',
               },
             },
@@ -89,7 +90,9 @@ webpack(
   },
   () => {
     // 删除无用文件
-    del([path.join(distDir, '*.js'), path.join(distDir, '*.json')]);
-    console.log(`公共资源构建成功`);
+    del([path.join(distDir, '*.js'), path.join(distDir, '*.json')]).finally(() => {
+      // 重命名文件，方便移动端调用
+      buildDistCssHash();
+    });
   },
 );

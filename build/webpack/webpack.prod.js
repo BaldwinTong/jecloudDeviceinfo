@@ -1,7 +1,7 @@
 /**
  * webpack 生产环境配置文件
  */
-const { buildHtmlTags, buildExternals } = require('../public/gulp');
+const { buildHtmlTags, buildExternals } = require('../public/util');
 const { resolve } = require('../utils');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
