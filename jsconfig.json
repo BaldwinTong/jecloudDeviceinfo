@@ -12,6 +12,6 @@
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*","service/**/*"],
+  "include": ["src/**/*","service/**/*","build/**/*"],
   "exclude": ["node_modules"]
 }

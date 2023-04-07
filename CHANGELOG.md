@@ -1,3 +1,21 @@
+# [1.2.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.0.2...v1.2.0) (2023-04-06)
+
+
+### Bug Fixes
+
+* **build:** 修复样式文件采用参数引用方式 ([dc6fd3f](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/dc6fd3fecc0c02b536590915888f967333cdce44))
+* **font:** 修复字体文件为版本参数引用 ([a353a02](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/a353a02d0cf04447a92ae635604b4545a6a18f63))
+
+
+### Features
+
+* **cli:** changelog提交 ([0a4c001](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/0a4c001c14276bacd26ff9dd3b5798fab203a459))
+* **cli:** packagelock文件提交 ([9282afd](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/9282afd0bc17b871511e3d59bf7f9f2fee378440))
+* **cli:** v1.1.0定版 ([11af62b](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/11af62bd47230ee6d422effa56e4dd446b0ecca0))
+* **pdf:** pdf预览资源 ([530c87e](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/530c87e6eea990882732446b3ca3a8f74310968a))
+
+
+
 # [1.1.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.0.2...v1.1.0) (2023-03-03)
 
 
