@@ -64,24 +64,36 @@ function getMicroProxys(envs) {
     VUE_APP_MICRO_CONFIG_PROXY_VAR,
     VUE_APP_MICRO_CONFIG_ADMIN,
   } = envs;
+  // 微应用路由
+  const microRoute = getBaseRoute(envs, VUE_APP_MICRO_CONFIG_ROUTE);
   // 微应用代理地址
   const proxys = {};
   // 调试地址
   for (let key in envs) {
     if (key.startsWith(VUE_APP_MICRO_CONFIG_PROXY_VAR)) {
       const route =
-        VUE_APP_MICRO_CONFIG_ROUTE +
-        '/' +
-        key.replace(VUE_APP_MICRO_CONFIG_PROXY_VAR, '').toLocaleLowerCase();
-      proxys[route] = { target: envs[key] };
+        microRoute + '/' + key.replace(VUE_APP_MICRO_CONFIG_PROXY_VAR, '').toLocaleLowerCase();
+      proxys[route] = { target: envs[key], changeOrigin: true };
     }
   }
   // 默认代理
-  proxys[VUE_APP_MICRO_CONFIG_ROUTE] = { target: VUE_APP_SERVICE_PROXY };
+  proxys[microRoute] = { target: VUE_APP_SERVICE_PROXY, changeOrigin: true };
 
   return VUE_APP_MICRO_CONFIG_ADMIN ? proxys : {};
 }
-
+/**
+ * 获得路由地址
+ * @param {*} envs
+ * @param {*} path
+ * @returns
+ */
+function getBaseRoute(envs, path = '') {
+  const baseRoute = envs.VUE_APP_ROUTER_BASE || '/';
+  if (path) {
+    return baseRoute === '/' ? path : baseRoute + path;
+  }
+  return baseRoute;
+}
 /**
  * 获得项目根目录
  *
@@ -91,9 +103,9 @@ function getMicroProxys(envs) {
 function getPublicPath(envs) {
   // 主应用返回根目录
   if (envs.VUE_APP_MICRO_CONFIG_ADMIN) {
-    return '/';
+    return getBaseRoute(envs);
   }
-  const route = envs.VUE_APP_MICRO_CONFIG_ROUTE; // 微应用路由前缀
+  const route = getBaseRoute(envs, envs.VUE_APP_MICRO_CONFIG_ROUTE); // 微应用路由前缀
   const project = getProjectName(); // 项目名称
   const name = project.split('-').pop(); // 微应用名称
   return `${route}/${name}/`;
@@ -114,6 +126,7 @@ module.exports = {
   resolve(dir) {
     return path.resolve(process.cwd(), '.', dir);
   },
+  getBaseRoute,
   getMicroProxys,
   getPublicPath,
   resolveEnvs,
