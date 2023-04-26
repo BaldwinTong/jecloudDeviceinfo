@@ -87,7 +87,7 @@ function initCssCodeApi() {
     url: '/je/common/load',
     headers: { pd: 'meta' },
     params: {
-      ableCode: 'JE_CORE_QJCSS',
+      tableCode: 'JE_CORE_QJCSS',
       funcCode: 'JE_CORE_QJCSS',
       j_query: encode([
         { code: 'QJCSS_QY_CODE', type: '=', value: '1' },
@@ -106,7 +106,7 @@ function initJsCodeApi() {
     url: '/je/common/load',
     headers: { pd: 'meta' },
     params: {
-      ableCode: 'JE_CORE_QJJBK',
+      tableCode: 'JE_CORE_QJJBK',
       funcCode: 'JE_CORE_QJJBK',
       j_query: encode([
         { code: 'QJJBK_QY_CODE', type: '=', value: '1' },
