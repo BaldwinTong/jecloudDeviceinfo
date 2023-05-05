@@ -2,6 +2,7 @@ import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
 import { isMicro } from '@micro/helper';
 import { initSystem as initSystemApi, logout as logoutApi } from '@jecloud/utils';
+import { initCodes } from './code';
 /**
  * 初始化系统数据
  *
@@ -35,8 +36,8 @@ export function initSystem() {
  */
 export function initSystemInfo() {
   const globalStore = useGlobalStore();
-  return initSystemApi().then((data) => {
-    globalStore.initSystem(data);
+  return Promise.all([initCodes(), initSystemApi()]).then(([codes, systemData]) => {
+    globalStore.initSystem(systemData);
   });
 }
 

@@ -140,8 +140,12 @@ const usePrivateGlobalStore = defineStore({
       if (this.emit('login') !== false) {
         // 初始路由
         const router = useRouter();
-        // 登录成功，跳转首页
-        router.push({ name: route });
+        // 登录成功，若存在指定路径，则跳转到对应路径，否则跳转到首页
+        if (route.startsWith('/')) {
+          router.push({ path: route });
+        } else {
+          router.push({ name: route });
+        }
       }
     },
     /**

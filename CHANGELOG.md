@@ -1,3 +1,16 @@
+# [1.3.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.2.0...v1.3.0) (2023-05-05)
+
+
+### Features
+
+* **archetype:** 登录成功后增加制定路径跳转方式[[#11](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/11)] ([4cb2284](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/4cb2284919221aac7c2ed5fabc2b4c57f502150d))
+* **archetype:** 增加文件整合静态资源[[#11](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/11)] ([0a88993](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/0a8899373879f5e2f8925e61f5656e544c476ce4))
+* **cli:** 自定义路由提交[[#10](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/10)] ([6c14ac3](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/6c14ac327bd4b3cb138cc42a9b476a0821a9b55b))
+* **code:** 增加支持全局脚本库 ([affc489](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/affc489c088b3b77dbd2d176a887562726735540))
+* **service:** 接口参数修改 ([c14f074](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/c14f074cfdfbbb17f5a94083bb0273a5bd2aa90d))
+
+
+
 # [1.2.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.0.2...v1.2.0) (2023-04-06)
 
 
