@@ -1,4 +1,5 @@
 import { setupAjax } from './http';
+import { pick } from '@jecloud/utils';
 import * as Vue from 'vue';
 import * as Utils from '@jecloud/utils';
 import * as Ui from '@jecloud/ui';
@@ -10,20 +11,7 @@ import { logout, isLogin } from './system';
  * @export
  * @return { $vue,$i18n,$router,...utils }
  */
-const JE = {
-  useUi() {
-    return Ui;
-  },
-  useUtils() {
-    return Utils;
-  },
-  useVue() {
-    return Vue;
-  },
-  useSystem() {
-    return { logout, isLogin, ...FuncUtil, watchWebSocket() {} };
-  },
-};
+const JE = {};
 export function useJE() {
   return JE;
 }
@@ -34,7 +22,41 @@ export function useJE() {
  */
 export async function setupJE(vue) {
   setupAjax();
-  mixinJE({ $vue: vue });
+  // 基础类库
+  mixinJE({
+    $vue: vue,
+    useUi() {
+      return Ui;
+    },
+    useUtils() {
+      return Utils;
+    },
+    useVue() {
+      return Vue;
+    },
+    useSystem() {
+      return { ...FuncUtil, logout, isLogin, watchWebSocket() {} };
+    },
+  });
+  // JE常用方法
+  mixinJE({
+    ...pick(FuncUtil, ['showFunc', 'showFuncForm', 'showFuncSelect', 'showTreeSelect']),
+    ...pick(Ui.Modal, ['alert', 'confirm', 'dialog', 'message', 'notice', 'window']),
+    ...pick(Utils, [
+      'ajax',
+      'isEmpty',
+      'isNotEmpty',
+      'getCurrentAccount',
+      'getCurrentUser',
+      'getSystemConfig',
+    ]),
+    log: (...args) => console.log(...args),
+  });
+
+  // utils注册JE，用于窗口提示
+  Utils.setupJE(JE);
+  // 绑定全局JE
+  window.JE = window.JE || useJE();
 }
 
 /**
