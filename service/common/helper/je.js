@@ -1,4 +1,4 @@
-import { setupAxios } from './http';
+import { setupAjax } from './http';
 import * as Vue from 'vue';
 import * as Utils from '@jecloud/utils';
 import * as Ui from '@jecloud/ui';
@@ -33,7 +33,7 @@ export function useJE() {
  * 页面可以通过JE.调用utils里的所有工具函数
  */
 export async function setupJE(vue) {
-  setupAxios();
+  setupAjax();
   mixinJE({ $vue: vue });
 }
 

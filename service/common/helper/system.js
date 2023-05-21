@@ -1,8 +1,9 @@
 import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
 import { isMicro } from '@micro/helper';
-import { initSystem as initSystemApi, logout as logoutApi } from '@jecloud/utils';
+import { initSystemApi, logoutApi, validateTokenApi } from '@jecloud/utils';
 import { initCodes } from './code';
+import { setAjaxDefaultConfig } from './http';
 /**
  * 初始化系统数据
  *
@@ -20,12 +21,14 @@ export function initSystem() {
   }
 
   // 初始系统数据
-  return initSystemInfo().then(() => {
-    // 系统数据初始化成功
-    globalStore.init = true;
-    // 返回系统登录成功后的跳转路由
-    return { name: 'HOME' };
-  });
+  return validateTokenApi()
+    .then(initSystemInfo)
+    .then(() => {
+      // 系统数据初始化成功
+      globalStore.init = true;
+      // 返回系统登录成功后的跳转路由
+      return { name: 'HOME' };
+    });
 }
 
 /**
@@ -38,6 +41,9 @@ export function initSystemInfo() {
   const globalStore = useGlobalStore();
   return Promise.all([initCodes(), initSystemApi()]).then(([codes, systemData]) => {
     globalStore.initSystem(systemData);
+
+    // 设置ajax配置信息
+    setAjaxDefaultConfig();
   });
 }
 
