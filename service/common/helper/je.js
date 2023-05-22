@@ -50,6 +50,7 @@ export async function setupJE(vue) {
       'getCurrentUser',
       'getSystemConfig',
     ]),
+    h: Vue.h,
     log: (...args) => console.log(...args),
   });
 
