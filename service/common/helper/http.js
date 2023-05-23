@@ -10,6 +10,7 @@ import { HTTP_BASE_URL } from './constant';
 import { useGlobalStore } from '@common/store/global-store';
 import { useMicroStore } from '@common/store/micro-store';
 import { logout } from './system';
+import { isMicro } from '@micro/helper';
 /**
  * ajax 实例
  */
@@ -18,6 +19,10 @@ let ajaxInstance;
  * 系统ajax设置
  */
 export function setupAjax() {
+  if (isMicro()) {
+    // 微应用使用主应用的ajax实例
+    return;
+  }
   ajaxInstance = getAjaxInstance();
   setAjaxBaseURL();
   onBeforeRequest();
@@ -29,6 +34,10 @@ export function setupAjax() {
  * @param {Object} config
  */
 export function setAjaxDefaultConfig() {
+  if (isMicro()) {
+    // 微应用使用主应用的ajax实例
+    return;
+  }
   // 系统默认超时时间
   const timeout = toNumber(getSystemConfig(JE_CORE_AJAXTIMEOUT, 0)) * 1000;
   ajaxInstance.setDefaultConfig({
@@ -39,13 +48,10 @@ export function setAjaxDefaultConfig() {
  * 设置基础请求链接
  * @param {*} param0
  */
-export function setAjaxBaseURL(baseURL) {
+function setAjaxBaseURL(baseURL) {
   const microStore = useMicroStore();
   const devBaseUrl = microStore.options.proxyPrefix ?? HTTP_BASE_URL;
   ajaxInstance.setBaseURL(baseURL || devBaseUrl);
-}
-export function getAjaxBaseURL() {
-  return ajaxInstance.getBaseURL();
 }
 /**
  * 请求拦截器
