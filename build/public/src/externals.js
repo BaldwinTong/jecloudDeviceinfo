@@ -13,5 +13,3 @@ import './styles/icons-static';
 import './styles/jecloud-ui';
 // jecloud/func
 import './styles/jecloud-func';
-// jecloud/plugin
-import './styles/jecloud-plugin';

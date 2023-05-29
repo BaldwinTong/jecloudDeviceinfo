@@ -31,7 +31,7 @@
     "lint": "vue-cli-service lint",
     "setup": "npm run setup:yalc",
     "setup:yalc": "npm run yalc:remove && npm run yalc:jecloud && npm i",
-    "yalc:jecloud": "yalc add @jecloud/utils @jecloud/ui @jecloud/func @jecloud/plugin",
+    "yalc:jecloud": "yalc add @jecloud/utils @jecloud/ui @jecloud/func",
     "yalc:remove": "yalc remove --all",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -52,7 +52,6 @@
   },
   "dependencies": {
     "@jecloud/func": "file:.yalc/@jecloud/func",
-    "@jecloud/plugin": "file:.yalc/@jecloud/plugin",
     "@jecloud/ui": "file:.yalc/@jecloud/ui",
     "@jecloud/utils": "file:.yalc/@jecloud/utils",
     "ant-design-vue": "^3.2.11",
