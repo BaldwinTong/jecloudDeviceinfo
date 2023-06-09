@@ -217,7 +217,7 @@
         },
         appendToBody: function (e) {
           // var t = this.query('body');
-          var t = this.queryById('#zxImagePreviewBox');
+          var t = this.queryById('#normalImagePreviewBox') ?? this.queryById('#funImagePreviewBox'); 
           return !!t && (t.appendChild(e), !0);
         },
         addClass: function (e, t) {

@@ -1,3 +1,28 @@
+# [1.4.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.2.0...v1.4.0) (2023-06-06)
+
+
+### Bug Fixes
+
+* **ajax:** 修复主子应用共用ajax实例[[#8](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/8)] ([94f40c2](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/94f40c21f97664e3f0150830f1e6e93ed1849aa9))
+* **plugin:** 废弃@jecloud/plugin,调整JE的注册[[#8](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/8)] ([052a918](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/052a918eec2e9cdab556e52fbecc727384ebecd4))
+* **utils:** @jecloud/utils删除vue依赖[[#67](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/67)] ([e6929e0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/e6929e0d0df43b58c15f3bdd41d20d525f30fa20))
+* **utils:** 适配jecloud/utils的调整 ([47b8cdd](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/47b8cdd79cfd1d2a459f809a5ebbf8bcd11ce8e5))
+
+
+### Features
+
+* **archetype:** 登录成功后增加制定路径跳转方式[[#11](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/11)] ([4cb2284](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/4cb2284919221aac7c2ed5fabc2b4c57f502150d))
+* **archetype:** 图片预览区分节点加载[[#11](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/11)] ([2876a2e](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/2876a2eed3a5e13047094d4034aff39e88bebfcf))
+* **archetype:** 增加文件整合静态资源[[#11](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/11)] ([0a88993](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/0a8899373879f5e2f8925e61f5656e544c476ce4))
+* **cli:** 自定义路由提交[[#10](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/10)] ([6c14ac3](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/6c14ac327bd4b3cb138cc42a9b476a0821a9b55b))
+* **code:** 增加支持全局脚本库 ([affc489](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/affc489c088b3b77dbd2d176a887562726735540))
+* **je:** 暴露JE常用方法 ([4efb75b](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/4efb75b4881eae4000153638e1d0d4b4628547cb))
+* **je:** 将vue的h函数添加到JE上 ([753fad9](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/753fad92b4fbf4a7aabbcc29fdd3b950ad3f426a))
+* **service:** 接口参数修改 ([c14f074](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/c14f074cfdfbbb17f5a94083bb0273a5bd2aa90d))
+* **version:** release v1.3.0 ([379dfe6](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/379dfe68892583c042d0e92a33d5db745f9fa629))
+
+
+
 # [1.3.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.2.0...v1.3.0) (2023-05-05)
 
 

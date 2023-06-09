@@ -1,4 +1,5 @@
 import { setupJE } from './je';
+import { setupAjax } from './http';
 import { setupTheme } from './theme';
 import { setupStore } from '../store';
 import { setupIi8n } from '../locales';
@@ -12,6 +13,8 @@ export async function setupCommon(vue) {
   }
   // Store
   setupStore(vue);
+  // Ajax
+  setupAjax(vue);
   // JE
   setupJE(vue);
   // theme
