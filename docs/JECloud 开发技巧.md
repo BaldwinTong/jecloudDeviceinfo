@@ -30,11 +30,11 @@ microStore.emitMicro('microName','eventName',...args);
 # 3. 功能脚本中，触发其他微应用事件
 ```js
 // 本函数，只有在主应用中有效
-const { emitMicroEvent } = JE.useSystem();
+const admin = JE.useAdmin();
 
 // 触发其他微应用事件
 // microName 表示【微应用管理】中的应用编码
-emitMicroEvent('microName','eventName',...args);
+admin?.emitMicroEvent('microName','eventName',...args);
 
 ```
 
@@ -64,10 +64,11 @@ webSocketStore.on('message',(message)=>{
 ```js
 const { Modal } = JE.useUi();
 const { ref, h } = JE.useVue();
-const { watchWebSocket } = JE.useSystem();
+const admin = JE.useAdmin();
+if(!admin) return;
 const messages = ref([]);
 // 注册监听事件
-const watchFn = watchWebSocket((message)=>{
+const watchFn = admin?.watchWebSocket((message)=>{
   messages.value.push(message);
   console.log(message)
 });
