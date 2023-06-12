@@ -5,15 +5,15 @@
 import { useJE } from '@common/helper/je';
 import { setupGlobalStore } from '@common/store/global-store';
 import { setupMicroStore } from '@common/store/micro-store';
-import { updateAxiosInstance } from '@jecloud/utils';
+import { setAjaxInstance } from '@jecloud/utils';
 
 /**
  * 安装微应用
  * @param {*} param0
  */
-function setMicro({ microStore, globalStore, axiosInstance }) {
-  // 更新axios实例，使用与主应用相同的axios
-  updateAxiosInstance(axiosInstance);
+function setMicro({ microStore, globalStore, ajaxInstance }) {
+  // 更新ajax实例，使用与主应用相同的ajax
+  setAjaxInstance(ajaxInstance);
   // 安装全局store，使用与主应用相同的globalStore
   setupGlobalStore(globalStore);
   // 安装微应用store，用于与主应用交互

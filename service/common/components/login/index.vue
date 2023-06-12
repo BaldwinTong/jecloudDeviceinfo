@@ -8,7 +8,7 @@
           class="input-item"
           autocomplete="off"
           :placeholder="$t('login.usernamePlaceholder')"
-          @pressEnter="login"
+          @pressEnter="login()"
         >
           <template #prefix>
             <i class="fal fa-tablet-android-alt" style="padding-right: 5px"></i>
@@ -21,7 +21,7 @@
           class="input-item"
           autocomplete="off"
           :placeholder="$t('login.passwordPlaceholder')"
-          @pressEnter="login"
+          @pressEnter="login()"
         >
           <template #prefix>
             <i class="fal fa-lock" style="padding-right: 5px"></i>

@@ -1,8 +1,7 @@
 import { toRaw, h } from 'vue';
-import { doLogin } from '@common/api';
 import { message } from 'ant-design-vue';
 import { Modal } from '@jecloud/ui';
-import { isArray } from '@jecloud/utils';
+import { isArray, loginApi } from '@jecloud/utils';
 import { login as _login } from '@common/helper/system';
 
 /**
@@ -20,7 +19,7 @@ export function useLogin(form, model) {
       // 获取原始对象
       const vals = toRaw(model);
       // 提交登录
-      doLogin(vals)
+      loginApi(vals)
         .then((token) => {
           if (isArray(token)) {
             const modal = Modal.dialog({
