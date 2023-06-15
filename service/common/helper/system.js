@@ -1,7 +1,7 @@
 import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
 import { isMicro } from '@micro/helper';
-import { initSystemApi, logoutApi, validateTokenApi, initCodes } from '@jecloud/utils';
+import { initSystemApi, logoutApi, validateTokenApi } from '@jecloud/utils';
 import { setAjaxDefaultConfig } from './http';
 /**
  * 初始化系统数据
@@ -38,8 +38,8 @@ export function initSystem() {
  */
 export function initSystemInfo() {
   const globalStore = useGlobalStore();
-  return Promise.all([initCodes(), initSystemApi()]).then(([codes, systemData]) => {
-    globalStore.initSystem(systemData);
+  return initSystemApi().then((systemInfo) => {
+    globalStore.initSystem(systemInfo);
 
     // 设置ajax配置信息
     setAjaxDefaultConfig();
