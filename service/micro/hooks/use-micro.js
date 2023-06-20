@@ -32,7 +32,7 @@ let _render;
  */
 async function mount({ container, props }) {
   setMicro(props);
-  _render(container);
+  await _render(container);
 }
 
 /**
