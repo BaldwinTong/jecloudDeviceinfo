@@ -1,3 +1,19 @@
+## [1.4.1](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.4.0...v1.4.1) (2023-06-30)
+
+
+### Bug Fixes
+
+* **doc:** 修改开发技巧文档[[#8](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/8)] ([47340c1](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/47340c108cadae06bbe0526ed10cba18a0245de7))
+* **micro:** 增加render的同步支持[[#8](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/8)] ([bb577a6](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/bb577a6cc316d68c522ff0a0409f610ba45552c0))
+* **system:** 修复系统缓存数据更新异常问题[[#8](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/8)] ([dcc37bb](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/dcc37bbcca2b8b4d92ce8a782bd8096f33732d5a))
+
+
+### Features
+
+* **micro:** 微应用支持JE.useAdmin()调用主应用的函数[[#8](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/issues/8)] ([b59153b](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/commit/b59153b59d379e2155a14166f04e9a53ea3c703d))
+
+
+
 # [1.4.0](http://gitlab.suanbanyun.com/jecloud/frontend/jecloud-pc-archetype/compare/v1.2.0...v1.4.0) (2023-06-06)
 
 
