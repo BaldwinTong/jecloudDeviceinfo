@@ -16,7 +16,7 @@ let globalStore;
 export function setupGlobalStore(store) {
   globalStore = store;
   // 初始化系统信息，共享主应用数据
-  setSystemInfo(store);
+  setSystemInfo(store.systemInfo);
 }
 
 /**
@@ -43,8 +43,7 @@ const usePrivateGlobalStore = defineStore({
     token: cookie.get(GLOBAL_SETTINGS_TOKENKEY), // token
     tokenKey: GLOBAL_SETTINGS_TOKENKEY, // token属性值
     currentAccount: null, // 当前账号
-    systemConfig: null, // 系统变量
-    ddCache: null, // 字典信息缓存
+    systemInfo: null, // 系统数据
     plans: new Map(), // 方案配置
     activePlan: 'je', // 激活方案，默认je
     emitter: mitt(), // 事件触发器
@@ -62,10 +61,9 @@ const usePrivateGlobalStore = defineStore({
      * 初始化系统信息
      * @param {*} param0
      */
-    initSystem({ currentAccount, systemConfig, ddCache }) {
-      this.currentAccount = currentAccount;
-      this.systemConfig = systemConfig;
-      this.ddCache = ddCache;
+    initSystem(systemInfo) {
+      this.currentAccount = systemInfo.currentAccount;
+      this.systemInfo = systemInfo;
     },
     /**
      * 绑定子应用事件，供主应用调用
