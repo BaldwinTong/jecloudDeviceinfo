@@ -3,6 +3,7 @@ import * as Utils from '@jecloud/utils';
 import * as Ui from '@jecloud/ui';
 import { FuncUtil } from '@jecloud/func';
 import { CLI_ENVS } from '@common/helper/constant';
+import { useMicroStore } from '@common/store/micro-store';
 /**
  * 使用全局工具类JE
  *
@@ -18,7 +19,9 @@ export function useJE() {
  * 页面可以通过JE.调用utils里的所有工具函数
  */
 export async function setupJE(vue) {
+  const microStore = useMicroStore();
   const JE = Utils.setupJE(vue, { Ui, Utils, Vue, Func: FuncUtil, CLI_ENVS });
+  microStore.setupAdmin?.({ MicroJE: JE });
   // 绑定全局JE
   window.JE = window.JE || JE;
 }
