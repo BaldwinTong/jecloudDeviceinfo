@@ -1,6 +1,7 @@
-import { toggleClass, darken, lighten, isNotEmpty } from '@jecloud/utils';
-import { useThemeStore } from '../store/theme-store';
+import { toggleClass, darken, lighten, isNotEmpty, getSystemConfig } from '@jecloud/utils';
+import { useThemeStore } from '../../store/theme-store';
 import { isMicro } from '@micro/helper';
+import { registerAntTheme } from './ant-variables';
 
 // 高亮系数
 const darkenNum = 5;
@@ -8,6 +9,10 @@ const darkenNum = 5;
  * 初始主题
  */
 export function setupTheme() {
+  // 设置系统配置的主题色
+  const primaryColor = getSystemConfig('variables')?.JE_SYSTEM_PRIMARY_COLOR;
+  useThemeStore().setPrimaryColor(primaryColor);
+
   // 子应用使用主应用主题，不需要自行设置
   !isMicro() && toggleSystemTheme();
 }
@@ -50,18 +55,16 @@ export const toggleSystemTheme = function () {
   const themeStore = useThemeStore();
   const theme = themeStore.getThemeInfo(); // 当前系统主题信息
   const dark = themeStore.darkMode;
+  window.themeStore = themeStore;
 
   // 切换主题样式
-  const themeCls = `theme-${theme.theme}-${dark ? 'dark' : 'default'}`;
-  let currentHtmlClassNames = (document.body.className || '').split(/\s+/g);
-  if (!currentHtmlClassNames.includes(themeCls)) {
-    currentHtmlClassNames = currentHtmlClassNames.filter(
-      (classname) => !classname.startsWith('theme-') && isNotEmpty(classname),
-    );
-    currentHtmlClassNames.push(themeCls);
-    document.body.className = currentHtmlClassNames.join(' ');
-  }
-
+  const variables = registerAntTheme({
+    primaryColor: theme.themeColor,
+    theme: dark ? 'dark' : 'default',
+  });
+  Object.keys(variables).forEach((key) => {
+    setCssVar(key, variables[key]);
+  });
   // 由于主题色变化，需要更新其他主题
   toggleTheme('headerTheme', themeStore.systemTheme);
   toggleTheme('siderTheme', themeStore.siderTheme);
@@ -207,7 +210,7 @@ export const toggleColorWeak = function (toggle) {
  * @param {*} val
  * @param {*} [dom=docEle]
  */
-const docEle = document.body;
+const docEle = document.documentElement;
 function setCssVar(prop, val, dom = docEle) {
   dom.style.setProperty(prop, val);
 }

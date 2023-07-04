@@ -1,25 +1,25 @@
 
-body {
-  
-  --colour-dark-text-color:#ffffff; /*浅色系文字色*/
-  --colour-light-text-color:#3F3F3F; /*深色系文字色*/
-  --primary-color:#3265f5; /*主题色*/
+html {
+  // Deprecated
+  --@{ant-prefix}-primary-color-deprecated-d-03: darken(@base-primary, 3%);
 
+  // 框架主题变量
+  --colour-dark-text-color:#ffffff; /*深色系文字色*/
+  --colour-light-text-color:#3F3F3F; /*浅色系文字色*/
 
-  --header-bg-color:var(--primary-color);
+  --header-bg-color:var(--ant-primary-color);
   --header-text-color: var(--colour-dark-text-color);
-  --header-menu-selected-bg-color:var(--primary-color);
+  --header-menu-selected-bg-color:var(--ant-primary-color);
   --header-border-bottom-color:var(--header-bg-color);
 
-  --sider-bg-color: var(--primary-color);
-  --sider-bg-dark-color: var(--primary-color);
+  --sider-bg-color: var(--ant-primary-color);
+  --sider-bg-dark-color: var(--ant-primary-color);
   --sider-text-color:  var(--colour-dark-text-color);
-  --sider-menu-hover-bg-color: var(--primary-color);
-  --sider-menu-selected-bg-color: var(--primary-color);
+  --sider-menu-hover-bg-color: var(--ant-primary-color);
+  --sider-menu-selected-bg-color: var(--ant-primary-color);
   --sider-menu-selected-text-color:  var(--colour-dark-text-color);
   --sider-border-right-color:var(--sider-bg-color);
 }
-
 /*------------------- 色弱模式 --------------------*/
 .je-theme-color-weak {
   filter: invert(80%);

@@ -7,10 +7,11 @@ export default defineConfig(({ command, mode }) => {
   const config = loadEnvs(mode);
   const { VUE_APP_SERVICE_PORT } = config;
   // 加载插件
-  const { plugins, lessModifyVars } = usePlugins(config, command);
+  const { plugins, options } = usePlugins(config, command);
   return {
     base: utils.getPublicPath(config),
     plugins: plugins,
+    ...options,
     define: { __CLI_ENVS__: JSON.stringify(config) },
     resolve: {
       alias: {
@@ -20,14 +21,6 @@ export default defineConfig(({ command, mode }) => {
         '@common': resolve('service/common'),
         '@build': resolve('build'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-      },
-    },
-    css: {
-      preprocessorOptions: {
-        less: {
-          modifyVars: lessModifyVars,
-          javascriptEnabled: true,
-        },
       },
     },
     envPrefix: 'VUE_APP_',

@@ -17,10 +17,10 @@ export async function setupCommon(vue) {
   setupAjax(vue);
   // JE
   setupJE(vue);
-  // theme
-  setupTheme(vue);
   // I18n
   await setupIi8n(vue);
   // SystemConfig
   await initSystemConfig();
+  // theme
+  setupTheme(vue);
 }
