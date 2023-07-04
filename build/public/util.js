@@ -4,6 +4,7 @@ const { resolve } = require('../utils');
 const distDir = resolve('build/public/dist');
 const publicConfig = require('./src/config');
 const publicLibsConfig = publicConfig.libs;
+const publicStylesConfig = publicConfig.styles;
 const hashFile = path.join(distDir, 'hash.json');
 /**
  * 构建dist样式文件的hash.json
@@ -31,7 +32,9 @@ const buildDistCssHash = function () {
  */
 const parseDistCssHash = function () {
   const files = fs.readdirSync(distDir);
-  let styles = files.filter((file) => file.endsWith('.css'));
+  let styles = publicStylesConfig.map((name) => {
+    return files.find((file) => file.endsWith(name + '.css'));
+  });
   const hashJson = JSON.parse(fs.readFileSync(hashFile));
   // 生成hash参数，方便移动端调用
   return styles.map((file) => `${file}?v=${hashJson[file]}`);
