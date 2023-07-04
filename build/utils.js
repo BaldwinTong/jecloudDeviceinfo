@@ -116,6 +116,25 @@ function getProjectName() {
   return project;
 }
 /**
+ * 地址转换
+ * @param {*} dir
+ * @returns
+ */
+function resolve(dir) {
+  return path.resolve(process.cwd(), '.', dir);
+}
+/**
+ * 获取ant less全局变量
+ * @return {*}
+ */
+function generateModifyVars() {
+  return {
+    hack: `true; @import (reference) "${resolve(
+      'service/common/assets/themes/theme-variable.less',
+    )}";`,
+  };
+}
+/**
  * 获得绝对路径
  *
  * @export
@@ -123,9 +142,8 @@ function getProjectName() {
  * @return {*}
  */
 module.exports = {
-  resolve(dir) {
-    return path.resolve(process.cwd(), '.', dir);
-  },
+  generateModifyVars,
+  resolve,
   getBaseRoute,
   getMicroProxys,
   getPublicPath,

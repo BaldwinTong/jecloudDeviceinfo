@@ -4,9 +4,7 @@ const del = require('del');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { getLess } = require('@zougt/some-loader-utils');
-const { resolve } = require('../utils');
-const { lessVars } = require('../theme/config');
+const { resolve, generateModifyVars } = require('../utils');
 const { styles } = require('./src/config');
 const { buildDistCssHash } = require('./util');
 const rootDir = resolve('build/public');
@@ -40,11 +38,7 @@ webpack(
               options: {
                 paths: [resolve('node_modules')],
                 javascriptEnabled: true, //允许链式调用的换行
-                implementation: getLess({
-                  getMultipleScopeVars: () => {
-                    return lessVars;
-                  },
-                }),
+                modifyVars: generateModifyVars(),
               },
             },
           ],

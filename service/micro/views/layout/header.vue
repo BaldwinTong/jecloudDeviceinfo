@@ -72,7 +72,6 @@
   });
 </script>
 <style lang="less" scoped>
-  @import '../../../common/assets/styles/theme-variable.less';
   .je-layout-main-header {
     padding: 0;
     background-color: @header-bg-color;
