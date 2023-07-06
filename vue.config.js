@@ -4,5 +4,4 @@ const config = {
   ...webpack.config(),
   ...plugins.config(),
 };
-require('./copyright/webpack').build(config);
 module.exports = config;
