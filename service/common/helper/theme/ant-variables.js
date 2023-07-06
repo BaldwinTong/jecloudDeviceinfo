@@ -32,7 +32,6 @@ export function registerAntTheme(theme) {
     fillColor(theme.primaryColor, 'primary');
 
     const primaryColor = new TinyColor(theme.primaryColor);
-    console.log(theme.primaryColor, 'isDark：', isColorDark(theme.primaryColor));
     const primaryColors = generate(primaryColor.toRgbString(), generateTheme);
     // Legacy - We should use semantic naming standard
     primaryColors.forEach((color, index) => {
@@ -84,22 +83,4 @@ export function registerAntTheme(theme) {
   });
 
   return cssVariables;
-}
-function isColorDark(color) {
-  // 移除颜色值中的空格，并将其转换为小写
-  color = color.replace(/\s/g, '').toLowerCase();
-
-  // 提取颜色值的 RGB 分量
-  const r = parseInt(color.substr(1, 2), 16);
-  const g = parseInt(color.substr(3, 2), 16);
-  const b = parseInt(color.substr(5, 2), 16);
-
-  // 计算相对亮度
-  const relativeLuminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-
-  // 计算对比度
-  const contrast = (relativeLuminance + 0.05) / 0.05;
-
-  // 如果对比度大于 3.0，则判断为偏白色；否则判断为偏黑色
-  return contrast > 3.0;
 }
