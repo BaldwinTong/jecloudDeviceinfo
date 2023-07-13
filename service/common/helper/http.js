@@ -6,7 +6,7 @@ import {
   toParamsEncrypt,
   JE_CORE_AJAXTIMEOUT,
 } from '@jecloud/utils';
-import { HTTP_BASE_URL } from './constant';
+import { AJAX_BASE_URL } from './constant';
 import { useGlobalStore } from '@common/store/global-store';
 import { useMicroStore } from '@common/store/micro-store';
 import { logout } from './system';
@@ -50,7 +50,7 @@ export function setAjaxDefaultConfig() {
  */
 function setAjaxBaseURL(baseURL) {
   const microStore = useMicroStore();
-  const devBaseUrl = microStore.options.proxyPrefix ?? HTTP_BASE_URL;
+  const devBaseUrl = microStore.options.proxyPrefix || AJAX_BASE_URL;
   ajaxInstance.setBaseURL(baseURL || devBaseUrl);
 }
 /**

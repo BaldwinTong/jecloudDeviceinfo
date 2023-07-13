@@ -6,11 +6,13 @@ module.exports = {
   config(envs) {
     const {
       VUE_APP_HTML_TITLE, // 首页标题
+      VUE_APP_AJAX_BASE_URL, // ajax基础请求
     } = envs;
     const pages = {};
     this.entrys.forEach(({ name, entry, template }) => {
       pages[name] = {
         title: VUE_APP_HTML_TITLE, // 标题
+        ajaxBaseUrl: VUE_APP_AJAX_BASE_URL, //ajax基础请求
         // page 的入口
         entry,
         // 模板来源
