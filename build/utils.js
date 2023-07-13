@@ -51,6 +51,27 @@ function getIPAdress() {
     }
   }
 }
+
+/**
+ * 微应用代理地址
+ * @param {*} envs
+ * @returns
+ */
+function getMicroProxys(envs) {
+  // 代理地址，代理地址前缀
+  const { VUE_APP_SERVICE_PROXY, VUE_APP_PUBLIC_PATH_MICRO, VUE_APP_ADMIN } = envs;
+  // 微应用路由
+  const microRoute = getPublicPath(envs) + VUE_APP_PUBLIC_PATH_MICRO + '/';
+  // 微应用代理地址
+  const proxys = {};
+  // 默认代理
+  proxys[microRoute] = {
+    target: VUE_APP_SERVICE_PROXY,
+    changeOrigin: true,
+  };
+  return VUE_APP_ADMIN ? proxys : {};
+}
+
 /**
  * 获得项目根目录
  *
@@ -106,6 +127,7 @@ function generateModifyVars() {
  * @return {*}
  */
 module.exports = {
+  getMicroProxys,
   generateModifyVars,
   resolve,
   getPublicPath,

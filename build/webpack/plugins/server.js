@@ -1,3 +1,4 @@
+const { getMicroProxys } = require('../../utils');
 /**
  * 服务配置
  */
@@ -28,6 +29,7 @@ module.exports = {
             // 代理地址
             target: VUE_APP_WEBSOCKET_PROXY,
           },
+          ...getMicroProxys(envs),
         },
       },
     };
