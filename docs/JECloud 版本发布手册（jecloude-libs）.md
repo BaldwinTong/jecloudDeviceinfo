@@ -63,10 +63,6 @@ npm publish
 # @jecloud/func
 cd packages/func
 npm publish
-
-# @jecloud/plugin
-cd packages/plugin
-npm publish
 ```
 
 ### 5. 合并代码

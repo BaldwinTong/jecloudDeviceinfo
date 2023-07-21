@@ -14,7 +14,7 @@
       const vue = JE.useVue();        // Vue库
       const ui = JE.useUi();          // UI库
       const utils = JE.useUtils();    // 工具库
-      const system = JE.useSystem();  // 系统类库
+      const admin = JE.useAdmin();    // 主应用类库
     ```
 
 ## 2. 事件返回参数
