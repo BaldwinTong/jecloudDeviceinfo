@@ -51,6 +51,7 @@ function getIPAdress() {
     }
   }
 }
+
 /**
  * 微应用代理地址
  * @param {*} envs
@@ -58,42 +59,19 @@ function getIPAdress() {
  */
 function getMicroProxys(envs) {
   // 代理地址，代理地址前缀
-  const {
-    VUE_APP_SERVICE_PROXY,
-    VUE_APP_MICRO_CONFIG_ROUTE,
-    VUE_APP_MICRO_CONFIG_PROXY_VAR,
-    VUE_APP_MICRO_CONFIG_ADMIN,
-  } = envs;
+  const { VUE_APP_SERVICE_PROXY, VUE_APP_PUBLIC_PATH_MICRO, VUE_APP_ADMIN } = envs;
   // 微应用路由
-  const microRoute = getBaseRoute(envs, VUE_APP_MICRO_CONFIG_ROUTE);
+  const microRoute = getPublicPath(envs) + VUE_APP_PUBLIC_PATH_MICRO + '/';
   // 微应用代理地址
   const proxys = {};
-  // 调试地址
-  for (let key in envs) {
-    if (key.startsWith(VUE_APP_MICRO_CONFIG_PROXY_VAR)) {
-      const route =
-        microRoute + '/' + key.replace(VUE_APP_MICRO_CONFIG_PROXY_VAR, '').toLocaleLowerCase();
-      proxys[route] = { target: envs[key], changeOrigin: true };
-    }
-  }
   // 默认代理
-  proxys[microRoute] = { target: VUE_APP_SERVICE_PROXY, changeOrigin: true };
+  proxys[microRoute] = {
+    target: VUE_APP_SERVICE_PROXY,
+    changeOrigin: true,
+  };
+  return VUE_APP_ADMIN ? proxys : {};
+}
 
-  return VUE_APP_MICRO_CONFIG_ADMIN ? proxys : {};
-}
-/**
- * 获得路由地址
- * @param {*} envs
- * @param {*} path
- * @returns
- */
-function getBaseRoute(envs, path = '') {
-  const baseRoute = envs.VUE_APP_ROUTER_BASE || '/';
-  if (path) {
-    return baseRoute === '/' ? path : baseRoute + path;
-  }
-  return baseRoute;
-}
 /**
  * 获得项目根目录
  *
@@ -101,19 +79,45 @@ function getBaseRoute(envs, path = '') {
  * @return {*}
  */
 function getPublicPath(envs) {
-  // 主应用返回根目录
-  if (envs.VUE_APP_MICRO_CONFIG_ADMIN) {
-    return getBaseRoute(envs);
+  // 基础地址
+  let publicPath = envs.VUE_APP_PUBLIC_PATH || '/';
+  // 兼容处理，默认以 / 结尾
+  publicPath = publicPath.endsWith('/') ? publicPath : publicPath + '/';
+  // 主应用地址
+  if (envs.VUE_APP_ADMIN) {
+    return publicPath;
   }
-  const route = getBaseRoute(envs, envs.VUE_APP_MICRO_CONFIG_ROUTE); // 微应用路由前缀
-  const project = getProjectName(); // 项目名称
-  const name = project.split('-').pop(); // 微应用名称
-  return `${route}/${name}/`;
+  // 微应用名称
+  const publicPathMicro = envs.VUE_APP_PUBLIC_PATH_MICRO || 'micro';
+  // 项目名称
+  const project = getProjectName().split('-').pop();
+  const publicPathProject = envs.VUE_APP_PUBLIC_PATH_PROJECT || project;
+  // 微应用地址
+  return `${publicPath}${publicPathMicro}/${publicPathProject}/`;
 }
 
 function getProjectName() {
   const project = process.cwd().split(path.sep).pop(); // 项目名称
   return project;
+}
+/**
+ * 地址转换
+ * @param {*} dir
+ * @returns
+ */
+function resolve(dir) {
+  return path.resolve(process.cwd(), '.', dir);
+}
+/**
+ * 获取ant less全局变量
+ * @return {*}
+ */
+function generateModifyVars() {
+  return {
+    hack: `true; @import (reference) "${resolve(
+      'service/common/assets/themes/theme-variable.less',
+    )}";`,
+  };
 }
 /**
  * 获得绝对路径
@@ -123,11 +127,9 @@ function getProjectName() {
  * @return {*}
  */
 module.exports = {
-  resolve(dir) {
-    return path.resolve(process.cwd(), '.', dir);
-  },
-  getBaseRoute,
   getMicroProxys,
+  generateModifyVars,
+  resolve,
   getPublicPath,
   resolveEnvs,
   isNumeric,

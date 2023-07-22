@@ -70,7 +70,7 @@ git push sourcecode sourcecode:master -f
 
 ```
 
-### 6. `jecloud-cli` 项目需要给码云的前端项目骨架推送代码
+### 6. 前端项目骨架推送代码
 
 ```bash
 # jecloud-cli 提油开源项目分支：opensource
@@ -82,7 +82,7 @@ git merge release/1.0.0
 # 3. 推送代码
 git push
 # 4. 添加码云开源前端项目骨架仓库
-git remote add opensource https://gitee.com/jepaas/jecloud-frontend-develop.git
+git remote add opensource https://gitee.com/xxx/xxx.git
 # 5. 推送到前端项目骨架仓库的master分支，如果推送失败，先关闭master分支保护，再进行推送
 git push opensource opensource:master -f
 # 6. 增加前端项目骨架仓库master分支的tag版本号，添加 `发版记录` 的文档链接说明

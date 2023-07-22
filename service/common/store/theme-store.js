@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 export const useThemeStore = defineStore({
   id: 'theme-store',
   state: () => ({
+    primaryColor: '#3265F5',
     systemTheme: 'primary',
     headerTheme: 'primary',
     siderTheme: 'black',
@@ -14,9 +15,9 @@ export const useThemeStore = defineStore({
     /**
      * 主题信息
      */
-    themes: () => {
+    themes: (state) => {
       const themes = [
-        { code: 'primary', color: '#3265F5', theme: 'primary', colour: 'dark' },
+        { code: 'primary', color: state.primaryColor, theme: 'primary', colour: 'dark' },
         { code: 'orange', color: '#F3752D', theme: 'orange', colour: 'dark' },
         { code: 'red', color: '#E34F47', theme: 'red', colour: 'dark' },
         { code: 'green', color: '#02A863', theme: 'green', colour: 'dark' },
@@ -105,6 +106,13 @@ export const useThemeStore = defineStore({
      */
     toggleTheme(theme, value) {
       this[theme] = value;
+    },
+    /**
+     * 设置主题色
+     * @param {*} primaryColor
+     */
+    setPrimaryColor(primaryColor) {
+      this.primaryColor = primaryColor || this.primaryColor;
     },
   },
 });

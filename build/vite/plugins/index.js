@@ -1,10 +1,10 @@
 import { loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { useTheme } from './theme';
 import { configStyleImportPlugin } from './style-import';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
+import { useTheme } from './theme';
 export const utils = require('../../utils');
 /**
  * vite 插件
@@ -14,18 +14,18 @@ export const utils = require('../../utils');
  * @return {*}
  */
 export function usePlugins(envs, command) {
-  const { themePlugins, lessModifyVars } = useTheme(envs, command);
   const plugins = [
     vue(),
     vueJsx(),
     configStyleImportPlugin(envs, command),
     configHtmlPlugin(envs, command),
     configMockPlugin(envs, command),
-    ...themePlugins,
   ];
   return {
     plugins,
-    lessModifyVars,
+    options: {
+      ...useTheme(envs),
+    },
   };
 }
 
