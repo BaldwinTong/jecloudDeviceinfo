@@ -1,8 +1,7 @@
-# JECloud 前端骨架项目
-> [JECloud 微服务架构低代码平台（点击了解更多）](https://gitee.com/ketr/jecloud.git)
+# 骨架项目
 
 ## 项目介绍
-JECloud 前端骨架项目是所有前端微应用项目的项目模板，包含通用的架构，工具类，主子通讯等模块，也可以使用骨架项目快速创建，开发自有的前端微应用项目。
+骨架项目是JECloud前端所有微应用项目的项目模板，通过骨架项目可以快速的创建和开发JECloud前端微应用，他包含通用的应用架构，工具类，主子通讯等模块。
 
 ## 项目目录
 
@@ -45,13 +44,24 @@ JECloud 前端骨架项目是所有前端微应用项目的项目模板，包含
 http://verdaccio.jecloud.net/
 
 
+## 基础库项目部署
+本地项目调试之前，需要先把 [基础库项目](https://gitee.com/ketr/jecloud-pc-libs.git) 部署完成。
+```bash
+# 全局安装 lerna，yalc
+npm install lerna,yalc -g
+
+# 下载项目
+git clone https://gitee.com/ketr/jecloud-pc-libs.git
+
+# 安装依赖
+npm run setup
+
+# 发布基础库
+npm run yalc:publish
+
+```
 
 ## 项目命令
-
-### 全局安装 [yalc](./docs/Yalc%20使用说明.md)
-```bash
-npm install yalc -g
-```
 
 ### 安装依赖
 ```bash
@@ -84,3 +94,6 @@ npm run changelog
 ## 开源协议
 - [MIT](./LICENSE)
 - [平台证书补充协议](./SUPPLEMENTAL_LICENSE.md)
+
+## JECloud主目录
+[JECloud 微服务架构低代码平台（点击了解更多）](https://gitee.com/ketr/jecloud.git)
