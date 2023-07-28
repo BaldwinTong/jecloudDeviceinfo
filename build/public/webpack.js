@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const del = require('del');
+const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -9,6 +10,11 @@ const { styles } = require('./src/config');
 const { buildDistCssHash } = require('./util');
 const rootDir = resolve('build/public');
 const distDir = path.join(rootDir, 'dist');
+
+// 创建目录
+if (!fs.existsSync(distDir)) {
+  fs.mkdirSync(distDir, { recursive: true });
+}
 
 // 单独打包样式
 const entrys = {};
