@@ -1,3 +1,34 @@
+## [2.0.1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v1.4.0...v2.0.1) (2023-07-30)
+
+
+### Bug Fixes
+
+* **build:** 添加微应用的代理地址配置[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([45555b9](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/45555b9edf9317cd069efa1964bd202fcb121479))
+* **build:** 增加自动生成公共资源输出目录[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([b2c5562](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/b2c55629a9a09f76ba0da4874035a5e024d9d6c2))
+* **build:** 增加websocket代理配置[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([867e0e8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/867e0e8eb850a202935224b852fb753ba1df0788))
+* **code:** 删除无效代码[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([027ba01](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/027ba01d689190651034a29845bbfd8b80c1fbe5))
+* **doc:** 更新说明文档[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([c5e53de](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/c5e53de33c5a2cf7ce353f85799b9bfe8522db98))
+* **doc:** 修改开发技巧文档[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([47340c1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/47340c108cadae06bbe0526ed10cba18a0245de7))
+* **doc:** 增加说明文档 ([35284f8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/35284f827d6a28fd9001b260dc412c8d3d833fe6))
+* **env:** 优化系统变量配置[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([4a1662d](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/4a1662d27db94fac6f07bc8b6abe8dd07e0b9e62))
+* **micro:** 增加render的同步支持[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([bb577a6](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/bb577a6cc316d68c522ff0a0409f610ba45552c0))
+* **package:** 更新邮箱信息 ([599b555](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/599b555b5e780d5ab21348717a6895ec6a036aab))
+* **style:** 调整html样式引用顺序，导致主题失效[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([a9117fd](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/a9117fda4d9a5f5476b2089f419a98f2af238289))
+* **system:** 修复系统缓存数据更新异常问题[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([dcc37bb](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/dcc37bbcca2b8b4d92ce8a782bd8096f33732d5a))
+* **theme:** 删除测试代码[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([5690210](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/56902100a501e29589a635f8d6b9b0f3e598e053))
+
+
+### Features
+
+* **build:** 增加AJAX_BASE_URL变量，可以动态修改[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([f7b9640](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/f7b96406849c4aacaa76e5f0310b43bf1614cb1f))
+* **license:** 增加开源协议文件 ([d8ef8c2](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/d8ef8c28796f3e86343dcb3a21a3fb2567f175a5))
+* **micro:** 微应用支持JE.useAdmin()调用主应用的函数[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([b59153b](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/b59153b59d379e2155a14166f04e9a53ea3c703d))
+* **theme:** 系统主题采用css变量形式[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([59545bd](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/59545bdde0b85221946596f942fe62f0a16a1076))
+* **version:** release v1.4.1 ([e189132](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/e189132f14b749c4bc7740d1b9a7b8d9a15e45c7))
+* **version:** release v2.0.0 ([c5bcde8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/c5bcde88fb1664fd850d5d19cb4a2f8d7c101d63))
+
+
+
 # [2.0.0](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v1.4.0...v2.0.0) (2023-07-22)
 
 
