@@ -25,7 +25,8 @@ export function configProxy(envs) {
     [VUE_APP_WEBSOCKET_PROXY_PREFIX]: {
       // websocket代理地址
       target: VUE_APP_WEBSOCKET_PROXY,
-      changeOrigin: true,
+      ws: true,
+      changeOrigin: true, // 如果需要跨域，设置为 true
     },
     // 微应用代理地址
     ...getMicroProxys(envs),
