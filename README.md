@@ -65,7 +65,11 @@ npm run yalc:publish
 
 ### 安装依赖
 ```bash
+# 源码用户，安装本地基础库项目依赖
 npm run setup
+
+# 非源码用户，不需要部署基础库项目，直接安装npm包依赖
+npm run setup:lib
 ```
 
 ### 启动服务
