@@ -47,8 +47,8 @@ http://verdaccio.jecloud.net/
 ## 基础库项目部署
 本地项目调试之前，需要先把 [基础库项目](https://gitee.com/ketr/jecloud-pc-libs.git) 部署完成。
 ```bash
-# 全局安装 lerna，yalc
-npm install lerna,yalc -g
+# 全局安装 yalc，lerna
+npm i yalc lerna@^6.0.0 -g
 
 # 下载项目
 git clone https://gitee.com/ketr/jecloud-pc-libs.git
@@ -65,11 +65,11 @@ npm run yalc:publish
 
 ### 安装依赖
 ```bash
-# 源码用户，安装本地基础库项目依赖
-npm run setup
-
 # 非源码用户，不需要部署基础库项目，直接安装npm包依赖
 npm run setup:lib
+
+# 源码用户，开发调试用户，请安装本地基础库项目依赖
+npm run setup
 ```
 
 ### 启动服务
