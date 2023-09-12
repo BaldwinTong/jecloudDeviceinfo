@@ -6,6 +6,7 @@ const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
 const envs = utils.resolveEnvs(process.env);
+const version = envs.JECLOUD_VERSION;
 
 // 自定义配置
 const customConfig = envs.NODE_ENV == 'development' ? dev : prod;
@@ -36,6 +37,7 @@ const configureWebpack = customConfig.config({
     library: `${projectName}`,
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
     jsonpFunction: `webpackJsonp_${projectName}`,
+    filename: `js/[name].${version}.[hash:8].js`,
   },
 });
 module.exports = {

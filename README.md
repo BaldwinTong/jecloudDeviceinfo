@@ -9,6 +9,9 @@
 
 │  .commitlintrc.js        # Git 提交校验配置文件
 │  .editorconfig           # 编辑器配置文件
+│  .env                    # 公共环境配置文件
+│  .env.development        # 开发环境配置文件
+│  .env.production         # 生产环境配置文件
 │  .eslintignore           # eslint 忽略校验配置文件
 │  .eslintrc.js            # eslint 校验配置文件
 │  .gitattributes          # Git 配置文件，设置行末字符为LF
@@ -68,7 +71,7 @@ npm run yalc:publish
 # 非源码用户，不需要部署基础库项目，直接安装npm包依赖
 npm run setup:lib
 
-# 源码用户，开发调试用户，请安装本地基础库项目依赖
+# 源码用户，开发调试用户，请部署本地基础库项目后，再安装依赖
 npm run setup
 ```
 

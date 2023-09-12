@@ -1,5 +1,6 @@
 const path = require('path');
 const os = require('os');
+const packageJson = require('../package.json');
 
 /**
  * 解析系统变量
@@ -25,6 +26,8 @@ function resolveEnvs(_envs) {
 
   // 基础路径
   envs.PUBLIC_PATH = getPublicPath(envs);
+  // 版本
+  envs.JECLOUD_VERSION = packageJson.version;
 
   return envs;
 }
