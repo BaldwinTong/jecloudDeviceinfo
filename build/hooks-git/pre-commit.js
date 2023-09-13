@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * 【kebab-case】命名规则校验
  */
@@ -36,5 +35,14 @@ try {
   console.log(e);
   process.exit(1);
 }
+
+/* 
+在 package.json 中配置如下，可以在代码提交前，进行校验处理
+"husky": {
+  "hooks": {
+    "pre-commit": "node build/hooks-git/pre-commit.js"
+  }
+}
+*/
 
 // git symbolic-ref --short -q HEAD  获得git分支
