@@ -1,3 +1,17 @@
+## [2.0.8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.0.7...v2.0.8) (2023-09-15)
+
+
+### Bug Fixes
+
+* **env:** 更新服务代理地址[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([25bafcb](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/25bafcb0e894b9a126d1b7067e8ab7edf2e81cc5))
+
+
+### Features
+
+* **script:** 增加setup:lib命令，提供非源码客户使用[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([a2911c9](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/a2911c9b761941d3af6f7e73b5e7fb91f8aff203))
+
+
+
 ## [2.0.7](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.0.6...v2.0.7) (2023-09-08)
 
 
