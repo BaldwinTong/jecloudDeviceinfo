@@ -129,32 +129,28 @@ admin?.emitMicroEvent('microName','eventName',...args);
 
 - 列表扩展面板：注册扩展面板的任意渲染事件，如`top-renderer`事件，返回插槽函数，可以注入微模块。
   ```js
-  const microCode = '微应用编码';
-  const admin = JE.useAdmin();
   /**
     * 插槽函数
-    * @param {HTMLElement} container
-    * @param {Object} options
+    * @param {HTMLElement} container 插槽dom
+    * @param {Object} options 插槽配置项
     * @returns {Promise}
     */
   return (container, options) => {
     // 异步事件，需要返回，用于加载完组件后，刷新panel布局
-    return admin?.emitMicroEvent(microCode, 'extend-renderer', container, options);
+    return JE.useAdmin()?.emitMicroEvent('微应用编码', 'extend-renderer', container, options);
   };
   ```
 
 - 表单展示字段：注册展示字段的`renderer`事件，返回插槽函数，可以注入微模块。
   ```js
-  const microCode = '微应用编码';
-  const admin = JE.useAdmin();
   /**
    * 插槽函数
-    * @param {HTMLElement} container
-    * @param {Object} options
+    * @param {HTMLElement} container 插槽dom
+    * @param {Object} options 插槽配置项
     * @returns {Promise}
     */
   return (container, options) => {
-    return admin?.emitMicroEvent(microCode, 'display-renderer', container, options);
+    return JE.useAdmin()?.emitMicroEvent('微应用编码', 'display-renderer', container, options);
   };
   ```
 
