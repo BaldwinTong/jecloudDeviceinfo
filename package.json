@@ -1,6 +1,6 @@
 {
   "name": "jecloud-pc-archetype",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "private": true,
   "description": "JECloud 前端微应用项目骨架",
   "author": {
