@@ -94,6 +94,8 @@ npm run commit
 ### 生成Git提交记录
 
 ```bash
+# 先开启合并策略，防止骨架项目与插件项目的CHANGELOG.md文件冲突
+# git config --global merge.ours.driver true
 npm run changelog
 ```
 
