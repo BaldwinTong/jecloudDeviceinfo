@@ -47,7 +47,7 @@ admin?.emitMicroEvent('microName','eventName',...args);
 
 ## 微模块
 平台引入微模块概念，可以使微应用自由挂接到任意dom元素。具体使用如下：
-
+### 自定义插件
 1、创建类型为【插件】的微应用，挂入到微应用管理
 
 2、微应用注册渲染微模块的事件
@@ -184,3 +184,29 @@ admin?.emitMicroEvent('microName','eventName',...args);
     },
   });
   ```
+
+### 图表引擎插件
+图表引擎提供了微模块注入事件，具体使用参考如下，以列表顶部扩展面板(top-renderer)为例：
+```js
+// 注：使用前，请先购买图表插件！
+
+const { $func, $grid } = EventOptions;
+const admin = JE.useAdmin();
+return (dom,options)=>{
+    // 图表配置
+    const chartOptions = {
+        code:'图表编码',// 图表编码
+        style:'height:200px;',// 高度
+        hideSearch:'left',// 隐藏查询区域：left,top,all,none
+        params:{} // 默认参数，可以配合hideSearch使用
+    };
+    return admin?.emitMicroEvent('JE_PLUGIN_CHART_MODULE','chart-renderer',dom,chartOptions).then((chartRef)=>{
+        // 列表刷新时，刷新图表
+        $grid.store.on('load',()=>{
+            const params = {};// 设置查询参数
+            chartRef.value?.load(params);
+        })
+    });
+}
+
+```
