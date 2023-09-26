@@ -58,7 +58,7 @@ admin?.emitMicroEvent('microName','eventName',...args);
   <div/>
 </template>
 <script>
-  import { reactive, ref } from '@jecloud/ui';
+  import { reactive, h } from 'vue';
   import { Input, renderVNode } from '@jecloud/ui';
   import { useMicroStore } from '@common/store/micro-store';
   export default {
