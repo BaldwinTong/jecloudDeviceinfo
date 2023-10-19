@@ -1,7 +1,7 @@
 import { useGlobalStore } from '../store/global-store';
 import { useMicroStore } from '../store/micro-store';
 import { isMicro } from '@micro/helper';
-import { initSystemApi, logoutApi, validateTokenApi } from '@jecloud/utils';
+import { initSystemApi, validateTokenApi } from '@jecloud/utils';
 import { setAjaxDefaultConfig } from './http';
 /**
  * 初始化系统数据
@@ -76,13 +76,11 @@ export function isLogin() {
  */
 export function logout(next) {
   const globalStore = useGlobalStore();
-  return logoutApi()
-    .catch(() => {})
-    .finally(() => {
-      globalStore.logout();
-      // 子应用路由处理
-      if (isMicro() && next) {
-        return next({ name: 'Login' });
-      }
-    });
+  globalStore.logout();
+  // 子应用路由处理
+  if (isMicro() && next) {
+    return next({ name: 'Login' });
+  } else {
+    return Promise.resolve();
+  }
 }
