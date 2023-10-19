@@ -58,7 +58,7 @@ function setAjaxBaseURL(baseURL) {
  */
 function onBeforeRequest() {
   const store = useGlobalStore();
-  ajaxInstance.onBeforeRequest(({ config }) => {
+  ajaxInstance.onBeforeRequest(({ config, sync }) => {
     // 1. 添加token，默认所有请求自动携带token
     if (config.token !== false) {
       // 读取本地token
@@ -68,7 +68,17 @@ function onBeforeRequest() {
         config.headers[store.tokenKey] = token;
       } else {
         // 没有token，退出登录
-        return Promise.reject({ status: 401 });
+        const error = {
+          status: 401,
+          config,
+          message: '浏览器token缓存已失效，请重新登录，如需禁用校验，请设置请求配置项token:false',
+        };
+        if (sync) {
+          ajaxInstance.fire('response-catch', { error, config });
+          return false;
+        } else {
+          return Promise.reject(error);
+        }
       }
     }
     // 2. 请求参数安全加密
@@ -92,10 +102,9 @@ function onResponse() {
  */
 function onResponseCatch() {
   ajaxInstance.onResponseCatch(({ error, config }) => {
-    console.error('AJAX-ERROR', error, config);
-    const { status } = error;
+    console.error('AJAX-ERROR', { ...error, config });
     // 用户失效，退出登录
-    if ([401, 403].includes(status)) {
+    if (error.status == 401) {
       logout();
     }
   });
