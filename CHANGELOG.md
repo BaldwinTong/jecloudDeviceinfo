@@ -1,3 +1,12 @@
+# [2.1.0](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.0.9...v2.1.0) (2023-10-20)
+
+
+### Bug Fixes
+
+* **http:** 优化http请求的拦截器和退出登录的逻辑[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([61178f3](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/61178f33af0d27bbd0a7f1798e6e6eba8209810c))
+
+
+
 ## [2.0.9](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.0.8...v2.0.9) (2023-09-22)
 
 
