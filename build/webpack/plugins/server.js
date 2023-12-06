@@ -20,6 +20,10 @@ module.exports = {
           'Access-Control-Allow-Origin': '*',
         },
         proxy: {
+          '/je/document': {
+            // 文件代理地址，解决存储文件路径代理问题
+            target: VUE_APP_SERVICE_PROXY,
+          },
           [VUE_APP_SERVICE_PROXY_PREFIX]: {
             // 代理地址
             target: VUE_APP_SERVICE_PROXY,

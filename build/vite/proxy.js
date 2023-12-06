@@ -16,6 +16,11 @@ export function configProxy(envs) {
   } = envs;
 
   return {
+    '/je/document': {
+      // 文件代理地址，解决存储文件路径代理问题
+      target: VUE_APP_SERVICE_PROXY,
+      changeOrigin: true,
+    },
     [VUE_APP_SERVICE_PROXY_PREFIX]: {
       // 代理地址
       target: VUE_APP_SERVICE_PROXY,
