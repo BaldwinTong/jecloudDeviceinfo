@@ -1,7 +1,7 @@
 import { toRaw, h } from 'vue';
 import { message } from 'ant-design-vue';
 import { Modal } from '@jecloud/ui';
-import { isArray, loginApi } from '@jecloud/utils';
+import { isArray, loginApi, cloneDeep } from '@jecloud/utils';
 import { login as _login } from '@common/helper/system';
 
 /**
@@ -17,7 +17,7 @@ export function useLogin(form, model) {
     model.deptId = deptId;
     form.value.validate().then(() => {
       // 获取原始对象
-      const vals = toRaw(model);
+      const vals = cloneDeep(model);
       // 提交登录
       loginApi(vals)
         .then((token) => {
