@@ -1,3 +1,18 @@
+## [2.2.1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.0...v2.2.1) (2023-12-15)
+
+
+### Bug Fixes
+
+* **login:** 修复登录接口加密后，导致参数异常问题[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([6a784e1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/6a784e1e7a3ba2d56683060317a5b228e291e2d3))
+* **public:** 优化静态资源文件[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([9d1cedd](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/9d1cedd12b451b0e12a4858aec932b3dfde0eea9))
+
+
+### Features
+
+* **flie:** 添加图片预览资源 ([9cb8d34](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/9cb8d3471501c37c9182aeaca06bda2ea021f5db))
+
+
+
 # [2.2.0](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.1.1...v2.2.0) (2023-11-15)
 
 
