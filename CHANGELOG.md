@@ -1,3 +1,7 @@
+## [2.2.2](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.1...v2.2.2) (2023-12-29)
+
+
+
 ## [2.2.1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.0...v2.2.1) (2023-12-15)
 
 
