@@ -7,7 +7,7 @@
   "json.schemaDownload.enable": false,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": [// tsx 支持prettier格式化和eslint
     "typescriptreact"
