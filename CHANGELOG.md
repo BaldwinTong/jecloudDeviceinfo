@@ -1,3 +1,12 @@
+## [2.2.3](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.2...v2.2.3) (2024-02-23)
+
+
+### Bug Fixes
+
+* **build:** 修改编辑器配置 ([492e4f6](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/492e4f6eeae3db3e97eeb6ea3048d6a171fd7eed))
+
+
+
 ## [2.2.2](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.1...v2.2.2) (2023-12-29)
 
 
