@@ -6,7 +6,7 @@ const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
 const envs = utils.resolveEnvs(process.env);
-const version = envs.JECLOUD_VERSION;
+const version = envs.VUE_APP_VERSION;
 
 // 自定义配置
 const customConfig = envs.NODE_ENV == 'development' ? dev : prod;

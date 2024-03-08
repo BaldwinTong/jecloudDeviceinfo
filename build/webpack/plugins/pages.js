@@ -7,14 +7,14 @@ module.exports = {
     const {
       VUE_APP_HTML_TITLE, // 首页标题
       VUE_APP_AJAX_BASE_URL, // ajax基础请求
-      JECLOUD_VERSION,
+      VUE_APP_VERSION,
     } = envs;
     const pages = {};
     this.entrys.forEach(({ name, entry, template }) => {
       pages[name] = {
         title: VUE_APP_HTML_TITLE, // 标题
         ajaxBaseUrl: VUE_APP_AJAX_BASE_URL, //ajax基础请求
-        version: JECLOUD_VERSION,
+        version: VUE_APP_VERSION,
         // page 的入口
         entry,
         // 模板来源

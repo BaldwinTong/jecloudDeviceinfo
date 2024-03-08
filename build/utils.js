@@ -27,7 +27,9 @@ function resolveEnvs(_envs) {
   // 基础路径
   envs.PUBLIC_PATH = getPublicPath(envs);
   // 版本
-  envs.JECLOUD_VERSION = packageJson.version;
+  envs.VUE_APP_VERSION = packageJson.version;
+  // 项目
+  envs.VUE_APP_PROJECT = packageJson.name;
 
   return envs;
 }
