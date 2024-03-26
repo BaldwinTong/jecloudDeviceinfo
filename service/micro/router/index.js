@@ -2,6 +2,7 @@ import { createMemoryHistory, createWebHashHistory } from 'vue-router';
 import { setupRouter as _setupRouter } from '@common/router';
 import * as customRouter from '@/router';
 import { useMicroStore } from '@common/store/micro-store';
+import { isMicro } from '@micro/helper';
 /**
  * 自定义路由
  */
@@ -13,8 +14,8 @@ export const routes = customRouter.default ?? customRouter.routes;
  * @export
  * @return {*}
  */
-export function setupRouter(app, isMicro) {
-  if (isMicro) {
+export function setupRouter(app) {
+  if (isMicro()) {
     const microStore = useMicroStore();
     // 处理子应用激活路由，根据配置处理
     if (microStore?.options?.activeRoute) {
@@ -29,6 +30,6 @@ export function setupRouter(app, isMicro) {
     whites: customRouter.whiteRoutes,
     history:
       customRouter.createRouterHistory?.() ??
-      (isMicro ? createMemoryHistory() : createWebHashHistory()),
+      (isMicro() ? createMemoryHistory() : createWebHashHistory()),
   });
 }
