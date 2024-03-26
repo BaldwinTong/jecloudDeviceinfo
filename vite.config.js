@@ -9,11 +9,10 @@ export default defineConfig(({ command, mode }) => {
   const config = loadEnvs(mode);
   const { VUE_APP_SERVICE_PORT } = config;
   // 加载插件
-  const { plugins, options } = usePlugins(config, command);
+  const options = usePlugins(config, command);
   return {
-    base: getPublicPath(config),
-    plugins: plugins,
     ...options,
+    base: getPublicPath(config),
     resolve: {
       alias: {
         '@': resolve('src'),

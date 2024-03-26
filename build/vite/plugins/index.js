@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import vuePlugin from './vue';
+import build from '@jecloud/vue';
 import { configStyleImportPlugin } from './style-import';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
@@ -16,15 +16,12 @@ export function usePlugins(envs, command) {
   const plugins = [
     vue(),
     vueJsx(),
-    vuePlugin(),
     configStyleImportPlugin(envs, command),
     configHtmlPlugin(envs, command),
     configMockPlugin(envs, command),
   ];
-  return {
+  return build.useVite({
     plugins,
-    options: {
-      ...useTheme(envs),
-    },
-  };
+    ...useTheme(envs),
+  });
 }

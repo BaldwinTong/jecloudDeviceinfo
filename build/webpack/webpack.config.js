@@ -4,6 +4,7 @@
 const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
+const build = require('@jecloud/vue');
 const envs = utils.loadEnvs();
 const version = envs.VUE_APP_VERSION;
 
@@ -17,15 +18,9 @@ const chainWebpack = function (config) {
   config.resolve.alias.set('@admin', utils.resolve('service/admin'));
   config.resolve.alias.set('@common', utils.resolve('service/common'));
   config.resolve.alias.set('@build', utils.resolve('build'));
-  // 添加自定义loader
-  config.module
-    .rule('custom')
-    .test(/\.js$/)
-    .use('custom-loader')
-    .loader(utils.resolve('build/webpack/plugins/vue.js'));
 
   // 环境配置
-  return customConfig.chainWebpack({ config, envs });
+  return build.useWebpack(customConfig.chainWebpack({ config, envs }));
 };
 
 // 简单配置

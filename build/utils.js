@@ -7,7 +7,7 @@ const { loadEnvs: _loadEnvs, resolvePath, getIPAdress, getProjectName } = requir
  * @return {*}
  */
 function loadEnvs(mode) {
-  const envs = _loadEnvs(mode);
+  const envs = _loadEnvs(mode || process.env.NODE_ENV);
   // 基础路径
   envs.PUBLIC_PATH = getPublicPath(envs);
   return envs;
