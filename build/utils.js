@@ -1,60 +1,16 @@
-const path = require('path');
-const os = require('os');
-const packageJson = require('../package.json');
+const { loadEnvs: _loadEnvs, resolvePath, getIPAdress, getProjectName } = require('@jecloud/vue');
 
 /**
- * 解析系统变量
+ * 加载系统变量
  *
- * @param {*} _envs
+ * @param {*} mode 环境变量
  * @return {*}
  */
-function resolveEnvs(_envs) {
-  const envs = {};
-  Object.keys(_envs).forEach((key) => {
-    if (key.startsWith('VUE_APP_') || ['NODE_ENV'].includes(key)) {
-      envs[key] = _envs[key];
-    }
-  });
-  for (let key in envs) {
-    let val = envs[key];
-    if (isNumeric(val)) {
-      envs[key] = Number(val);
-    } else if (['true', 'false'].includes(val)) {
-      envs[key] = val == 'true';
-    }
-  }
-
+function loadEnvs(mode) {
+  const envs = _loadEnvs(mode);
   // 基础路径
   envs.PUBLIC_PATH = getPublicPath(envs);
-  // 版本
-  envs.VUE_APP_VERSION = packageJson.version;
-  // 项目
-  envs.VUE_APP_PROJECT = packageJson.name;
-
   return envs;
-}
-
-function isNumeric(value) {
-  return !Number.isNaN(parseFloat(value)) && Number.isFinite(parseFloat(value));
-}
-
-/**
- * 获取本机IP
- *
- * @return {*}
- */
-function getIPAdress() {
-  var interfaces = os.networkInterfaces();
-  // console.log('interfaces', interfaces);
-  for (var devName in interfaces) {
-    var iface = interfaces[devName];
-    for (var i = 0; i < iface.length; i++) {
-      var alias = iface[i];
-      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-        return alias.address;
-      }
-    }
-  }
 }
 
 /**
@@ -101,25 +57,13 @@ function getPublicPath(envs) {
   return `${publicPath}${publicPathMicro}/${publicPathProject}/`;
 }
 
-function getProjectName() {
-  const project = process.cwd().split(path.sep).pop(); // 项目名称
-  return project;
-}
-/**
- * 地址转换
- * @param {*} dir
- * @returns
- */
-function resolve(dir) {
-  return path.resolve(process.cwd(), '.', dir);
-}
 /**
  * 获取ant less全局变量
  * @return {*}
  */
 function generateModifyVars() {
   return {
-    hack: `true; @import (reference) "${resolve(
+    hack: `true; @import (reference) "${resolvePath(
       'service/common/assets/themes/theme-variable.less',
     )}";`,
   };
@@ -132,12 +76,11 @@ function generateModifyVars() {
  * @return {*}
  */
 module.exports = {
+  resolve: resolvePath,
   getMicroProxys,
   generateModifyVars,
-  resolve,
   getPublicPath,
-  resolveEnvs,
-  isNumeric,
+  loadEnvs,
   getIPAdress,
   getProjectName,
 };

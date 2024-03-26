@@ -40,7 +40,8 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean": "rimraf node_modules",
     "clean:vite": "rimraf node_modules/.vite",
-    "config": "vue inspect > .vue.config.js"
+    "config": "vue inspect > .vue.config.js",
+    "setup:vue": "npm run yalc:remove && npm run yalc:jecloud && yalc add @jecloud/vue && npm i"
   },
   "husky": {
     "hooks": {
@@ -57,6 +58,7 @@
     "@jecloud/func": "file:.yalc/@jecloud/func",
     "@jecloud/ui": "file:.yalc/@jecloud/ui",
     "@jecloud/utils": "file:.yalc/@jecloud/utils",
+    "@jecloud/vue": "file:.yalc/@jecloud/vue",
     "ant-design-vue": "^3.2.11",
     "core-js": "^3.24.1",
     "pinia": "^2.0.18",

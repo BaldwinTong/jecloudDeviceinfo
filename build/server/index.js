@@ -4,22 +4,12 @@
 const express = require('express');
 const request = require('request');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
-const { resolve, getIPAdress } = require('../utils');
+const { resolve, getIPAdress, loadEnvs } = require('../utils');
 
 // 读取配置文件
-let config = {};
-['.env', '.env.development'].forEach((file) => {
-  [file, file + '.local'].forEach((name) => {
-    const filePath = resolve(name);
-    if (fs.existsSync(filePath)) {
-      config = Object.assign(config, dotenv.parse(fs.readFileSync(filePath)));
-    }
-  });
-});
-
+let config = loadEnvs('development');
 //路由代理
 const { VUE_APP_SERVICE_PROXY, VUE_APP_SERVICE_PORT, VUE_APP_PUBLIC_PATH_MICRO } = config;
 const distDir = resolve('dist');

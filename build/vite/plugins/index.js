@@ -1,11 +1,10 @@
-import { loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import vuePlugin from './vue';
 import { configStyleImportPlugin } from './style-import';
 import { configHtmlPlugin } from './html';
 import { configMockPlugin } from './mock';
 import { useTheme } from './theme';
-export const utils = require('../../utils');
 /**
  * vite 插件
  *
@@ -17,6 +16,7 @@ export function usePlugins(envs, command) {
   const plugins = [
     vue(),
     vueJsx(),
+    vuePlugin(),
     configStyleImportPlugin(envs, command),
     configHtmlPlugin(envs, command),
     configMockPlugin(envs, command),
@@ -27,32 +27,4 @@ export function usePlugins(envs, command) {
       ...useTheme(envs),
     },
   };
-}
-
-/**
- * 加载系统参数
- *
- * @export
- * @param {*} mode
- * @return {*}
- */
-export function loadEnvs(mode) {
-  const envs = utils.resolveEnvs(loadEnv(mode, process.cwd(), 'VUE_APP_'));
-  envs.NODE_ENV = mode;
-  return envs;
-}
-
-/**
- * 获得绝对路径
- *
- * @export
- * @param {*} dir
- * @return {*}
- */
-export function resolve(dir) {
-  return utils.resolve(dir);
-}
-
-export function isNumeric(value) {
-  return !Number.isNaN(parseFloat(value)) && Number.isFinite(parseFloat(value));
 }

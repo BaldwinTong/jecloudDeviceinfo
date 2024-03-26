@@ -1,11 +1,10 @@
 /**
  * webpack 配置文件统一入口
  */
-const webpack = require('webpack');
 const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
-const envs = utils.resolveEnvs(process.env);
+const envs = utils.loadEnvs();
 const version = envs.VUE_APP_VERSION;
 
 // 自定义配置
@@ -18,6 +17,12 @@ const chainWebpack = function (config) {
   config.resolve.alias.set('@admin', utils.resolve('service/admin'));
   config.resolve.alias.set('@common', utils.resolve('service/common'));
   config.resolve.alias.set('@build', utils.resolve('build'));
+  // 添加自定义loader
+  config.module
+    .rule('custom')
+    .test(/\.js$/)
+    .use('custom-loader')
+    .loader(utils.resolve('build/webpack/plugins/vue.js'));
 
   // 环境配置
   return customConfig.chainWebpack({ config, envs });
@@ -27,16 +32,11 @@ const chainWebpack = function (config) {
 const projectName = utils.getProjectName();
 // 主应用
 const configureWebpack = customConfig.config({
-  plugins: [
-    new webpack.DefinePlugin({
-      __CLI_ENVS__: JSON.stringify(envs),
-    }),
-  ],
   // 微应用配置
   output: {
     library: `${projectName}`,
     libraryTarget: 'umd', // 把微应用打包成 umd 库格式
-    jsonpFunction: `webpackJsonp_${projectName}`,
+    jsonpFunction: `webpackJsonp_${projectName}`, // 参考：https://micro-zoe.github.io/micro-app/docs.html#/zh-cn/framework/vue?id=_2%e3%80%81%e8%ae%be%e7%bd%ae-webpackjsonpfunction
     filename: `js/[name].${version}.[hash:8].js`,
   },
 });

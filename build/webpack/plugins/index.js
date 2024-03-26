@@ -1,8 +1,8 @@
-const { resolveEnvs } = require('../../utils');
+const utils = require('../../utils');
 const theme = require('./theme');
 const server = require('./server');
 const pages = require('./pages');
-const envs = resolveEnvs(process.env);
+const envs = utils.loadEnvs();
 
 module.exports = {
   defaultTheme: theme.defaultTheme,

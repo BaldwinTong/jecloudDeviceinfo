@@ -10,12 +10,7 @@ export function configHtmlPlugin(envs, command) {
   return html({
     inject: {
       data: {
-        title: 'vite-plugin-html-example',
-        injectScript: `
-        <script>
-          var __CLI_ENVS__= ${JSON.stringify(envs)}
-        </script>
-        `,
+        title: envs.VUE_APP_HTML_TITLE,
       },
     },
     minify: true,

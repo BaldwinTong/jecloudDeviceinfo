@@ -1,18 +1,19 @@
 import { defineConfig } from 'vite';
-import { usePlugins, resolve, loadEnvs, utils } from './build/vite/plugins';
+import { usePlugins } from './build/vite/plugins';
 import { configProxy } from './build/vite/proxy';
+const utils = require('./build/utils');
 
 export default defineConfig(({ command, mode }) => {
+  const { loadEnvs, resolve, getPublicPath } = utils;
   // 加载系统配置
   const config = loadEnvs(mode);
   const { VUE_APP_SERVICE_PORT } = config;
   // 加载插件
   const { plugins, options } = usePlugins(config, command);
   return {
-    base: utils.getPublicPath(config),
+    base: getPublicPath(config),
     plugins: plugins,
     ...options,
-    define: { __CLI_ENVS__: JSON.stringify(config) },
     resolve: {
       alias: {
         '@': resolve('src'),
