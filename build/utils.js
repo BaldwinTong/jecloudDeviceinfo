@@ -1,4 +1,9 @@
-const { loadEnvs: _loadEnvs, resolvePath, getIPAdress, getProjectName } = require('@jecloud/vue');
+const {
+  loadEnvs: _loadEnvs,
+  resolvePath,
+  getIPAdress,
+  getProjectName,
+} = require('@jecloud/builder');
 
 /**
  * 加载系统变量

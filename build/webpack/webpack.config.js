@@ -4,7 +4,7 @@
 const dev = require('./webpack.dev');
 const prod = require('./webpack.prod');
 const utils = require('../utils');
-const build = require('@jecloud/vue');
+const builder = require('@jecloud/builder');
 const envs = utils.loadEnvs();
 const version = envs.VUE_APP_VERSION;
 
@@ -20,7 +20,7 @@ const chainWebpack = function (config) {
   config.resolve.alias.set('@build', utils.resolve('build'));
 
   // 环境配置
-  return build.useWebpack(customConfig.chainWebpack({ config, envs }));
+  return builder.useWebpack(customConfig.chainWebpack({ config, envs }));
 };
 
 // 简单配置

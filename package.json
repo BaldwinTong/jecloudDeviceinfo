@@ -41,7 +41,7 @@
     "clean": "rimraf node_modules",
     "clean:vite": "rimraf node_modules/.vite",
     "config": "vue inspect > .vue.config.js",
-    "setup:vue": "npm run yalc:remove && npm run yalc:jecloud && yalc add @jecloud/vue && npm i"
+    "setup:builder": "npm run yalc:remove && npm run yalc:jecloud && yalc add @jecloud/builder && npm i"
   },
   "husky": {
     "hooks": {
@@ -55,10 +55,10 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^3.6.0",
+    "@jecloud/builder": "file:.yalc/@jecloud/builder",
     "@jecloud/func": "file:.yalc/@jecloud/func",
     "@jecloud/ui": "file:.yalc/@jecloud/ui",
     "@jecloud/utils": "file:.yalc/@jecloud/utils",
-    "@jecloud/vue": "file:.yalc/@jecloud/vue",
     "ant-design-vue": "^3.2.11",
     "core-js": "^3.24.1",
     "pinia": "^2.0.18",
