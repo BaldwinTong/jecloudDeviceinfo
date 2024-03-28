@@ -1,21 +1,20 @@
 import { createApp } from 'vue';
 import micro from '@micro';
+import lifecycle from './helper/lifecycle';
 import { setupCommon } from '@common/helper';
-import { setupRouter } from '@micro/router';
-import ui from '@jecloud/ui';
-import func from '@jecloud/func';
 import App from './app.vue';
 
+/* 系统文件，不做修改，请在lifecycle中进行业务处理 */
 micro.setup((container) => {
-  // Init Vue
+  // Vue Init
   const vue = createApp(App);
-  // 注册组件
-  vue.use(ui).use(func);
-  // Common
-  setupCommon(vue).then(() => {
-    // Router
-    setupRouter(vue);
-    // Mount
-    vue.mount(container);
-  });
+  // VueInit Lifecycle
+  lifecycle
+    .onVueInit(vue)
+    .then(() => setupCommon(vue)) // Common
+    .then(() => lifecycle.onVueBeforeMount(vue)) // VueBeforeMount Lifecycle
+    .then(() => {
+      // Mount
+      vue.mount(container);
+    });
 });
