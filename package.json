@@ -40,8 +40,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean": "rimraf node_modules",
     "clean:vite": "rimraf node_modules/.vite",
-    "config": "vue inspect > .vue.config.js",
-    "setup:builder": "npm run yalc:remove && npm run yalc:jecloud && yalc add @jecloud/builder && npm i"
+    "config": "vue inspect > .vue.config.js"
   },
   "husky": {
     "hooks": {
@@ -55,7 +54,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^3.6.0",
-    "@jecloud/builder": "^1.0.0",
+    "@jecloud/builder": "^1.0.2",
     "@jecloud/func": "file:.yalc/@jecloud/func",
     "@jecloud/ui": "file:.yalc/@jecloud/ui",
     "@jecloud/utils": "file:.yalc/@jecloud/utils",
