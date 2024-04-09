@@ -47,6 +47,7 @@ module.exports = {
       chainWebpack,
       configureWebpack,
       ...customConfig.vueCliConfig(),
+      transpileDependencies: ['@jecloud'], // 由于@jecloud使用了es6语法，需要转译依赖
     };
   },
 };
