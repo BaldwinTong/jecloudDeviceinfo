@@ -1,3 +1,23 @@
+# [3.0.0](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.3...v3.0.0) (2024-04-25)
+
+
+### Bug Fixes
+
+* **builder:** 更新@jecloud/builder版本号 ([7696ee2](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/7696ee2838f2c5257a75ca9f5ff59a329fc3f59f))
+* **builder:** 适配构架工具的依赖 ([29b285b](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/29b285bddd2948aada11a7c3066f5fe59c3a318a))
+* **interceptor:** 增加全局拦截器支持[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([e5d7dc6](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/e5d7dc6610f8002f83b4f6c772f6d40cc3efbe57))
+* **micro:** 优化微应用适配代码 ([8cfd1fc](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/8cfd1fc52c0559911736873f19d114c7175d1fd8))
+* **package:** 更新@jecloud/builder ([374cd39](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/374cd3972aec369fc00958e1a72d613e9bcd86c1))
+* **package:** 更新package-lock文件 ([c6f86d9](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/c6f86d929bd7b9c5686bdfcff4306e67c824f7d9))
+
+
+### Features
+
+* **lifecycle:** 增加系统生命周期文件，服务业务处理，main.js禁止修改 ([d59eb21](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/d59eb21d511f62ce242f697dd2d495638d5b1437))
+* **plugin:** 增加插件访问权限[[#8](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/8)] ([2d2786d](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/2d2786d56a65ed5a835a9df981fa572208343f6c))
+
+
+
 ## [2.2.3](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.2...v2.2.3) (2024-02-23)
 
 
