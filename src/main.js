@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
 import micro from '@micro';
 import lifecycle from './helper/lifecycle';
-import { setupCommon, useRouter } from '@common/helper';
+import { setupCommon } from '@common/helper';
+import { useRouter } from '@common/router';
 import App from './app.vue';
 
 /* 系统文件，不做修改，请在lifecycle中进行业务处理 */
