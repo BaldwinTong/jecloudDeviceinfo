@@ -1,3 +1,14 @@
+## [3.0.1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v3.0.0...v3.0.1) (2024-06-01)
+
+
+### Bug Fixes
+
+* **mxgraph:** 删除mxgraph静态资源 ([90e9f78](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/90e9f788e48985538ff609085f935169b9daae52))
+* **router:** 调整路由注册时机 ([699dbc0](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/699dbc0ed38a9670b0563e611ddf96dda542c07f))
+* **router:** 调整路由注册时机 ([a925766](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/a925766664a5a78adbd2e5fcc1944545888db0eb))
+
+
+
 # [3.0.0](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v2.2.3...v3.0.0) (2024-04-25)
 
 
