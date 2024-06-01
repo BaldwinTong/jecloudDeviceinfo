@@ -17,6 +17,8 @@ export function setupRouter(app, { history, routes, guards, whites }) {
   router = createRouter({ history, routes });
   // 路由守卫
   createRouterGuard({ router, whites, guards });
+  // 注册路由
+  app.use(router);
   // 注入JE
   mixinJE({ $router: router, $history: history });
 }
