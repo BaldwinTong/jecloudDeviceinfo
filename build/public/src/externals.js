@@ -7,7 +7,6 @@ import './styles/vxe-table';
 // 公共样式
 import './styles/common';
 // 字体图标
-import './styles/icons';
 import './styles/icons-static';
 // jecloud/ui
 import './styles/jecloud-ui';
