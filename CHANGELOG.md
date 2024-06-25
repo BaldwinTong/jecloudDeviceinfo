@@ -1,3 +1,12 @@
+## [3.0.2](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v3.0.1...v3.0.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* **style:** 调整全局样式加载策略 ([8475ebd](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/8475ebdb525e688496db5d4136d2a11805c381d9))
+
+
+
 ## [3.0.1](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v3.0.0...v3.0.1) (2024-06-01)
 
 
