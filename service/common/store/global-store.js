@@ -47,6 +47,7 @@ const usePrivateGlobalStore = defineStore({
     plans: new Map(), // 方案配置
     activePlan: 'je', // 激活方案，默认je
     emitter: mitt(), // 事件触发器
+    globalIcons: [], // 字体图标
   }),
   getters: {
     locales() {
