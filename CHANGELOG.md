@@ -1,3 +1,18 @@
+## [3.0.3](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v3.0.2...v3.0.3) (2024-07-26)
+
+
+### Bug Fixes
+
+* **icon:** 修复全局图标库加载问题[[#12](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/issues/12)] ([7cc204a](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/7cc204a391b9d67f196caae01ed5c78ece505c39))
+
+
+### Features
+
+* **cli:** 去掉页面的语音 ([ad2f6fa](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/ad2f6fa211ffa60a2d3d7b77ac5bc589263ef042))
+* **cli:** 页面调整为中文 ([3d16254](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/commit/3d1625490f47b7eaea6e1ad0e8352b25c6df4448))
+
+
+
 ## [3.0.2](http://gitlab.suanbanyun.com/jecloud/opensource/frontend/jecloud-pc-archetype/compare/v3.0.1...v3.0.2) (2024-06-25)
 
 
